@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 12:22:18 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/28 16:48:58 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,28 @@ t_data_store			*ft_data_store_init(void)
 	if (!(data_store = (t_data_store*)malloc(sizeof(t_data_store))))
 		exit(-1);
 	data_store->nb_ants = 0;
+	data_store->start_mark = 0;
+	data_store->end_mark = 0;
 	data_store->rooms = ft_data_rooms_init();
 	data_store->tunnels = NULL;
 	return (data_store);
 }
 
-int 					main(int ac, char **av)
+void					ft_exit_error()
+{
+	ft_putstrcolor("ERROR\n", RED);
+	exit(-1);
+}
+
+int 					main(void)
 {
 	t_data_store		*data_store;
-
-	(void)ac;
-	(void)av;
+	int					parsing_ret;
+	
 	data_store = ft_data_store_init();
+	if ((parsing_ret = t_parse_file(data_store)) == -1)
+		ft_exit_error();
+	else if ((parsing_ret = t_parse_file(data_store)) == 0)
+		ft_putendl("ok");
 	return (0);
 }

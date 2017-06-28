@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 12:19:14 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/28 16:49:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct			s_tunnels
 typedef struct			s_data_store
 {
 	int					nb_ants;
+	int					start_mark;
+	int					end_mark;
 	t_ctl_data_rooms	*rooms;
 	t_tunnels			*tunnels;
 }						t_data_store;
