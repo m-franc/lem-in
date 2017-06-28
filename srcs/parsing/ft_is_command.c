@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 20:58:33 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/28 21:11:27 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ft_line_is_modif_command(char *line)
 {
 	char	*modif_att;
 
-	if (!(modif_att = ft_strnstr(line, "##", 2)))
+	if (!(modif_att = ft_strnstr(line, "##", 2)) || strnstr(line, "###", 3))
 		return (0);
 	else
 		return (1);
