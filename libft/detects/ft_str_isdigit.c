@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 20:21:39 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 17:29:33 by mfranc           ###   ########.fr       */
+/*   Created: 2017/06/28 20:04:56 by mfranc            #+#    #+#             */
+/*   Updated: 2017/06/28 20:05:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-char	*ft_strsub(char const *s, unsigned int start, size_t n)
+int			ft_str_isdigit(char *str)
 {
-	char				*new;
-	unsigned int		i;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
 	i = 0;
-	new = ft_strnew(n);
-	if (new == NULL)
-		exit(-1);
-	while (i < n)
-		new[i++] = s[start++];
-	new[i] = '\0';
-	return (new);
+	while (ft_isdigit(str[i]))
+		i++;
+	if (i != ft_strlen(str))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 16:48:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/28 18:31:32 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int 					main(void)
 	int					parsing_ret;
 	
 	data_store = ft_data_store_init();
-	if ((parsing_ret = t_parse_file(data_store)) == -1)
+	parsing_ret = ft_parse_file(data_store);
+	if (parsing_ret == -1)
 		ft_exit_error();
-	else if ((parsing_ret = t_parse_file(data_store)) == 0)
+	else if (parsing_ret == 0)
 		ft_putendl("ok");
 	return (0);
 }

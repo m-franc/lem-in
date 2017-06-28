@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 16:49:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/28 19:49:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,17 @@ typedef struct			s_data_store
 
 t_data_store			*ft_data_store_init(void);
 t_ctl_data_rooms		*ft_data_rooms_init(void);
+int						ft_parse_file(t_data_store *data_store);
+
+
+/*
+ ** ft_is_comand.c
+ */
+int						ft_str_is_room(char *str);
+int						ft_line_is_tunnel(char *line);
+int						ft_line_is_room(char *line);
+int						ft_line_is_ants_number(char *line);
+int						ft_line_is_modif_command(char *line);
+int						ft_line_is_comment(char *line);
 
 #endif

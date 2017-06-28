@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/06/27 16:59:59 by mfranc           ###   ########.fr        #
+#    Updated: 2017/06/28 18:54:03 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ FLAGS = -Wall -Wextra -Werror
 CC = clang $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
-SRCS = $(addprefix $(SRCS_PATH)/, main.c)
+SRCS = $(addprefix $(SRCS_PATH)/, main.c					\
+	   							  parsing/ft_is_command.c	\
+								  parsing/ft_parse_file.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a
