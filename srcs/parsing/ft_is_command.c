@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 17:58:11 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 19:52:42 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 		return (0);
 	}
 	ft_putendl("ok its room");
-	return (1);
+	return (ft_store_room(data_store, tab));
 }
 
 int			ft_line_is_comment(char *line, t_data_store *data_store)
