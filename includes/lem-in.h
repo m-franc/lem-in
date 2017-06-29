@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 12:56:55 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 15:42:52 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef int				(*t_line_is_command)(char *line, t_data_store *data_store);
  ** ft_store_command.c
  */
 int						ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_room);
+int						ft_store_ants_number(t_data_store *data_store, char *line);
 
 /*
  ** 

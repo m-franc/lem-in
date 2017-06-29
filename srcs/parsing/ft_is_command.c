@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 13:18:56 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 15:46:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,8 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 
 int			ft_line_is_ants_number(char *line, t_data_store *data_store)
 {
-	(void)data_store;
 	if (ft_str_isdigit(line))
-	{
-		ft_putendl("ok its ants number");
-		return (1);
-	}
+		return (ft_store_ants_number(data_store, line));
 	else
 		return (0);
 }

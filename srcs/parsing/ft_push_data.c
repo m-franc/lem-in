@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:31:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 13:09:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 15:09:22 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,9 @@ void	ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel)
 	}
 	else
 	{
-		ft_putendl("COUCOU\n");
 		tmp = *tunnels;
 		while (tmp && tmp->next)
-		{
-			ft_printf("{grey}%s{eoc} - {grey}%s{eoc}\n", tmp->first_room, tmp->second_room);
 			tmp = tmp->next;
-			ft_putendl("Passaege");
-		}
 		tmp->next = new_tunnel;
 	}
 }
