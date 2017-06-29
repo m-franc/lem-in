@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 11:11:45 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 12:56:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct			s_ctl_data_rooms
 
 typedef struct			s_tunnels
 {
-	char				*from;
-	char				*to;
+	char				*first_room;
+	char				*second_room;
 	struct s_tunnels	*next;
 }						t_tunnels;
 
@@ -68,5 +68,15 @@ int						ft_line_is_modif_command(char *line, t_data_store *data_store);
 int						ft_line_is_comment(char *line, t_data_store *data_store);
 
 typedef int				(*t_line_is_command)(char *line, t_data_store *data_store);
+
+/*
+ ** ft_store_command.c
+ */
+int						ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_room);
+
+/*
+ ** 
+ */
+void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
 
 #endif

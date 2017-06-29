@@ -6,18 +6,20 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/06/28 18:54:03 by mfranc           ###   ########.fr        #
+#    Updated: 2017/06/29 13:08:27 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = clang $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
-SRCS = $(addprefix $(SRCS_PATH)/, main.c					\
-	   							  parsing/ft_is_command.c	\
-								  parsing/ft_parse_file.c)
+SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
+	   							  parsing/ft_is_command.c		\
+								  parsing/ft_parse_file.c		\
+								  parsing/ft_store_command.c	\
+								  parsing/ft_push_data.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 11:13:14 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 13:18:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,26 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 	char	*f_room;
 	char	*s_room;
 
-	(void)data_store;
 	if (strcmp(line, "-") == 0)
 		return (0);
 	ti = strcspn(line, "-");
 	f_room = ft_strsub(line, 0, ti);
-	if (f_room[0] == 76 || f_room[0] == 35 || (line[ft_strlen(f_room)] != '-'))
+	if (f_room[0] == 76 || f_room[0] == 35 || (line[ft_strlen(f_room)] != '-')
+			|| ft_strlen(f_room) == 0)
 	{
 		ft_strdel(&f_room);	
 		return (0);
 	}
-	ft_strdel(&f_room);
 	other_ti = strcspn(line + (ti + 1), "-");
 	s_room = ft_strsub(line, ti + 1, other_ti);
-	if ((s_room[0] == 76 || s_room[0] == 35) || line[ti + other_ti + 1] != '\0')
+	if ((s_room[0] == 76 || s_room[0] == 35) || line[ti + other_ti + 1] != '\0'
+			|| ft_strlen(s_room) == 0)
 	{
 		ft_strdel(&s_room);
 		return (0);
 	}
-	ft_strdel(&s_room);
 	ft_putendl("ok its tunnel");
-	return (1);
+	return (ft_store_tunnel(data_store, f_room, s_room));
 }
 
 int			ft_line_is_ants_number(char *line, t_data_store *data_store)

@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_file.c                                    :+:      :+:    :+:   */
+/*   ft_store_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 11:34:28 by mfranc           ###   ########.fr       */
+/*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
+/*   Updated: 2017/06/29 13:15:04 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-t_line_is_command	g_line_is_command[] = 
+int		ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_room)
 {
-	ft_line_is_ants_number,
-	ft_line_is_tunnel,
-	ft_line_is_room,
-	ft_line_is_modif_command,
-	ft_line_is_comment
-};
-
-int			ft_parse_file(t_data_store *data_store)
-{
-	int		gnl;
-	int		i;
-	char	*line;
-
-	while ((gnl = get_next_line(0, &line)))
-	{
-		i = -1;
-		while (++i < 5)
-		{
-			if (g_line_is_command[i](line, data_store))
-				break ;
-		}
-		if (i == 5)
-			break ;
-	}
-	if (gnl == -1)
-		return (-1);
+	t_tunnels	*new_tunnel;
+	
+	if (!(new_tunnel = (t_tunnels*)malloc(sizeof(t_tunnels))))
+		exit(-1);
+	new_tunnel->first_room = first_room;
+	new_tunnel->second_room = second_room;
+	ft_putendl("*&(&*(&*()))");
+	ft_push_back_tunnel(&data_store->tunnels, new_tunnel);
 	return (1);
 }
