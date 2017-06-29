@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 18:02:44 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 18:59:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int						ft_store_tunnel(t_data_store *data_store, char *first_room, char *secon
 int						ft_store_ants_number(t_data_store *data_store, char *line);
 
 /*
- ** 
+ ** ft_push.c 
  */
 void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
+void					ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room);
 
 #endif
