@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 11:34:28 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 17:54:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_line_is_command	g_line_is_command[] = 
 {
 	ft_line_is_ants_number,
-	ft_line_is_tunnel,
 	ft_line_is_room,
+	ft_line_is_tunnel,
 	ft_line_is_modif_command,
 	ft_line_is_comment
 };

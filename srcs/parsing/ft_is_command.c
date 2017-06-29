@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 15:46:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 17:55:22 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 		ft_strdel(&s_room);
 		return (0);
 	}
-	ft_putendl("ok its tunnel");
+	ft_putendl("Ook its tunnel");
 	return (ft_store_tunnel(data_store, f_room, s_room));
 }
 
@@ -57,6 +57,7 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 	tab = ft_strsplit(line, ' ');
 	if (ft_tablen(tab) != 3
 			|| (tab[0][0] == 76 || tab[0][0] == 35)
+			|| ft_strchr(tab[0], '-')
 			|| !ft_str_isdigit(tab[1])
 			|| !ft_str_isdigit(tab[2]))
 	{
@@ -89,7 +90,12 @@ int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 		return (0);
 	else
 	{
-		ft_putendl("ok its modif command");
+		if (ft_strcmp(line, "##start") == 0)
+			data_store->start_mark++;
+		else if (ft_strcmp(line, "##end") == 0)
+			data_store->end_mark++;
+//		else
+//			return (0);
 		return (1);
 	}
 }

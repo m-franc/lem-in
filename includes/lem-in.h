@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 15:42:52 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 17:47:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,7 @@ typedef struct			s_data_rooms
 	int					x;
 	int					y;
 	struct s_data_rooms	*next;
-	struct s_data_rooms	*prev;
 }						t_data_rooms;
-
-typedef struct			s_ctl_data_rooms
-{
-	int					size;
-	t_data_rooms		*first;
-	t_data_rooms		*last;
-}						t_ctl_data_rooms;
 
 typedef struct			s_tunnels
 {
@@ -49,12 +41,13 @@ typedef struct			s_data_store
 	int					nb_ants;
 	int					start_mark;
 	int					end_mark;
-	t_ctl_data_rooms	*rooms;
+	t_data_rooms		*rooms;
+	int					nb_rooms;
 	t_tunnels			*tunnels;
+	int					nb_tunnels;
 }						t_data_store;
 
 t_data_store			*ft_data_store_init(void);
-t_ctl_data_rooms		*ft_data_rooms_init(void);
 int						ft_parse_file(t_data_store *data_store);
 
 
