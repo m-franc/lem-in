@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 20:23:09 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 20:26:03 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 		data_store->rooms = new_room;
 	else
 		ft_push_back_room(&last_rooms, new_room);
+	data_store->nb_rooms++;
 	return (1);
 }
 
