@@ -6,37 +6,37 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 21:11:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 11:13:59 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
+t_line_is_command	g_line_is_command[] = 
+{
+	ft_line_is_ants_number,
+	ft_line_is_tunnel,
+	ft_line_is_room,
+	ft_line_is_modif_command,
+	ft_line_is_comment
+};
+
 int			ft_parse_file(t_data_store *data_store)
 {
 	int		gnl;
+	int		i;
 	char	*line;
 
-	(void)data_store;
 	while ((gnl = get_next_line(0, &line)))
 	{
-		ft_putstrcolor(line, BLUE);
-		ENDL
-		if (ft_line_is_ants_number(line))
-			ft_putendl("ok its ants number");
-		else if (ft_line_is_tunnel(line))
-			ft_putendl("ok its tunnel");
-		else if (ft_line_is_room(line))
-			ft_putendl("ok its room");
-		else if (ft_line_is_modif_command(line))
-			ft_putendl("ok its modif command");
-		else if (ft_line_is_comment(line))
-			ft_putendl("ok its comment");
-		else
+		i = -1;
+		while (++i < 5)
 		{
-			ft_putendl("out !");
-			break ;
+			if (g_line_is_command[i](line, data_store))
+				break ;
 		}
+		if (i == 5)
+			break ;
 	}
 	if (gnl == -1)
 		return (-1);

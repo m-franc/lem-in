@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 19:49:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/29 11:11:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ int						ft_parse_file(t_data_store *data_store);
 /*
  ** ft_is_comand.c
  */
-int						ft_str_is_room(char *str);
-int						ft_line_is_tunnel(char *line);
-int						ft_line_is_room(char *line);
-int						ft_line_is_ants_number(char *line);
-int						ft_line_is_modif_command(char *line);
-int						ft_line_is_comment(char *line);
+int						ft_line_is_tunnel(char *line, t_data_store *data_store);
+int						ft_line_is_room(char *line, t_data_store *data_store);
+int						ft_line_is_ants_number(char *line, t_data_store *data_store);
+int						ft_line_is_modif_command(char *line, t_data_store *data_store);
+int						ft_line_is_comment(char *line, t_data_store *data_store);
+
+typedef int				(*t_line_is_command)(char *line, t_data_store *data_store);
 
 #endif
