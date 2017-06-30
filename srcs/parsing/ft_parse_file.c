@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 15:26:37 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 16:39:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			ft_parse_file(t_data_store *data_store)
 	char	*line;
 	int		line_is_command;
 
-	while ((gnl = get_next_line(0, &line)))
+	while ((gnl = get_next_line(0, &line)) == 1)
 	{
 		i = -1;
 		while (++i < 5)
@@ -41,6 +41,7 @@ int			ft_parse_file(t_data_store *data_store)
 		}
 		if (i == 5)
 			break ;
+		ft_put_data_parsed(data_store);
 	}
 	if (gnl == -1)
 		return (-1);

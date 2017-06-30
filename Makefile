@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/06/29 13:08:27 by mfranc           ###   ########.fr        #
+#    Updated: 2017/06/30 16:04:45 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 	   							  parsing/ft_is_command.c		\
 								  parsing/ft_parse_file.c		\
 								  parsing/ft_store_command.c	\
-								  parsing/ft_push_data.c)
+								  parsing/ft_push_data.c		\
+								  ft_display.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 11:45:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 16:03:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct			s_data_store
 
 
 
+/*
+ ** ft_display.c
+ */
+void					ft_put_data_parsed(t_data_store *data_store);
 
 /*
  ** main.c.c

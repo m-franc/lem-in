@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 15:24:36 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 16:35:52 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_line_is_ants_number(char *line, t_data_store *data_store)
 			return (ft_store_ants_number(data_store, line));
 	}
 	else
-		return (-1);
+		return (0);
 }
 
 int			ft_line_is_room(char *line, t_data_store *data_store)
@@ -97,14 +97,20 @@ int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 		return (0);
 	else
 	{
-		if (ft_strcmp(line, "##start") == 0)
-			data_store->start_mark++;
-		else if (ft_strcmp(line, "##START") == 0)
-			data_store->start_mark++;
-		else if (ft_strcmp(line, "##end") == 0)
-			data_store->end_mark++;
-		else if (ft_strcmp(line, "##END") == 0)
-			data_store->end_mark++;
+		if (ft_strcmp(line, "##start") == 0 || ft_strcmp(line, "##START") == 0)
+		{
+			if (data_store->start_mark > 1)
+				return (-1);
+			if (data_store->start_mark == 0)
+				data_store->start_mark++;
+		}
+		else if (ft_strcmp(line, "##end") == 0 || ft_strcmp(line, "##END") == 0)
+		{
+			if (data_store->end_mark > 1)
+				return (-1);
+			if (data_store->end_mark == 0)
+				data_store->end_mark++;	
+		}
 //		else
 //			return (0);
 		ft_putendl("Its command");

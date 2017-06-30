@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 15:18:33 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 16:41:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,20 @@ static int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 
 static int		ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
 {
+	ft_printf("MARKEUR START : {purple}%d{eoc}\n", data_store->start_mark);
+	ft_printf("MARKEUR START : {purple}%d{eoc}\n", data_store->end_mark);
+	if (data_store->start_mark == 1 && data_store->end_mark == 1)
+		return (-1);
 	if (data_store->start_mark == 1)
+	{
 		new_room->start = 1;
-	else if (data_store->start_mark > 1)
-		return (-1);
+		data_store->start_mark++;
+	}
 	if (data_store->end_mark == 1)
+	{
 		new_room->end = 1;
-	else if (data_store->end_mark > 1)
-		return (-1);
+		data_store->end_mark++;	
+	}
 	return (1);
 }
 
