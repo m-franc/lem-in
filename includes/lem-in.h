@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 19:10:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 19:23:27 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void					ft_push_back_command(t_list **commands, t_list *new_command);
  */
 int						ft_check_duplicate(t_data_rooms *last_rooms, char **data_room);
 int						ft_str_is_room(char *room);
+int						ft_check_data_room(char **tab);
 
 #endif

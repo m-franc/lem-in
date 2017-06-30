@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 19:09:57 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 19:25:20 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 	char	**tab;
 	
 	tab = ft_strsplit(line, ' ');
-	if (ft_tablen(tab) != 3
-			|| !ft_str_is_room(tab[0])
-			|| ft_strchr(tab[0], '-')
-			|| !ft_str_isdigit(tab[1])
-			|| !ft_str_isdigit(tab[2]))
+	if (!ft_check_data_room(tab))
 	{
 		ft_tabdel(&tab);
 		return (0);
