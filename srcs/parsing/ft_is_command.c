@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 13:34:44 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 15:24:36 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int			ft_line_is_ants_number(char *line, t_data_store *data_store)
 {
 	if (ft_str_isdigit(line))
 	{
-		if (ft_atoi(line) < 2147483647 || ft_atoi(line) > 1)
-			return (ft_store_ants_number(data_store, line));	
+		if (ft_atoi(line) > 2147483647 || ft_atoi(line) < 1)
+			return (-1);
 		else
-			return (0);
+			return (ft_store_ants_number(data_store, line));
 	}
 	else
-		return (0);
+		return (-1);
 }
 
 int			ft_line_is_room(char *line, t_data_store *data_store)
@@ -64,7 +64,6 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 			|| !ft_str_isdigit(tab[1])
 			|| !ft_str_isdigit(tab[2]))
 	{
-		ft_putendl("CA PASSE PAS");
 		ft_tabdel(&tab);
 		return (0);
 	}
@@ -85,7 +84,7 @@ int			ft_line_is_comment(char *line, t_data_store *data_store)
 		return (0);
 	else
 	{
-		ft_putendl("ok its comment");
+		ft_putendl("Its comment");
 		return (1);
 	}
 }
@@ -93,7 +92,7 @@ int			ft_line_is_comment(char *line, t_data_store *data_store)
 int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 {
 	char	*modif_att;
-	(void)data_store;
+
 	if (!(modif_att = ft_strnstr(line, "##", 2)) || strnstr(line, "###", 3))
 		return (0);
 	else
@@ -108,7 +107,7 @@ int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 			data_store->end_mark++;
 //		else
 //			return (0);
-		ft_putendl("ok its command");
+		ft_putendl("Its command");
 		return (1);
 	}
 }

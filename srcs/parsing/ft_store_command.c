@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 13:18:36 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 15:18:33 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int				ft_store_ants_number(t_data_store *data_store, char *ants_number)
 
 	nb_ants = ft_atoi(ants_number);
 	data_store->nb_ants = nb_ants;
+	ft_putendl("its ants number");
 	return (1);
 }
 
@@ -50,26 +51,27 @@ static int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 		if (ft_strcmp(last_rooms->name, data_room[0]) == 0
 				&& last_rooms->x == ft_atoi(data_room[1])
 				&& last_rooms->y == ft_atoi(data_room[2]))
-			return (0);
+			return (-1);
 		else if (ft_strcmp(last_rooms->name, data_room[0]) != 0
 				&& last_rooms->x == ft_atoi(data_room[1])
 				&& last_rooms->y == ft_atoi(data_room[2]))
-			return (0);
+			return (-1);
 		last_rooms = last_rooms->next;
 	}
 	return (1);
 }
 
-static void			ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
+static int		ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
 {
 	if (data_store->start_mark == 1)
 		new_room->start = 1;
 	else if (data_store->start_mark > 1)
-		ft_exit_error();
+		return (-1);
 	if (data_store->end_mark == 1)
 		new_room->end = 1;
 	else if (data_store->end_mark > 1)
-		ft_exit_error();
+		return (-1);
+	return (1);
 }
 
 int					ft_store_room(t_data_store *data_store, char **data_room)
@@ -87,7 +89,8 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	new_room->tunnels = 0;
 	new_room->start = 0;
 	new_room->end = 0;
-	ft_init_start_end(data_store, new_room);
+	if ((ft_init_start_end(data_store, new_room)) == -1)
+		return (-1);
 	new_room->x = ft_atoi(data_room[1]);
 	new_room->y = ft_atoi(data_room[2]);
 	new_room->next = NULL;
@@ -99,4 +102,3 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	ft_putendl("ok its room");
 	return (1);
 }
-
