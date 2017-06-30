@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 17:36:22 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 19:10:06 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef int				(*t_line_is_command)(char *line, t_data_store *data_store);
 int						ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_room);
 int						ft_store_ants_number(t_data_store *data_store, char *line);
 int						ft_store_room(t_data_store *data_store, char **data_room);
+int						ft_store_modif_command(t_data_store *data_store, char *line);
 
 /*
  ** ft_push.c 
@@ -89,5 +90,11 @@ int						ft_store_room(t_data_store *data_store, char **data_room);
 void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
 void					ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room);
 void					ft_push_back_command(t_list **commands, t_list *new_command);
+
+/*
+ ** ft_check.c
+ */
+int						ft_check_duplicate(t_data_rooms *last_rooms, char **data_room);
+int						ft_str_is_room(char *room);
 
 #endif

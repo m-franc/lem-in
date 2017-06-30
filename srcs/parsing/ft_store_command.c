@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 18:06:59 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 19:09:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 	else
 		ft_push_back_tunnel(&last_tunnels, new_tunnel);
 	data_store->nb_tunnels++;
-	ft_putendl("Ook its tunnel");
 	return (1);
 }
 
@@ -38,25 +37,24 @@ int				ft_store_ants_number(t_data_store *data_store, char *ants_number)
 
 	nb_ants = ft_atoi(ants_number);
 	data_store->nb_ants = nb_ants;
-	ft_putendl("its ants number");
 	return (1);
 }
 
-static int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
+int				ft_store_modif_command(t_data_store *data_store, char *line)
 {
-	if (!last_rooms)
-		return (1);
-	while (last_rooms)
+	if (ft_strcmp(line, "##start") == 0 || ft_strcmp(line, "##START") == 0)
 	{
-		if (ft_strcmp(last_rooms->name, data_room[0]) == 0
-				&& last_rooms->x == ft_atoi(data_room[1])
-				&& last_rooms->y == ft_atoi(data_room[2]))
+		if (data_store->start_mark > 1)
 			return (-1);
-		else if (ft_strcmp(last_rooms->name, data_room[0]) != 0
-				&& last_rooms->x == ft_atoi(data_room[1])
-				&& last_rooms->y == ft_atoi(data_room[2]))
+		if (data_store->start_mark == 0)
+			data_store->start_mark++;
+	}
+	else if (ft_strcmp(line, "##end") == 0 || ft_strcmp(line, "##END") == 0)
+	{
+		if (data_store->end_mark > 1)
 			return (-1);
-		last_rooms = last_rooms->next;
+		if (data_store->end_mark == 0)
+			data_store->end_mark++;	
 	}
 	return (1);
 }
@@ -64,7 +62,9 @@ static int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 static int		ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
 {
 	if (data_store->start_mark == 1 && data_store->end_mark == 1)
-		return (-1);
+		return (-1);	
+	new_room->start = 0;
+	new_room->end = 0;
 	if (data_store->start_mark == 1)
 	{
 		new_room->start = 1;
@@ -91,8 +91,6 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 		exit(-1);
 	new_room->name = data_room[0];
 	new_room->tunnels = 0;
-	new_room->start = 0;
-	new_room->end = 0;
 	if ((ft_init_start_end(data_store, new_room)) == -1)
 		return (-1);
 	new_room->x = ft_atoi(data_room[1]);
@@ -103,6 +101,5 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	else
 		ft_push_back_room(&last_rooms, new_room);
 	data_store->nb_rooms++;
-	ft_putendl("ok its room");
 	return (1);
 }
