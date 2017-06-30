@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 19:52:42 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 13:34:44 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,18 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 		ft_strdel(&s_room);
 		return (0);
 	}
-	ft_putendl("Ook its tunnel");
 	return (ft_store_tunnel(data_store, f_room, s_room));
 }
 
 int			ft_line_is_ants_number(char *line, t_data_store *data_store)
 {
 	if (ft_str_isdigit(line))
-		return (ft_store_ants_number(data_store, line));
+	{
+		if (ft_atoi(line) < 2147483647 || ft_atoi(line) > 1)
+			return (ft_store_ants_number(data_store, line));	
+		else
+			return (0);
+	}
 	else
 		return (0);
 }
@@ -53,7 +57,6 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 {
 	char	**tab;
 	
-	(void)data_store;
 	tab = ft_strsplit(line, ' ');
 	if (ft_tablen(tab) != 3
 			|| (tab[0][0] == 76 || tab[0][0] == 35)
@@ -61,10 +64,15 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 			|| !ft_str_isdigit(tab[1])
 			|| !ft_str_isdigit(tab[2]))
 	{
+		ft_putendl("CA PASSE PAS");
 		ft_tabdel(&tab);
 		return (0);
 	}
-	ft_putendl("ok its room");
+	if (ft_atoi(tab[1]) > 2147483647 || ft_atoi(tab[2]) > 2147483647)
+	{
+		ft_tabdel(&tab);
+		return (0);	
+	}
 	return (ft_store_room(data_store, tab));
 }
 
@@ -92,10 +100,15 @@ int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 	{
 		if (ft_strcmp(line, "##start") == 0)
 			data_store->start_mark++;
+		else if (ft_strcmp(line, "##START") == 0)
+			data_store->start_mark++;
 		else if (ft_strcmp(line, "##end") == 0)
+			data_store->end_mark++;
+		else if (ft_strcmp(line, "##END") == 0)
 			data_store->end_mark++;
 //		else
 //			return (0);
+		ft_putendl("ok its command");
 		return (1);
 	}
 }

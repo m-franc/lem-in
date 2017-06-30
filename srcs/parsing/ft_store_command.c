@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 20:26:03 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 13:18:36 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 	else
 		ft_push_back_tunnel(&last_tunnels, new_tunnel);
 	data_store->nb_tunnels++;
+	ft_putendl("Ook its tunnel");
 	return (1);
 }
 
@@ -36,8 +37,6 @@ int				ft_store_ants_number(t_data_store *data_store, char *ants_number)
 	long long	nb_ants;
 
 	nb_ants = ft_atoi(ants_number);
-	if (nb_ants > 2147483647 || nb_ants < 1)
-		return (0);
 	data_store->nb_ants = nb_ants;
 	return (1);
 }
@@ -64,15 +63,13 @@ static int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 static void			ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
 {
 	if (data_store->start_mark == 1)
-	{
 		new_room->start = 1;
-		data_store->start_mark++;
-	}
+	else if (data_store->start_mark > 1)
+		ft_exit_error();
 	if (data_store->end_mark == 1)
-	{
 		new_room->end = 1;
-		data_store->end_mark++;
-	}
+	else if (data_store->end_mark > 1)
+		ft_exit_error();
 }
 
 int					ft_store_room(t_data_store *data_store, char **data_room)
@@ -94,12 +91,12 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	new_room->x = ft_atoi(data_room[1]);
 	new_room->y = ft_atoi(data_room[2]);
 	new_room->next = NULL;
-	test_room = last_rooms;
 	if (!last_rooms)
 		data_store->rooms = new_room;
 	else
 		ft_push_back_room(&last_rooms, new_room);
 	data_store->nb_rooms++;
+	ft_putendl("ok its room");
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 17:51:42 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 11:45:06 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_data_store			*ft_data_store_init(void)
 	return (data_store);
 }
 
-void					ft_exit_error()
+void					ft_exit_error(void)
 {
 	ft_putstrcolor("ERROR\n", RED);
 	exit(-1);

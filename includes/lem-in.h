@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 19:53:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 11:45:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,18 @@ typedef struct			s_data_store
 	int					nb_tunnels;
 }						t_data_store;
 
-t_data_store			*ft_data_store_init(void);
-int						ft_parse_file(t_data_store *data_store);
 
+
+
+/*
+ ** main.c.c
+ */
+t_data_store			*ft_data_store_init(void);
+void					ft_exit_error(void);
+/*
+ ** ft_is_parse_file.c
+ */
+int						ft_parse_file(t_data_store *data_store);
 
 /*
  ** ft_is_comand.c
