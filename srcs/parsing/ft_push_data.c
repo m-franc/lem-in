@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:31:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/29 18:59:29 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 17:50:15 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,23 @@ void				ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room)
 		while (tmp && tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_room;
+	}
+}
+
+void				ft_push_back_command(t_list **commands, t_list *new_command)
+{
+	t_list			*tmp;
+
+	if (!*commands)
+	{	
+		*commands = new_command;
+		return ;
+	}
+	else
+	{
+		tmp = *commands;
+		while (tmp && tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_command;
 	}
 }

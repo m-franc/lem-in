@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 15:11:23 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 17:48:35 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_data_store			*ft_data_store_init(void)
 	data_store->nb_rooms = 0;
 	data_store->tunnels = NULL;
 	data_store->nb_tunnels = 0;
+	data_store->commands = NULL;
 	return (data_store);
 }
 

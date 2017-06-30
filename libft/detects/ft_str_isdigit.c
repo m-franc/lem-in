@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 20:04:56 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 20:05:09 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 17:57:17 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			ft_str_isdigit(char *str)
 	size_t	i;
 
 	i = 0;
+	if (str[i] == '-')
+		i++;
 	while (ft_isdigit(str[i]))
 		i++;
 	if (i != ft_strlen(str))

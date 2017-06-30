@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 16:35:52 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 18:01:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 		ft_tabdel(&tab);
 		return (0);
 	}
-	if (ft_atoi(tab[1]) > 2147483647 || ft_atoi(tab[2]) > 2147483647)
+	if ((ft_atoi(tab[1]) > 2147483647 || ft_atoi(tab[1]) < -2147483648)
+		|| (ft_atoi(tab[2]) > 2147483647 || ft_atoi(tab[2]) < -2147483648))
 	{
 		ft_tabdel(&tab);
 		return (0);	

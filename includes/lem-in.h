@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 16:03:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/30 17:36:22 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct			s_data_store
 	int					nb_rooms;
 	t_tunnels			*tunnels;
 	int					nb_tunnels;
+	t_list				*commands;
 }						t_data_store;
 
 
@@ -87,5 +88,6 @@ int						ft_store_room(t_data_store *data_store, char **data_room);
  */
 void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
 void					ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room);
+void					ft_push_back_command(t_list **commands, t_list *new_command);
 
 #endif
