@@ -41,10 +41,7 @@ int 					main(void)
 	int					parsing_ret;
 	
 	data_store = ft_data_store_init();
-	parsing_ret = ft_parse_file(data_store);
-	if (parsing_ret == -1)
+	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
-	else if (parsing_ret == 0)
-		ft_putendl("ok");
 	return (0);
 }

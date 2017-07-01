@@ -89,7 +89,7 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	last_rooms = data_store->rooms;
 	if (!(new_room = (t_data_rooms*)malloc(sizeof(t_data_rooms))))
 		exit(-1);
-	new_room->name = data_room[0];
+	new_room->name = ft_strdup(data_room[0]);
 	new_room->tunnels = 0;
 	if ((ft_init_start_end(data_store, new_room)) == -1)
 		return (-1);
@@ -101,5 +101,6 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	else
 		ft_push_back_room(&last_rooms, new_room);
 	data_store->nb_rooms++;
+	ft_tabdel(&data_room);
 	return (1);
 }

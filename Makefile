@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g
 CC = clang $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
@@ -20,7 +20,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  parsing/ft_parse_file.c		\
 								  parsing/ft_store_command.c	\
 								  parsing/ft_push_data.c		\
-								  parsing/ft_check.c			\
+								  parsing/ft_check_room.c		\
 								  ft_display.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
