@@ -22,6 +22,7 @@ typedef struct			s_data_rooms
 {
 	char				*name;
 	int					tunnels;
+	t_list				*rooms_linked;
 	int					start;
 	int					end;
 	int					x;

@@ -33,7 +33,7 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 
 int				ft_store_ants_number(t_data_store *data_store, char *ants_number)
 {
-	long long	nb_ants;
+	int			nb_ants;
 
 	nb_ants = ft_atoi(ants_number);
 	data_store->nb_ants = nb_ants;
@@ -91,6 +91,7 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 		exit(-1);
 	new_room->name = ft_strdup(data_room[0]);
 	new_room->tunnels = 0;
+	new_room->rooms_linked = NULL;
 	if ((ft_init_start_end(data_store, new_room)) == -1)
 		return (-1);
 	new_room->x = ft_atoi(data_room[1]);
