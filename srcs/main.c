@@ -22,7 +22,7 @@ t_data_store			*ft_data_store_init(void)
 	data_store->start_mark = 0;
 	data_store->end_mark = 0;
 	data_store->rooms = NULL;
-	data_store->nb_rooms = 0;
+	data_store->nb_rooms = 1;
 	data_store->tunnels = NULL;
 	data_store->nb_tunnels = 0;
 	data_store->commands = NULL;
@@ -43,5 +43,8 @@ int 					main(void)
 	data_store = ft_data_store_init();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
+	if ((ft_check_room_tunnel(data_store)) == -1)
+		ft_exit_error();
+	ft_put_data_parsed(data_store);
 	return (0);
 }

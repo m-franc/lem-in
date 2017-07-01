@@ -40,6 +40,7 @@ void				ft_put_data_parsed(t_data_store *data_store)
 				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}end{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->end);
 			else
 				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n", rooms->name, rooms->x, rooms->y);
+			ft_putlist(rooms->rooms_linked);
 			rooms = rooms->next;
 		}
 	}

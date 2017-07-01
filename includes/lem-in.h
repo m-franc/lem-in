@@ -20,6 +20,7 @@
 
 typedef struct			s_data_rooms
 {
+	int					id;
 	char				*name;
 	int					tunnels;
 	t_list				*rooms_linked;
@@ -61,6 +62,7 @@ void					ft_put_data_parsed(t_data_store *data_store);
  */
 t_data_store			*ft_data_store_init(void);
 void					ft_exit_error(void);
+int						ft_check_room_tunnel(t_data_store *data_store);
 /*
  ** ft_is_parse_file.c
  */
@@ -91,6 +93,7 @@ int						ft_store_modif_command(t_data_store *data_store, char *line);
 void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
 void					ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room);
 void					ft_push_back_command(t_list **commands, t_list *new_command);
+void					ft_push_back_room_linked(t_list **last_rooms_linked, t_list *new_room_linked);
 
 /*
  ** ft_check.c
@@ -98,5 +101,6 @@ void					ft_push_back_command(t_list **commands, t_list *new_command);
 int						ft_check_duplicate(t_data_rooms *last_rooms, char **data_room);
 int						ft_str_is_room(char *room);
 int						ft_check_data_room(char **tab);
+int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_room);
 
 #endif

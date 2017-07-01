@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 CC = clang $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs

@@ -89,6 +89,7 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	last_rooms = data_store->rooms;
 	if (!(new_room = (t_data_rooms*)malloc(sizeof(t_data_rooms))))
 		exit(-1);
+	new_room->id = data_store->nb_rooms;
 	new_room->name = ft_strdup(data_room[0]);
 	new_room->tunnels = 0;
 	new_room->rooms_linked = NULL;

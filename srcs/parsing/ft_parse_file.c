@@ -56,7 +56,6 @@ int			ft_parse_file(t_data_store *data_store)
 		if (i == 5)
 			break ;
 		ft_strdel(&line);
-		ft_put_data_parsed(data_store);
 	}
 	if (gnl == -1)
 		return (-1);

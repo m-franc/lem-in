@@ -65,3 +65,21 @@ void				ft_push_back_command(t_list **commands, t_list *new_command)
 		tmp->next = new_command;
 	}
 }
+
+void				ft_push_back_room_linked(t_list **rooms_linked, t_list *new_room_linked)
+{
+	t_list			*tmp;
+
+	if (!*rooms_linked)
+	{	
+		*rooms_linked = new_room_linked;
+		return ;
+	}
+	else
+	{
+		tmp = *rooms_linked;
+		while (tmp && tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_room_linked;
+	}
+}
