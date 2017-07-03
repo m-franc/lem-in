@@ -50,6 +50,22 @@ typedef struct			s_data_store
 	t_list				*commands;
 }						t_data_store;
 
+typedef struct			s_adj_list
+{
+	int			id;
+	char			*name;
+	int			x;
+	int			y;
+	int			start;
+	int			end;
+	struct s_adj_list	*rooms_linked;
+}				t_adj_list;
+
+typedef struct 			s_datas_graph
+{
+	int			**adj_matrix;
+	t_adj_list		*adj_list;	
+}				t_datas_graph;
 
 
 /*
@@ -63,6 +79,8 @@ void					ft_put_data_parsed(t_data_store *data_store);
 t_data_store			*ft_data_store_init(void);
 void					ft_exit_error(void);
 int						ft_check_room_tunnel(t_data_store *data_store);
+t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
+
 /*
  ** ft_is_parse_file.c
  */

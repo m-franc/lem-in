@@ -12,7 +12,7 @@
 
 NAME = lem-in
 FLAGS = -Wall -Wextra -Werror
-CC = clang $(FLAGS)
+CC = gcc $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
 SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
@@ -21,7 +21,8 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  parsing/ft_store_command.c	\
 								  parsing/ft_push_data.c		\
 								  parsing/ft_check_room.c		\
-								  ft_display.c)
+								  ft_display.c				\
+								  graph/ft_build_adj_matrix.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a

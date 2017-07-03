@@ -89,7 +89,7 @@ int			ft_line_is_modif_command(char *line, t_data_store *data_store)
 {
 	char	*modif_att;
 
-	if (!(modif_att = ft_strnstr(line, "##", 2)) || strnstr(line, "###", 3))
+	if (!(modif_att = ft_strnstr(line, "##", 2)) || ft_strnstr(line, "###", 3))
 		return (0);
 	else
 		return (ft_store_modif_command(data_store, line));

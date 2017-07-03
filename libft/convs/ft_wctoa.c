@@ -70,9 +70,9 @@ static	char	*get2bytewchar(wint_t uchar)
 
 char			*ft_wctoa(wint_t uchar)
 {
-	if ((uchar >= 0 && uchar <= 127) && MB_CUR_MAX >= 1)
+	if ((uchar > 0 && uchar <= 127) && MB_CUR_MAX >= 1)
 		return (ft_straddchar(NULL, uchar));
-	else if ((uchar >= 0 && uchar <= 255) && MB_CUR_MAX == 1)
+	else if ((uchar > 0 && uchar <= 255) && MB_CUR_MAX == 1)
 		return (ft_straddchar(NULL, uchar));
 	else if ((uchar >= 127 && uchar <= 2047) && MB_CUR_MAX >= 2)
 		return (get2bytewchar(uchar));

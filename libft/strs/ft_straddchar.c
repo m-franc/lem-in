@@ -17,12 +17,10 @@ char	*ft_straddchar(char *s, int c)
 	char	*new;
 	int		newlen;
 	int		i;
-	int		o;
 
 	i = 0;
 	newlen = ft_strlen(s) + sizeof(c);
-	if (!(new = ft_strnew(newlen)))
-		return (NULL);
+	new = ft_strnew(newlen);
 	if (!s)
 	{
 		*new = c;
@@ -30,7 +28,6 @@ char	*ft_straddchar(char *s, int c)
 	}
 	while (*s)
 		new[i++] = *s++;
-	o = 0;
 	new[i++] = c;
 	return (new);
 }
