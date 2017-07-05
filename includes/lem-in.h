@@ -121,4 +121,9 @@ int						ft_str_is_room(char *room);
 int						ft_check_data_room(char **tab);
 int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_room);
 
+/*
+ ** ft_build_adj.c
+ */
+void						ft_build_adj_list(t_data_store *data_store, t_adj_list *adj_list);
+
 #endif

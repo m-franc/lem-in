@@ -16,7 +16,7 @@ void	*ft_memalloc(size_t n)
 {
 	void	*area;
 
-	if (n < 0)
+	if (n < 1)
 		exit(1);
 	if (!(area = malloc(n)))
 		exit(1);

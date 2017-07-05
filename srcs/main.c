@@ -58,7 +58,7 @@ int 					main(void)
 {
 	t_data_store		*data_store;
 	int					parsing_ret;
-	t_datas_graph		*datas_graph;
+//	t_datas_graph		*datas_graph;
 	
 	data_store = ft_data_store_init();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
@@ -66,6 +66,14 @@ int 					main(void)
 	if ((ft_check_room_tunnel(data_store)) == -1)
 		ft_exit_error();
 	ft_put_data_parsed(data_store);
-	datas_graph = ft_init_datas_graph(data_store);
+//	datas_graph = ft_init_datas_graph(data_store);
+//	ft_build_adj_list(data_store, datas_graph->adj_list);
+//	int o = 0;
+//	t_adj_list *list = datas_graph->adj_list;
+//	while (o < data_store->nb_rooms)
+//	{
+//		ft_printf("NAME : %s", list[o].name);
+//		o++;
+//	}
 	return (0);
 }
