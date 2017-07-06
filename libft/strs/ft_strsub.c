@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strsub(char const *s, unsigned int start, size_t n)
 {
@@ -24,7 +23,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t n)
 	new = ft_strnew(n);
 	if (new == NULL)
 		exit(1);
-	while (i < n && new[i] != '\0')
+	while (i < n)
 		new[i++] = s[start++];
 	new[i] = '\0';
 	return (new);

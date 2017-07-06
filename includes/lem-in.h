@@ -58,13 +58,14 @@ typedef struct			s_adj_list
 	int			y;
 	int			start;
 	int			end;
-	struct s_adj_list	*rooms_linked;
+	struct s_adj_list	**rooms_linked;
 }				t_adj_list;
 
 typedef struct 			s_datas_graph
 {
+	int			nb_rooms;
 	int			**adj_matrix;
-	t_adj_list		*adj_list;	
+	t_adj_list		**adj_list;	
 }				t_datas_graph;
 
 
@@ -79,7 +80,6 @@ void					ft_put_data_parsed(t_data_store *data_store);
 t_data_store			*ft_data_store_init(void);
 void					ft_exit_error(void);
 int						ft_check_room_tunnel(t_data_store *data_store);
-t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
 
 /*
  ** ft_is_parse_file.c
@@ -122,8 +122,11 @@ int						ft_check_data_room(char **tab);
 int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_room);
 
 /*
- ** ft_build_adj.c
+ ** ft_build_graph.c
  */
-void						ft_build_adj_list(t_data_store *data_store, t_adj_list *adj_list);
+void						ft_build_adj_list(t_data_store *data_store, t_adj_list **adj_list);
+t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
+t_adj_list			*ft_get_room_by_name(char *room_to_find, t_adj_list **list);
+void				ft_init_rooms_linked(t_data_store *data_store, t_datas_graph *data_graph);
 
 #endif
