@@ -65,7 +65,8 @@ void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 			while (tmp_list[i])
 			{
 				ft_printf("%s", tmp_list[i]->name);
-				ft_putstr(", ");	
+				if (i != (rooms->tunnels - 1))
+					ft_putstr(", ");	
 				i++;
 			}
 			ft_putchar('\n');

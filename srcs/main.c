@@ -48,9 +48,8 @@ int 					main(void)
 		ft_exit_error();
 	ft_put_data_parsed(data_store);
 	datas_graph = ft_init_datas_graph(data_store);
-	ENDL
 	ft_build_adj_list(data_store, datas_graph->adj_list);
-	ft_init_rooms_linked(data_store, datas_graph);
+	ft_build_tunnels_adj_list(data_store->rooms, datas_graph->adj_list);
 	ft_put_adj_list(data_store, datas_graph);
 	return (0);
 }
