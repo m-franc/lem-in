@@ -19,8 +19,8 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 
 	if (!(new_tunnel = (t_tunnels*)malloc(sizeof(t_tunnels))))
 		exit(-1);
-	new_tunnel->first_room = first_room;
-	new_tunnel->second_room = second_room;
+	new_tunnel->first_room = ft_strdup(first_room);
+	new_tunnel->second_room = ft_strdup(second_room);
 	new_tunnel->next = NULL;
 	last_tunnels = data_store->tunnels;
 	if (!last_tunnels)
@@ -28,6 +28,8 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 	else
 		ft_push_back_tunnel(&last_tunnels, new_tunnel);
 	data_store->nb_tunnels++;
+	ft_strdel(&first_room);
+	ft_strdel(&second_room);
 	return (1);
 }
 

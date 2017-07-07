@@ -48,32 +48,9 @@ int 					main(void)
 		ft_exit_error();
 	ft_put_data_parsed(data_store);
 	datas_graph = ft_init_datas_graph(data_store);
+	ENDL
 	ft_build_adj_list(data_store, datas_graph->adj_list);
 	ft_init_rooms_linked(data_store, datas_graph);
-	int o = 0;
-	int i = 0;
-	t_adj_list **list = datas_graph->adj_list;
-	t_data_rooms *rooms = data_store->rooms;
-	while (list[o])
-	{
-		ft_printf("{grey}%s{eoc}", list[o]->name);
-		if (!list[o]->rooms_linked)
-			ft_putchar('\n');
-		else
-		{
-			ft_putstr(" -> ");
-			i = 0;
-			t_adj_list **tmp_list = list[o]->rooms_linked;
-			while (tmp_list[i])
-			{
-				ft_printf("%s", tmp_list[i]->name);
-				ft_putstr(", ");
-				i++;
-			}
-			ft_putchar('\n');
-		}
-		o++;
-		rooms = rooms->next;
-	}
+	ft_put_adj_list(data_store, datas_graph);
 	return (0);
 }

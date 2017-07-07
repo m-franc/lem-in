@@ -73,6 +73,7 @@ typedef struct 			s_datas_graph
  ** ft_display.c
  */
 void					ft_put_data_parsed(t_data_store *data_store);
+void					ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
 
 /*
  ** main.c.c

@@ -5,7 +5,6 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 	t_datas_graph	*datas_graph;
 	int		**adj_matrix;
 	t_adj_list	**adj_list;
-	//	t_adj_list	*list_elem;
 	int		i;
 
 	if (!(datas_graph = (t_datas_graph*)malloc(sizeof(t_datas_graph))))

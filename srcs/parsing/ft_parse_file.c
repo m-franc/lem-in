@@ -26,7 +26,7 @@ static void	ft_store_command(t_data_store *data_store, char *line)
 	t_list	*last_commands;
 	t_list	*new_command;
 
-	new_command = ft_lstnew(line, ft_strlen(line));
+	new_command = ft_lstnew(line, ft_strlen(line) + 1);
 	last_commands = data_store->commands;
 	if (!last_commands)
 		ft_push_back_command(&data_store->commands, new_command);

@@ -57,9 +57,9 @@ int		ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_roo
 			&& ft_strcmp(rooms->name, second_room) == 0) 
 		return (-1);
 	else if (ft_strcmp(rooms->name, first_room) == 0)
-		new_room_linked = ft_lstnew(second_room, ft_strlen(second_room));
+		new_room_linked = ft_lstnew(second_room, ft_strlen(second_room) + 1);
 	else if (ft_strcmp(rooms->name, first_room) == 0)
-		new_room_linked = ft_lstnew(first_room, ft_strlen(first_room));
+		new_room_linked = ft_lstnew(first_room, ft_strlen(first_room) + 1);
 	else
 		return (0);
 	if (!last_rooms_linked)
