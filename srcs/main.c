@@ -46,10 +46,9 @@ int 					main(void)
 		ft_exit_error();
 	if ((ft_check_room_tunnel(data_store)) == -1)
 		ft_exit_error();
-	ft_put_data_parsed(data_store);
+//	ft_put_data_parsed(data_store);
 	datas_graph = ft_init_datas_graph(data_store);
-	ft_build_adj_list(data_store, datas_graph->adj_list);
-	ft_build_tunnels_adj_list(data_store->rooms, datas_graph->adj_list);
+	ft_build_graph(data_store, datas_graph);
 	ft_put_adj_list(data_store, datas_graph);
 	return (0);
 }
