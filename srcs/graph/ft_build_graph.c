@@ -25,4 +25,6 @@ void			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 {
 	ft_build_adj_list(data_store, datas_graph->adj_list);
 	ft_build_tunnels_adj_list(data_store->rooms, datas_graph->adj_list);
+	ft_sort_graph(datas_graph);
+	ft_switchon_tunnels_adj_matrix(datas_graph);
 }

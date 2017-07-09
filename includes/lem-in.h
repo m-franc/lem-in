@@ -74,6 +74,7 @@ typedef struct 			s_datas_graph
  */
 void					ft_put_data_parsed(t_data_store *data_store);
 void					ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
+void					ft_put_adj_matrix(t_datas_graph *datas_graph);
 
 /*
  ** main.c.c
@@ -136,5 +137,20 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id);
 t_adj_list			*ft_get_room_by_name(char *room_to_find, t_adj_list **list);
 void				ft_build_tunnels_adj_list(t_data_rooms *rooms, t_adj_list **adj_list);
 t_adj_list			**ft_init_rooms_linked(t_data_rooms *rooms, t_adj_list **tmp_list);
+
+/*
+ ** ft_sort_graph.c
+ */
+int			ft_get_index_end(t_adj_list **adj_list);
+int			ft_get_index_start(t_adj_list **adj_list);
+void			ft_sort_graph(t_datas_graph *datas_graph);
+void			ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom);
+void			ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
+
+/*
+ ** ft_adj_matrix.c
+ */
+void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
+
 
 #endif

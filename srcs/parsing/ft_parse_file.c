@@ -53,11 +53,11 @@ int			ft_parse_file(t_data_store *data_store)
 			else if (line_is_command == -1)
 				return (-1);
 		}
+		ft_strdel(&line);
 		if (i == 5)
 			break ;
-		ft_strdel(&line);
 	}
-	if (gnl == -1)
+	if (gnl == -1 || ft_listcount(data_store->commands) == 0)
 		return (-1);
 	return (1);
 }

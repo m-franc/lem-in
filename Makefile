@@ -23,6 +23,8 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  parsing/ft_check_room.c		\
 								  ft_display.c				\
 								  graph/ft_build_graph.c		\
+								  graph/ft_sort_graph.c		\
+								  graph/ft_adj_matrix.c		\
 								  graph/ft_build_adj_list.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft

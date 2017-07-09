@@ -52,6 +52,7 @@ void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 	int i = 0;
 	t_adj_list **list = datas_graph->adj_list;
 	t_data_rooms *rooms = data_store->rooms;
+	ft_putstrcolor("AJDACENCES\'S LIST\n", GREEN);
 	while (list[o])
 	{
 		ft_printf("{grey}%s{eoc}", list[o]->name);
@@ -64,7 +65,7 @@ void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 			t_adj_list **tmp_list = list[o]->rooms_linked;
 			while (tmp_list[i])
 			{
-				ft_printf("%s", tmp_list[i]->name);
+				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
 				if (i != (rooms->tunnels - 1))
 					ft_putstr(", ");	
 				i++;
@@ -73,5 +74,30 @@ void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 		}
 		o++;
 		rooms = rooms->next;
+	}
+}
+
+void	ft_put_adj_matrix(t_datas_graph *datas_graph)
+{
+	int		**matrix;
+	int		i;
+	int		o;
+
+	matrix = datas_graph->adj_matrix;
+	i = 0;
+	ft_putstrcolor("AJDACENCES\'S MATRIX\n", GREEN);
+	while (i < datas_graph->nb_rooms)
+	{
+		o = 0;
+		while (o < datas_graph->nb_rooms)
+		{
+			if (matrix[i][o])
+				ft_printf("{cyan}%d{eoc} ", matrix[i][o]);
+			else	
+				ft_printf("{grey}%d{eoc} ", matrix[i][o]);
+			o++;
+		}
+		ENDL
+		i++;
 	}
 }
