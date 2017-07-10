@@ -27,18 +27,26 @@ int			ft_get_index_end(t_adj_list **adj_list)
 void			ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
 {
 	t_adj_list	*tmp_top;
+	int			id_top;
 	
 	tmp_top = adj_list[index_top];
+	id_top = tmp_top->id;
+	adj_list[index_top]->id = adj_list[index_start]->id;
 	adj_list[index_top] = adj_list[index_start];
+	adj_list[index_start]->id = id_top;
 	adj_list[index_start] = tmp_top;
 }
 
 void			ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom)
 {
 	t_adj_list	*tmp_bottom;
+	int			id_bottom;
 	
 	tmp_bottom = adj_list[index_bottom];
+	id_bottom = tmp_bottom->id;
+	adj_list[index_bottom]->id = adj_list[index_end]->id;
 	adj_list[index_bottom] = adj_list[index_end];
+	adj_list[index_end]->id = id_bottom;
 	adj_list[index_end] = tmp_bottom;
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 16:05:56 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/10 17:42:42 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ void				ft_put_data_parsed(t_data_store *data_store)
 	}
 }
 
-void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
+void	ft_put_adj_list(t_datas_graph *datas_graph)
 {
 	int o = 0;
 	int i = 0;
 	t_adj_list **list = datas_graph->adj_list;
-	t_data_rooms *rooms = data_store->rooms;
 	ft_putstrcolor("AJDACENCES\'S LIST\n", GREEN);
-	while (list[o])
+	while (o < datas_graph->nb_rooms)
 	{
 		ft_printf("{grey}%s{eoc}", list[o]->name);
 		if (!list[o]->rooms_linked)
@@ -63,21 +62,20 @@ void	ft_put_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 			ft_putstr(" -> ");
 			i = 0;
 			t_adj_list **tmp_list = list[o]->rooms_linked;
-			while (tmp_list[i])
+			while (i < list[o]->nb_tunnels)
 			{
-				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
-				if (i != (rooms->tunnels - 1))
+				ft_printf("{cyan}%d{eoc}", tmp_list[i]->id);
+				if (i != (list[o]->nb_tunnels - 1))
 					ft_putstr(", ");	
 				i++;
 			}
 			ft_putchar('\n');
 		}
 		o++;
-		rooms = rooms->next;
 	}
 }
 
-void	ft_put_adj_matrix(t_datas_graph *datas_graph)
+void		ft_put_adj_matrix(t_datas_graph *datas_graph)
 {
 	int		**matrix;
 	int		i;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_adj_matrix.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/10 15:50:44 by mfranc            #+#    #+#             */
+/*   Updated: 2017/07/10 17:45:45 by mfranc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
 void	ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
@@ -15,7 +27,7 @@ void	ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 	{
 		rooms_linked = list[i]->rooms_linked;
 		o = 0;
-		while (rooms_linked[o])
+		while (o < list[i]->nb_tunnels)
 		{
 			matrix[i][rooms_linked[o]->id] = 1;
 			o++;

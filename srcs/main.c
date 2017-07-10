@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 19:31:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/10 18:57:39 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int 					main(void)
 		ft_exit_error();
 	datas_graph = ft_init_datas_graph(data_store);
 	ft_build_graph(data_store, datas_graph);
-	ft_put_adj_list(data_store, datas_graph);
-	ENDL
+	ft_put_adj_list(datas_graph);
 	ft_put_adj_matrix(datas_graph);
+	while (1);
 	return (0);
 }
