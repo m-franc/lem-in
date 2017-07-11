@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/10 18:57:39 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/11 14:57:07 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ int 					main(void)
 	ft_build_graph(data_store, datas_graph);
 	ft_put_adj_list(datas_graph);
 	ft_put_adj_matrix(datas_graph);
-	while (1);
 	return (0);
 }

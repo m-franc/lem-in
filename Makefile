@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/07/10 18:40:49 by mfranc           ###   ########.fr        #
+#    Updated: 2017/07/11 18:20:39 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  ft_display.c				\
 								  graph/ft_build_graph.c		\
 								  graph/ft_sort_graph.c		\
-								  graph/ft_adj_matrix.c		\
 								  graph/ft_build_adj_list.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft

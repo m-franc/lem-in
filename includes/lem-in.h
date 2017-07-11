@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/10 17:43:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/11 19:56:38 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef struct 			s_datas_graph
 {
 	int					nb_rooms;
 	int					**adj_matrix;
-	t_adj_list			**adj_list;	
+	t_adj_list			**adj_list;
+	t_list				*ways;
 }						t_datas_graph;
 
 /*
@@ -130,6 +131,7 @@ int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second
  ** ft_build_graph.c
  */
 t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
+void					ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
 void					ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
 
 /*
@@ -149,10 +151,5 @@ int						ft_get_index_start(t_adj_list **adj_list);
 void					ft_sort_graph(t_datas_graph *datas_graph);
 void					ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom);
 void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
-
-/*
- ** ft_adj_matrix.c
- */
-void					ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
 
 #endif

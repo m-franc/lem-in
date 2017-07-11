@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/10 19:00:09 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/11 15:02:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_adj_list			**ft_init_rooms_linked(t_data_rooms *rooms, t_datas_graph *datas_gr
 	tmp_rooms_linked = rooms->rooms_linked;
 	while (tmp_rooms_linked)
 	{	
-		rooms_linked[o] = ft_get_room_by_name(rooms->rooms_linked->content, datas_graph);
+		rooms_linked[o] = ft_get_room_by_name(tmp_rooms_linked->content, datas_graph);
 		tmp_rooms_linked = tmp_rooms_linked->next;
 		o++;
 	}
