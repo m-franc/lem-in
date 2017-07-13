@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/12 16:31:32 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/13 20:57:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct			s_adj_list
 typedef struct			s_ways
 {
 	int					id;
-	t_adj_list			*way;
+	t_adj_list			*rooms;
 	struct s_ways		*next;
 }						t_ways;
 
@@ -160,11 +160,22 @@ void					ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_botto
 void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
 
 /*
- ** ft_sort_graph.c
+ ** ft_build_ways.c
  */
 void					ft_build_ways(t_datas_graph *datas_graph);
+
+/*
+ ** ft_init_start_ways.c
+ */
 void					ft_init_start_ways(t_datas_graph *datas_graph);
-void					ft_store_elem_way(t_adj_list *content_elem_way, t_ways *ways);
+void					ft_new_way(t_adj_list *content_elem_list, t_datas_graph *datas_graph, int id);
 void					ft_push_back_ways(t_ways **ways, t_ways *new_way);
+
+/*
+ ** ft_init_second_rooms.c
+ */
+void					ft_init_second_room(t_datas_graph *datas_graph);
+void					ft_new_room_way(t_adj_list *content_elem_list, t_ways *ways);
+void					ft_push_back_room_way(t_ways *ways, t_adj_list *next_room);
 
 #endif

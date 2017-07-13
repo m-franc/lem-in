@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/12 16:33:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/13 20:51:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,24 @@ int 					main(void)
 		ft_exit_error();
 	datas_graph = ft_init_datas_graph(data_store);
 	ft_build_graph(data_store, datas_graph);
-	ft_put_adj_list(datas_graph);
-	ft_put_adj_matrix(datas_graph);
-	ft_init_start_ways(datas_graph);
+//	ft_put_adj_list(datas_graph);
+//	ft_put_adj_matrix(datas_graph);
+	ft_build_ways(datas_graph);
+//	ft_printf("{grey}%p{eoc}\n", datas_graph->ways);
+	while (datas_graph->ways)
+	{
+		while (datas_graph->ways->rooms && datas_graph->ways->rooms->next)
+		{
+			ft_printf("{red}%s{eoc} -> ", datas_graph->ways->rooms->name);
+			datas_graph->ways->rooms = datas_graph->ways->rooms->next;
+		}
+		if (datas_graph->ways->rooms)
+		{
+			ft_printf("{red}%s{eoc}", datas_graph->ways->rooms->name);
+			datas_graph->ways->rooms = datas_graph->ways->rooms->next;	
+		}
+		ENDL
+		datas_graph->ways = datas_graph->ways->next;
+	}
 	return (0);
 }
