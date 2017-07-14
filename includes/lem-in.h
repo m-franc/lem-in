@@ -20,65 +20,65 @@
 
 typedef struct			s_data_rooms
 {
-	int					id;
-	char				*name;
-	int					tunnels;
-	t_list				*rooms_linked;
-	int					start;
-	int					end;
-	int					x;
-	int					y;
+	int			id;
+	char			*name;
+	int			tunnels;
+	t_list			*rooms_linked;
+	int			start;
+	int			end;
+	int			x;
+	int			y;
 	struct s_data_rooms	*next;
-}						t_data_rooms;
+}				t_data_rooms;
 
 typedef struct			s_tunnels
 {
-	char				*first_room;
-	char				*second_room;
+	char			*first_room;
+	char			*second_room;
 	struct s_tunnels	*next;
-}						t_tunnels;
+}				t_tunnels;
 
 typedef struct			s_data_store
 {
-	int					nb_ants;
-	int					start_mark;
-	int					end_mark;
+	int			nb_ants;
+	int			start_mark;
+	int			end_mark;
 	t_data_rooms		*rooms;
-	int					nb_rooms;
-	t_tunnels			*tunnels;
-	int					nb_tunnels;
-	t_list				*commands;
-}						t_data_store;
+	int			nb_rooms;
+	t_tunnels		*tunnels;
+	int			nb_tunnels;
+	t_list			*commands;
+}				t_data_store;
 
 typedef struct			s_adj_list
 {
-	int					id;
-	char				*name;
-	int					ant_in;
-	int					dist;
-	int					x;
-	int					y;
-	int					start;
-	int					end;
-	int					nb_tunnels;
+	int			id;
+	char			*name;
+	int			ant_in;
+	int			dist;
+	int			x;
+	int			y;
+	int			start;
+	int			end;
+	int			nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
-}						t_adj_list;
+}				t_adj_list;
 
 typedef struct			s_ways
 {
-	int					id;
-	t_adj_list			*rooms;
+	int			id;
+	t_adj_list		*rooms;
 	struct s_ways		*next;
-}						t_ways;
+}				t_ways;
 
 typedef struct 			s_datas_graph
 {
-	int					nb_rooms;
-	int					**adj_matrix;
-	t_adj_list			**adj_list;
-	t_ways				*ways;
-}						t_datas_graph;
+	int			nb_rooms;
+	int			**adj_matrix;
+	t_adj_list		**adj_list;
+	t_ways			*ways;
+}				t_datas_graph;
 
 /*
  ** ft_display.c
@@ -162,20 +162,28 @@ void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
 /*
  ** ft_build_ways.c
  */
+int					ft_ways_ended(t_ways *ways);
 void					ft_build_ways(t_datas_graph *datas_graph);
 
 /*
  ** ft_init_start_ways.c
  */
 void					ft_init_start_ways(t_datas_graph *datas_graph);
-void					ft_new_way(t_adj_list *content_elem_list, t_datas_graph *datas_graph, int id);
+t_ways					*ft_new_way(t_adj_list *content_elem_list, int id);
 void					ft_push_back_ways(t_ways **ways, t_ways *new_way);
 
 /*
- ** ft_init_second_rooms.c
+ ** ft_init_second_room.c
  */
 void					ft_init_second_room(t_datas_graph *datas_graph);
-void					ft_new_room_way(t_adj_list *content_elem_list, t_ways *ways);
+t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
 void					ft_push_back_room_way(t_ways *ways, t_adj_list *next_room);
+
+/*
+ ** ft_init_next_rooms.c
+ */
+
+t_adj_list				*ft_get_current_last_room_way(t_ways *way);
+void					ft_init_next_rooms(t_datas_graph *datas_graph, t_ways *way);
 
 #endif

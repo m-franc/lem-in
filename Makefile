@@ -25,6 +25,9 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  graph/ft_build_graph.c		\
 								  graph/ft_sort_graph.c		\
 								  graph/ft_build_adj_list.c		\
+								  ways/ft_init_second_room.c			\
+								  ways/ft_init_next_rooms.c			\
+								  ways/ft_init_start_ways.c		\
 								  ways/ft_build_ways.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
