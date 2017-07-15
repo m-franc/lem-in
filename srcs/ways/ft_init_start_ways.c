@@ -54,6 +54,7 @@ void			ft_init_start_ways(t_datas_graph *datas_graph)
 	i = -1;
 	while (++i < datas_graph->adj_list[0]->nb_tunnels)
 	{	
+		ways = datas_graph->ways;
 		new_way = ft_new_way(start_room, i);
 		if (!datas_graph->ways)
 			ft_push_back_ways(&datas_graph->ways, new_way);

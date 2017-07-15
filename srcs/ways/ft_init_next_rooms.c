@@ -102,17 +102,23 @@ void			ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_
 {
 	int		o;
 	t_ways		*new_way;
+	t_ways		*tmp_way;
 	t_adj_list	*new_room;
+	int		last_rooms_links;
 
-	o = 0;
-	while (o < datas_graph->adj_list[last_room->id]->nb_tunnels)
+	o = -1;
+	tmp_way = ft_way_dup(way);
+	last_rooms_links = datas_graph->adj_list[last_room->id]->nb_tunnels;
+	while (++o < last_rooms_links)
 	{
 		new_room = ft_new_room_way(last_room_rooms_linked[o]);
 		ft_push_back_room_way(way, new_room);
-		new_way = ft_way_dup(way);
+		if (o == (last_rooms_links - 1))
+			break ;
+		new_way = ft_way_dup(tmp_way);
 		ft_push_back_after_nway(datas_graph->ways, new_way, way->id);
 		ft_update_ways_id(datas_graph->ways);
-		o += 1;
+		way = new_way;
 	}
 }
 
@@ -134,3 +140,27 @@ void			ft_init_next_rooms(t_datas_graph *datas_graph, t_ways *way)
 		ft_push_back_room_way(way, new_room);
 	}
 }
+
+void			ft_init_second_room(t_datas_graph *datas_graph)
+{
+	t_adj_list	**second_rooms_ways;
+	t_adj_list	*new_room;
+	t_ways		*ways;
+	int		i;
+
+	ways = datas_graph->ways;
+	second_rooms_ways = datas_graph->adj_list[0]->rooms_linked;
+	i = 0;
+	PNBR(datas_graph->adj_list[0]->nb_tunnels)
+	while (i < datas_graph->adj_list[0]->nb_tunnels && ways)
+	{	
+		new_room = ft_new_room_way(second_rooms_ways[i]);
+		ft_push_back_room_way(ways, new_room);
+		ways = ways->next;
+		i++;
+	}
+}
+
+
+
+

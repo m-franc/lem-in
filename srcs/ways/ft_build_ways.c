@@ -37,11 +37,14 @@ void			ft_build_ways(t_datas_graph *datas_graph)
 	t_ways		*ways;
 
 	ft_init_start_ways(datas_graph);
-	while (!ft_ways_ended(datas_graph->ways))
+	ft_init_second_room(datas_graph);
+	int i = -1;
+	while (++i < 26)
 	{
 		ways = datas_graph->ways;
 		while (ways)
 		{
+		//	PNBR(ways->id)	
 			ft_init_next_rooms(datas_graph, ways);
 			ways = ways->next;
 		}

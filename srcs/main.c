@@ -48,7 +48,7 @@ int 					main(void)
 		ft_exit_error();
 	datas_graph = ft_init_datas_graph(data_store);
 	ft_build_graph(data_store, datas_graph);
-//	ft_put_adj_list(datas_graph);
+	ft_put_adj_list(datas_graph);
 //	ft_put_adj_matrix(datas_graph);
 	ft_build_ways(datas_graph);
 	while (datas_graph->ways)

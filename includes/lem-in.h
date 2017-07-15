@@ -185,5 +185,6 @@ void					ft_push_back_after_nway(t_ways *og_ways, t_ways *new_way, int nway);
 void					ft_update_ways_id(t_ways *ways);
 void					ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways *way);
 void					ft_init_next_rooms(t_datas_graph *datas_graph, t_ways *way);
+void					ft_init_second_room(t_datas_graph *datas_graph);
 
 #endif
