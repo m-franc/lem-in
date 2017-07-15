@@ -17,7 +17,7 @@ int			ft_ways_ended(t_ways *ways)
 	t_ways		*tmp_ways;
 	t_adj_list	*tmp_rooms;
 	int		ended;
-	
+
 	tmp_ways = ways;
 	ended = 0;
 	while (tmp_ways)
@@ -37,19 +37,13 @@ void			ft_build_ways(t_datas_graph *datas_graph)
 	t_ways		*ways;
 
 	ft_init_start_ways(datas_graph);
-	ft_init_second_room(datas_graph);
-	while (42)
+	while (!ft_ways_ended(datas_graph->ways))
 	{
-		if (!ft_ways_ended(datas_graph->ways))
+		ways = datas_graph->ways;
+		while (ways)
 		{
-			ways = datas_graph->ways;
-			while (ways)
-			{
-				ft_init_next_rooms(datas_graph, ways);
-				ways = ways->next;
-			}
+			ft_init_next_rooms(datas_graph, ways);
+			ways = ways->next;
 		}
-		else
-			break ;
 	}
 }

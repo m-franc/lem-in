@@ -51,7 +51,6 @@ int 					main(void)
 //	ft_put_adj_list(datas_graph);
 //	ft_put_adj_matrix(datas_graph);
 	ft_build_ways(datas_graph);
-//	ft_printf("{grey}%p{eoc}\n", datas_graph->ways);
 	while (datas_graph->ways)
 	{
 		while (datas_graph->ways->rooms && datas_graph->ways->rooms->next)

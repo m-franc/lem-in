@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = gcc $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
@@ -25,7 +25,6 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  graph/ft_build_graph.c		\
 								  graph/ft_sort_graph.c		\
 								  graph/ft_build_adj_list.c		\
-								  ways/ft_init_second_room.c			\
 								  ways/ft_init_next_rooms.c			\
 								  ways/ft_init_start_ways.c		\
 								  ways/ft_build_ways.c)

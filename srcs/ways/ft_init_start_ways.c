@@ -35,6 +35,7 @@ t_ways			*ft_new_way(t_adj_list *content_elem_list, int id)
 	new_way = ft_memalloc(sizeof(t_ways));
 	content_elem_way = ft_memalloc(sizeof(t_adj_list));
 	new_way->id = id; 
+	new_way->nb_rooms = 1;
 	new_way->rooms = ft_memcpy(content_elem_way, content_elem_list, sizeof(t_adj_list));
 	new_way->next = NULL;
 	return (new_way);

@@ -68,6 +68,7 @@ typedef struct			s_adj_list
 typedef struct			s_ways
 {
 	int			id;
+	int			nb_rooms;
 	t_adj_list		*rooms;
 	struct s_ways		*next;
 }				t_ways;
@@ -173,17 +174,15 @@ t_ways					*ft_new_way(t_adj_list *content_elem_list, int id);
 void					ft_push_back_ways(t_ways **ways, t_ways *new_way);
 
 /*
- ** ft_init_second_room.c
- */
-void					ft_init_second_room(t_datas_graph *datas_graph);
-t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
-void					ft_push_back_room_way(t_ways *ways, t_adj_list *next_room);
-
-/*
  ** ft_init_next_rooms.c
  */
-
+t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
+void					ft_push_back_room_way(t_ways *ways, t_adj_list *next_room);
 t_adj_list				*ft_get_current_last_room_way(t_ways *way);
+t_ways					*ft_way_dup(t_ways *way_src);
+void					ft_push_back_after_nway(t_ways *og_ways, t_ways *new_way, int nway);
+void					ft_update_ways_id(t_ways *ways);
+void					ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways *way);
 void					ft_init_next_rooms(t_datas_graph *datas_graph, t_ways *way);
 
 #endif
