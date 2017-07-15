@@ -20,6 +20,8 @@ void			ft_push_back_room_way(t_ways *way, t_adj_list *next_room)
 	while (tmp_rooms && tmp_rooms->next)
 		tmp_rooms = tmp_rooms->next;
 	tmp_rooms->next = next_room;
+	if (next_room->end)
+		way->ended = 1;
 	way->nb_rooms++;
 }
 

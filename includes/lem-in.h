@@ -68,6 +68,7 @@ typedef struct			s_adj_list
 typedef struct			s_ways
 {
 	int			id;
+	int			ended;
 	int			nb_rooms;
 	t_adj_list		*rooms;
 	struct s_ways		*next;
