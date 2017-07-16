@@ -1,26 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem-in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
+/*   Updated: 2017/07/13 20:57:08 by mfranc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
-int			ft_get_index_start(t_adj_list **adj_list)
+int			ft_get_index_start(t_datas_graph *datas_graph)
 {
 	t_adj_list	**tmp_list;
 	int		i;
 
-	tmp_list = adj_list;
+	tmp_list = datas_graph->adj_list;
 	i = 0;
-	while (!tmp_list[i]->start)
+	while (i < datas_graph->nb_rooms && !tmp_list[i]->start)
 		i++;
+	if (i == datas_graph->nb_rooms)
+		return (-1);
 	return (i);
 }
 
-int			ft_get_index_end(t_adj_list **adj_list)
+int			ft_get_index_end(t_datas_graph *datas_graph)
 {
 	t_adj_list	**tmp_list;
 	int		i;
 
-	tmp_list = adj_list;
+	tmp_list = datas_graph->adj_list;
 	i = 0;
-	while (!tmp_list[i]->end)
+	while (i < datas_graph->nb_rooms && !tmp_list[i]->end)
 		i++;
+	if (i == datas_graph->nb_rooms)
+		return (-1);
 	return (i);
 }
 
@@ -50,15 +66,18 @@ void			ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom)
 	adj_list[index_end] = tmp_bottom;
 }
 
-void			ft_sort_graph(t_datas_graph *datas_graph)
+int			ft_sort_graph(t_datas_graph *datas_graph)
 {
 	int		index_start;
 	int		index_end;
 	
-	index_start = ft_get_index_start(datas_graph->adj_list);
-	index_end = ft_get_index_end(datas_graph->adj_list);
+	if ((index_start = ft_get_index_start(datas_graph)) == -1)
+		return (-1);
+	if ((index_end = ft_get_index_end(datas_graph)) == -1)
+		return (-1);
 	if (index_start != 0)
 		ft_put_start_top(datas_graph->adj_list, index_start, 0);
 	if (index_end != (datas_graph->nb_rooms - 1))
 		ft_put_end_bottom(datas_graph->adj_list, index_end, (datas_graph->nb_rooms - 1));
+	return (1);
 }

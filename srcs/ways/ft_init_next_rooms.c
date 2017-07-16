@@ -151,7 +151,6 @@ void			ft_init_second_room(t_datas_graph *datas_graph)
 	ways = datas_graph->ways;
 	second_rooms_ways = datas_graph->adj_list[0]->rooms_linked;
 	i = 0;
-	PNBR(datas_graph->adj_list[0]->nb_tunnels)
 	while (i < datas_graph->adj_list[0]->nb_tunnels && ways)
 	{	
 		new_room = ft_new_room_way(second_rooms_ways[i]);

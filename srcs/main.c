@@ -16,8 +16,7 @@ t_data_store			*ft_data_store_init(void)
 {
 	t_data_store 		*data_store;
 
-	if (!(data_store = (t_data_store*)malloc(sizeof(t_data_store))))
-		exit(-1);
+	data_store = ft_memalloc(sizeof(t_data_store));
 	data_store->nb_ants = 0;
 	data_store->start_mark = 0;
 	data_store->end_mark = 0;
@@ -46,11 +45,14 @@ int 					main(void)
 		ft_exit_error();
 	if ((ft_check_room_tunnel(data_store)) == -1)
 		ft_exit_error();
-	datas_graph = ft_init_datas_graph(data_store);
-	ft_build_graph(data_store, datas_graph);
+	if (!(datas_graph = ft_init_datas_graph(data_store)))
+		ft_exit_error();
+	if ((ft_build_graph(data_store, datas_graph)) == -1)
+		ft_exit_error();
 	ft_put_adj_list(datas_graph);
 //	ft_put_adj_matrix(datas_graph);
-	ft_build_ways(datas_graph);
+	if (!ft_build_ways(datas_graph))
+		ft_exit_error();
 	while (datas_graph->ways)
 	{
 		while (datas_graph->ways->rooms && datas_graph->ways->rooms->next)

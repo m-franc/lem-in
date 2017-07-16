@@ -141,23 +141,23 @@ int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second
  */
 t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
 void					ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
-void					ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
+int					ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
 
 /*
  ** ft_build_adj_list.c
  */
-void					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
+int					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
 t_adj_list				*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunnels);
 t_adj_list				*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph);
-void					ft_build_tunnels_adj_list(t_data_rooms *rooms, t_datas_graph *datas_graph);
+int					ft_build_tunnels_adj_list(t_data_rooms *rooms, t_datas_graph *datas_graph);
 t_adj_list				**ft_init_rooms_linked(t_data_rooms *rooms, t_datas_graph *datas_graph);
 
 /*
  ** ft_sort_graph.c
  */
-int						ft_get_index_end(t_adj_list **adj_list);
-int						ft_get_index_start(t_adj_list **adj_list);
-void					ft_sort_graph(t_datas_graph *datas_graph);
+int						ft_get_index_end(t_datas_graph *datas_graph);
+int						ft_get_index_start(t_datas_graph *datas_graph);
+int					ft_sort_graph(t_datas_graph *datas_graph);
 void					ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom);
 void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
 
@@ -165,7 +165,7 @@ void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
  ** ft_build_ways.c
  */
 int					ft_ways_ended(t_ways *ways);
-void					ft_build_ways(t_datas_graph *datas_graph);
+int					ft_build_ways(t_datas_graph *datas_graph);
 
 /*
  ** ft_init_start_ways.c

@@ -20,8 +20,9 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 	t_adj_list		**adj_list;
 	int				i;
 
-	if (!(datas_graph = (t_datas_graph*)malloc(sizeof(t_datas_graph))))
-		exit(1);
+	if (data_store->nb_rooms == 0)
+		return (NULL);
+	datas_graph = ft_memalloc(sizeof(t_datas_graph));
 	i = -1;
 	adj_matrix = ft_memalloc(sizeof(int*) * (data_store->nb_rooms));
 	while (++i < data_store->nb_rooms)
@@ -62,10 +63,14 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 	}
 }
 
-void			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
+int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 {
-	ft_build_adj_list(data_store, datas_graph);
-	ft_build_tunnels_adj_list(data_store->rooms, datas_graph);
-	ft_sort_graph(datas_graph);
+	if ((ft_build_adj_list(data_store, datas_graph)) == -1)
+		return (-1);
+	if ((ft_build_tunnels_adj_list(data_store->rooms, datas_graph)) == -1)
+		return (-1);
+	if ((ft_sort_graph(datas_graph)) == -1)
+		return (-1);
 	ft_switchon_tunnels_adj_matrix(datas_graph);
+	return (1);
 }

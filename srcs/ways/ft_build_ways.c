@@ -32,21 +32,27 @@ int			ft_ways_ended(t_ways *ways)
 	return (0);
 }
 
-void			ft_build_ways(t_datas_graph *datas_graph)
+int			ft_build_ways(t_datas_graph *datas_graph)
 {
 	t_ways		*ways;
+	t_adj_list	*rooms;
+	int		ended;
 
 	ft_init_start_ways(datas_graph);
-	ft_init_second_room(datas_graph);
-	int i = -1;
-	while (++i < 26)
+	ft_init_second_room(datas_graph);	
+	ways = datas_graph->ways;
+	ended = 0;
+	while (ways)
 	{
-		ways = datas_graph->ways;
-		while (ways)
+		rooms = ways->rooms;
+		while (rooms)
 		{
-		//	PNBR(ways->id)	
 			ft_init_next_rooms(datas_graph, ways);
-			ways = ways->next;
+			if (rooms->end)
+				ended++;
+			rooms = rooms->next;
 		}
+		ways = ways->next;
 	}
+	return (ended);
 }
