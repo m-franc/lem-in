@@ -47,6 +47,7 @@ int 					main(void)
 		ft_exit_error();
 	if (!(datas_graph = ft_init_datas_graph(data_store)))
 		ft_exit_error();
+//	ft_put_data_parsed(data_store);
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
 		ft_exit_error();
 	ft_put_adj_list(datas_graph);

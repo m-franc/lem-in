@@ -35,6 +35,7 @@ typedef struct			s_tunnels
 {
 	char			*first_room;
 	char			*second_room;
+	int			checked;
 	struct s_tunnels	*next;
 }				t_tunnels;
 
@@ -60,6 +61,7 @@ typedef struct			s_adj_list
 	int			y;
 	int			start;
 	int			end;
+	int			linked;
 	int			nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
@@ -134,7 +136,7 @@ void					ft_push_back_room_linked(t_list **last_rooms_linked, t_list *new_room_l
 int						ft_check_duplicate(t_data_rooms *last_rooms, char **data_room);
 int						ft_str_is_room(char *room);
 int						ft_check_data_room(char **tab);
-int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_room);
+int						ft_add_rooms_linked(t_data_rooms *rooms, t_tunnels *tunnels);
 
 /*
  ** ft_build_graph.c

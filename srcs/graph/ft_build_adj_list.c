@@ -25,9 +25,8 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	elem_list->y = tmp_rooms->y;
 	elem_list->start = (tmp_rooms->start == 1) ? 1 : 0;
 	elem_list->end = (tmp_rooms->end == 1) ? 1 : 0;
+	elem_list->linked = 0;
 	elem_list->nb_tunnels = nb_tunnels;
-	if (elem_list->start && elem_list->nb_tunnels == 0)
-		return (NULL);
 	elem_list->rooms_linked = NULL;
 	elem_list->next = NULL;
 	return (elem_list);

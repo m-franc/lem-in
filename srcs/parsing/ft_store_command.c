@@ -21,6 +21,7 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 		exit(-1);
 	new_tunnel->first_room = ft_strdup(first_room);
 	new_tunnel->second_room = ft_strdup(second_room);
+	new_tunnel->checked = 0;
 	new_tunnel->next = NULL;
 	last_tunnels = data_store->tunnels;
 	if (!last_tunnels)

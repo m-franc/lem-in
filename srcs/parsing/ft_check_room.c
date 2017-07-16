@@ -47,19 +47,25 @@ int		ft_check_data_room(char **tab)
 		return (1);
 }
 
-int		ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second_room)
+int		ft_add_rooms_linked(t_data_rooms *rooms, t_tunnels *tunnels)
 {
 	t_list	*new_room_linked;
 	t_list	*last_rooms_linked;
 
 	last_rooms_linked = rooms->rooms_linked;
-	if (ft_strcmp(rooms->name, first_room) == 0
-			&& ft_strcmp(rooms->name, second_room) == 0) 
+	if (ft_strcmp(rooms->name, tunnels->first_room) == 0
+			&& ft_strcmp(rooms->name, tunnels->second_room) == 0) 
 		return (-1);
-	else if (ft_strcmp(rooms->name, second_room) == 0)
-		new_room_linked = ft_lstnew(first_room, ft_strlen(first_room) + 1);
-	else if (ft_strcmp(rooms->name, first_room) == 0)
-		new_room_linked = ft_lstnew(second_room, ft_strlen(second_room) + 1);
+	else if (ft_strcmp(rooms->name, tunnels->second_room) == 0 && tunnels->checked == 0)
+	{
+		new_room_linked = ft_lstnew(tunnels->first_room, ft_strlen(tunnels->first_room) + 1);
+		tunnels->checked = 1;
+	}
+	else if (ft_strcmp(rooms->name, tunnels->first_room) == 0 && tunnels->checked == 0)
+	{
+		new_room_linked = ft_lstnew(tunnels->second_room, ft_strlen(tunnels->second_room) + 1);
+		tunnels->checked = 1;
+	}
 	else
 		return (0);
 	if (!last_rooms_linked)
@@ -81,8 +87,7 @@ int		ft_check_room_tunnel(t_data_store *data_store)
 		tunnels = data_store->tunnels;
 		while (tunnels)
 		{
-			if ((ft_add_rooms_linked(rooms, tunnels->first_room,
-						tunnels->second_room)) == -1)
+			if ((ft_add_rooms_linked(rooms, tunnels)) == -1)
 				return (-1);
 			tunnels = tunnels->next;
 		}
