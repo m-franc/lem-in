@@ -139,9 +139,17 @@ int						ft_add_rooms_linked(t_data_rooms *rooms, char *first_room, char *second
 /*
  ** ft_build_graph.c
  */
-t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
+t_datas_graph				*ft_init_datas_graph(t_data_store *data_store);
 void					ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
 int					ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
+
+/*
+ ** ft_graph_sitting.c
+ */
+void			ft_update_rooms_id(t_datas_graph *datas_graph);
+int			ft_get_nb_new_tunnels(t_adj_list *list_elem, t_adj_list **og_list, int index_list);
+void			ft_new_tunnels(t_adj_list *elem_list, int nb_new_tunnels, t_adj_list **og_list, int index_list);
+int			ft_reorganize_tunnels_adj_list(t_datas_graph *datas_graph);
 
 /*
  ** ft_build_adj_list.c
@@ -164,7 +172,6 @@ void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
 /*
  ** ft_build_ways.c
  */
-int					ft_ways_ended(t_ways *ways);
 int					ft_build_ways(t_datas_graph *datas_graph);
 
 /*

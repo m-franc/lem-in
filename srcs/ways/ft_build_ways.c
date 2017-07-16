@@ -12,26 +12,6 @@
 
 #include "lem-in.h"
 
-int			ft_ways_ended(t_ways *ways)
-{
-	t_ways		*tmp_ways;
-	t_adj_list	*tmp_rooms;
-	int		ended;
-
-	tmp_ways = ways;
-	ended = 0;
-	while (tmp_ways)
-	{
-		tmp_rooms = tmp_ways->rooms;
-		while (tmp_rooms && tmp_rooms->next)
-			tmp_rooms = tmp_rooms->next;
-		if (tmp_rooms->end == 1)
-			return (1);
-		tmp_ways = tmp_ways->next;
-	}
-	return (0);
-}
-
 int			ft_build_ways(t_datas_graph *datas_graph)
 {
 	t_ways		*ways;
@@ -54,5 +34,5 @@ int			ft_build_ways(t_datas_graph *datas_graph)
 		}
 		ways = ways->next;
 	}
-	return (ended);
+	return (1);
 }

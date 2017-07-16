@@ -71,6 +71,9 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 		return (-1);
 	if ((ft_sort_graph(datas_graph)) == -1)
 		return (-1);
+	ft_update_rooms_id(datas_graph);	
+	if ((ft_reorganize_tunnels_adj_list(datas_graph))-1)
+		return (-1);
 	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }

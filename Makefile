@@ -24,6 +24,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  ft_display.c				\
 								  graph/ft_build_graph.c		\
 								  graph/ft_sort_graph.c		\
+								  graph/ft_graph_sitting.c		\
 								  graph/ft_build_adj_list.c		\
 								  ways/ft_init_next_rooms.c			\
 								  ways/ft_init_start_ways.c		\
