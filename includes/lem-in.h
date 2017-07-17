@@ -159,8 +159,10 @@ int			ft_reorganize_tunnels_adj_list(t_datas_graph *datas_graph);
 int					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
 t_adj_list				*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunnels);
 t_adj_list				*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph);
-int					ft_build_tunnels_adj_list(t_data_rooms *rooms, t_datas_graph *datas_graph);
-t_adj_list				**ft_init_rooms_linked(t_data_rooms *rooms, t_datas_graph *datas_graph);
+t_adj_list				*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room);
+int					ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room);
+int					ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph);
+t_adj_list				**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room);
 
 /*
  ** ft_sort_graph.c

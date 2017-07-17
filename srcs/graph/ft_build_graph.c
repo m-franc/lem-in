@@ -54,6 +54,7 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 	{
 		rooms_linked = list[i]->rooms_linked;
 		o = 0;
+		ft_printf("{blue}%p{eoc}\n", rooms_linked[o]);
 		while (o < list[i]->nb_tunnels)
 		{
 			matrix[i][rooms_linked[o]->id] = 1;
@@ -67,11 +68,12 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 {
 	if ((ft_build_adj_list(data_store, datas_graph)) == -1)
 		return (-1);
-	if ((ft_build_tunnels_adj_list(data_store->rooms, datas_graph)) == -1)
-		return (-1);
 	if ((ft_sort_graph(datas_graph)) == -1)
 		return (-1);
-	ft_update_rooms_id(datas_graph);	
+	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
+		return (-1);
+	ft_put_adj_list(datas_graph);
+//	ft_update_rooms_id(datas_graph);
 //	if ((ft_reorganize_tunnels_adj_list(datas_graph))-1)
 //		return (-1);
 	ft_switchon_tunnels_adj_matrix(datas_graph);

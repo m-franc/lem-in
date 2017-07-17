@@ -55,54 +55,93 @@ t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph
 {
 	int				i;
 	t_adj_list		**list;
-
+	
 	i = 0;
 	list = datas_graph->adj_list;
 	while (i < datas_graph->nb_rooms)
 	{
-		if (ft_strequ(list[i]->name, room_to_find))
+		if (ft_strequ(room_to_find, list[i]->name))
 			return (list[i]);
 		i++;
 	}
 	return (NULL);
 }
 
-t_adj_list			**ft_init_rooms_linked(t_data_rooms *rooms, t_datas_graph *datas_graph)
+t_adj_list			*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room)
 {
-	int				o;
-	t_adj_list		**rooms_linked;
-	t_list			*tmp_rooms_linked;
+	int			i;
+	t_tunnels		*tmptmp_tunnels;
 
-	o = 0;
-	rooms_linked = ft_memalloc(sizeof(t_adj_list*) * rooms->tunnels);
-	tmp_rooms_linked = rooms->rooms_linked;
-	while (tmp_rooms_linked)
+	i = 0;
+	tmptmp_tunnels = rooms_to_find;
+	while (tmptmp_tunnels)
+	{
+		if (ft_strequ(current_room, tmptmp_tunnels->first_room))
+			return (ft_get_room_by_name(tmptmp_tunnels->second_room, datas_graph));
+		else if (ft_strequ(current_room, tmptmp_tunnels->second_room))
+			return (ft_get_room_by_name(tmptmp_tunnels->first_room, datas_graph));
+		tmptmp_tunnels = tmptmp_tunnels->next;
+	}
+	return (NULL);
+}
+
+int				ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room)
+{
+	int			nb_tunnels;
+	t_tunnels		*tmptmp_tunnels;
+
+	nb_tunnels = 0;
+	tmptmp_tunnels = tmp_tunnels;
+	while (tmptmp_tunnels)
+	{
+		if (ft_strequ(tmptmp_tunnels->first_room, current_room)
+			&& ft_strequ(tmptmp_tunnels->second_room, current_room))
+			return (-1);
+		else if (ft_strequ(tmptmp_tunnels->first_room, current_room))
+			nb_tunnels++;
+		else if (ft_strequ(tmptmp_tunnels->second_room, current_room))
+			nb_tunnels++;	
+		tmptmp_tunnels = tmptmp_tunnels->next;
+	}
+	return (nb_tunnels);
+}
+
+t_adj_list			**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room)
+{
+	int			i;
+	t_tunnels		*tmptmp_tunnels;
+	t_adj_list		**rooms_linked;
+
+	i = 0;
+	if (nb_tunnels == 0)
+		return (NULL);
+	rooms_linked = ft_memalloc(sizeof(t_adj_list*) * nb_tunnels);
+	while (++i < nb_tunnels)
 	{	
-		rooms_linked[o] = ft_get_room_by_name(tmp_rooms_linked->content, datas_graph);
-		tmp_rooms_linked = tmp_rooms_linked->next;
-		o++;
+		tmptmp_tunnels = tmp_tunnels;
+		rooms_linked[i] = ft_get_room_by_tunnels(tmptmp_tunnels, datas_graph, current_room);
+		tmptmp_tunnels = tmptmp_tunnels->next;
 	}
 	return (rooms_linked);
 }
 
-int				ft_build_tunnels_adj_list(t_data_rooms *rooms, t_datas_graph *datas_graph)
+int				ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph)
 {
-	t_adj_list		**list;
-	t_data_rooms	*tmp_rooms;
-	int				i;
-	int			no_link;
+	t_adj_list	**list;
+	t_tunnels	*tmp_tunnels;
+	int		i;
+	int		no_link;
 
 	list = datas_graph->adj_list;
-	tmp_rooms = rooms;
 	i = 0;
 	no_link = 0;
-	while (i < datas_graph->nb_rooms && tmp_rooms)
+	while (i < datas_graph->nb_rooms)
 	{
-		if (list[i]->nb_tunnels > 0)
-			list[i]->rooms_linked = ft_init_rooms_linked(tmp_rooms, datas_graph);	
-		else
+		tmp_tunnels = tunnels;
+		if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
+			return (-1);
+		if (!(list[i]->rooms_linked = ft_init_rooms_linked(tmp_tunnels, datas_graph, list[i]->nb_tunnels, list[i]->name)))
 			no_link++;
-		tmp_rooms = tmp_rooms->next;
 		i++;
 	}
 	if (no_link == (datas_graph->nb_rooms -1))
