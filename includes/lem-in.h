@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/13 20:57:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 16:20:37 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,69 +20,69 @@
 
 typedef struct			s_data_rooms
 {
-	int			id;
-	char			*name;
-	int			tunnels;
-	t_list			*rooms_linked;
-	int			start;
-	int			end;
-	int			x;
-	int			y;
+	int					id;
+	char				*name;
+	int					tunnels;
+	t_list				*rooms_linked;
+	int					start;
+	int					end;
+	int					x;
+	int					y;
 	struct s_data_rooms	*next;
-}				t_data_rooms;
+}						t_data_rooms;
 
 typedef struct			s_tunnels
 {
-	char			*first_room;
-	char			*second_room;
-	int			checked;
+	char				*first_room;
+	char				*second_room;
+	int					checked;
 	struct s_tunnels	*next;
-}				t_tunnels;
+}						t_tunnels;
 
 typedef struct			s_data_store
 {
-	int			nb_ants;
-	int			start_mark;
-	int			end_mark;
+	int					nb_ants;
+	int					start_mark;
+	int					end_mark;
 	t_data_rooms		*rooms;
-	int			nb_rooms;
-	t_tunnels		*tunnels;
-	int			nb_tunnels;
-	t_list			*commands;
-}				t_data_store;
+	int					nb_rooms;
+	t_tunnels			*tunnels;
+	int					nb_tunnels;
+	t_list				*commands;
+}						t_data_store;
 
 typedef struct			s_adj_list
 {
-	int			id;
-	char			*name;
-	int			ant_in;
-	int			dist;
-	int			x;
-	int			y;
-	int			start;
-	int			end;
-	int			linked;
-	int			nb_tunnels;
+	int					id;
+	char				*name;
+	int					ant_in;
+	int					dist;
+	int					x;
+	int					y;
+	int					start;
+	int					end;
+	int					linked;
+	int					nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
-}				t_adj_list;
+}						t_adj_list;
 
 typedef struct			s_ways
 {
-	int			id;
-	int			ended;
-	int			nb_rooms;
-	t_adj_list		*rooms;
+	int					id;
+	int					ended;
+	int					nb_rooms;
+	t_adj_list			*rooms;
 	struct s_ways		*next;
-}				t_ways;
+}						t_ways;
 
 typedef struct 			s_datas_graph
 {
-	int			nb_rooms;
-	int			**adj_matrix;
-	t_adj_list		**adj_list;
-	t_ways			*ways;
-}				t_datas_graph;
+	int					nb_rooms;
+	int					**adj_matrix;
+	t_adj_list			**adj_list;
+	t_ways				*ways;
+}						t_datas_graph;
 
 /*
  ** ft_display.c
@@ -141,27 +141,27 @@ int						ft_add_rooms_linked(t_data_rooms *rooms, t_tunnels *tunnels);
 /*
  ** ft_build_graph.c
  */
-t_datas_graph				*ft_init_datas_graph(t_data_store *data_store);
+t_datas_graph			*ft_init_datas_graph(t_data_store *data_store);
 void					ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph);
-int					ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
+int						ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph);
 
 /*
  ** ft_graph_sitting.c
  */
-void			ft_update_rooms_id(t_datas_graph *datas_graph);
-int			ft_get_nb_new_tunnels(t_adj_list *list_elem, t_adj_list **og_list, int index_list);
-void			ft_new_tunnels(t_adj_list *elem_list, int nb_new_tunnels, t_adj_list **og_list, int index_list);
-int			ft_reorganize_tunnels_adj_list(t_datas_graph *datas_graph);
+void					ft_update_rooms_id(t_datas_graph *datas_graph);
+int						ft_get_nb_new_tunnels(t_adj_list *list_elem, t_adj_list **og_list, int index_list);
+void					ft_new_tunnels(t_adj_list *elem_list, int nb_new_tunnels, t_adj_list **og_list, int index_list);
+int						ft_reorganize_tunnels_adj_list(t_datas_graph *datas_graph);
 
 /*
  ** ft_build_adj_list.c
  */
-int					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
+int						ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
 t_adj_list				*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunnels);
 t_adj_list				*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph);
 t_adj_list				*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room);
-int					ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room);
-int					ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph);
+int						ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room);
+int						ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph);
 t_adj_list				**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room);
 
 /*
@@ -169,7 +169,7 @@ t_adj_list				**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *data
  */
 int						ft_get_index_end(t_datas_graph *datas_graph);
 int						ft_get_index_start(t_datas_graph *datas_graph);
-int					ft_sort_graph(t_datas_graph *datas_graph);
+int						ft_sort_graph(t_datas_graph *datas_graph);
 void					ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom);
 void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
 

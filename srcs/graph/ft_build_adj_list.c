@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/11 15:02:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 16:01:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	return (elem_list);
 }
 
-int				ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
+int					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 {
 	t_data_rooms	*tmp_rooms;
 	t_adj_list		**list;
@@ -61,7 +61,9 @@ t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph
 	while (i < datas_graph->nb_rooms)
 	{
 		if (ft_strequ(room_to_find, list[i]->name))
+		{
 			return (list[i]);
+		}
 		i++;
 	}
 	return (NULL);
@@ -69,25 +71,32 @@ t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph
 
 t_adj_list			*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room)
 {
-	int			i;
+	int				i;
 	t_tunnels		*tmptmp_tunnels;
 
 	i = 0;
 	tmptmp_tunnels = rooms_to_find;
 	while (tmptmp_tunnels)
 	{
-		if (ft_strequ(current_room, tmptmp_tunnels->first_room))
+		if (ft_strequ(current_room, tmptmp_tunnels->first_room) && tmptmp_tunnels->checked == 0)
+		{
+			tmptmp_tunnels->checked = 1;
 			return (ft_get_room_by_name(tmptmp_tunnels->second_room, datas_graph));
-		else if (ft_strequ(current_room, tmptmp_tunnels->second_room))
+		}
+		else if (ft_strequ(current_room, tmptmp_tunnels->second_room) && tmptmp_tunnels->checked == 0)
+		{	
+			tmptmp_tunnels->checked = 1;
 			return (ft_get_room_by_name(tmptmp_tunnels->first_room, datas_graph));
+		}
 		tmptmp_tunnels = tmptmp_tunnels->next;
 	}
+	PSTR("COCUOUUUU")
 	return (NULL);
 }
 
-int				ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room)
+int					ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room)
 {
-	int			nb_tunnels;
+	int				nb_tunnels;
 	t_tunnels		*tmptmp_tunnels;
 
 	nb_tunnels = 0;
@@ -97,40 +106,53 @@ int				ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room)
 		if (ft_strequ(tmptmp_tunnels->first_room, current_room)
 			&& ft_strequ(tmptmp_tunnels->second_room, current_room))
 			return (-1);
-		else if (ft_strequ(tmptmp_tunnels->first_room, current_room))
+		else if (ft_strequ(tmptmp_tunnels->first_room, current_room) && tmptmp_tunnels->checked == 0)
+		{
+			tmptmp_tunnels->checked = 1;
 			nb_tunnels++;
-		else if (ft_strequ(tmptmp_tunnels->second_room, current_room))
+		}
+		else if (ft_strequ(tmptmp_tunnels->second_room, current_room) && tmptmp_tunnels->checked == 0)
+		{	
+			tmptmp_tunnels->checked = 1;
 			nb_tunnels++;	
+		}
 		tmptmp_tunnels = tmptmp_tunnels->next;
 	}
 	return (nb_tunnels);
 }
 
+void				ft_reset_checked_tunnels(t_tunnels *tmp_tunnels)
+{
+	t_tunnels		*tmptmp_tunnels;
+
+	tmptmp_tunnels = tmp_tunnels;
+	while (tmptmp_tunnels)
+	{
+		tmptmp_tunnels->checked = 0;
+		tmptmp_tunnels = tmptmp_tunnels->next;
+	}
+}
+
 t_adj_list			**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room)
 {
-	int			i;
-	t_tunnels		*tmptmp_tunnels;
+	int				i;
 	t_adj_list		**rooms_linked;
 
-	i = 0;
+	i = -1;
 	if (nb_tunnels == 0)
 		return (NULL);
 	rooms_linked = ft_memalloc(sizeof(t_adj_list*) * nb_tunnels);
 	while (++i < nb_tunnels)
-	{	
-		tmptmp_tunnels = tmp_tunnels;
-		rooms_linked[i] = ft_get_room_by_tunnels(tmptmp_tunnels, datas_graph, current_room);
-		tmptmp_tunnels = tmptmp_tunnels->next;
-	}
+		rooms_linked[i] = ft_get_room_by_tunnels(tmp_tunnels, datas_graph, current_room);
 	return (rooms_linked);
 }
 
-int				ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph)
+int					ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph)
 {
-	t_adj_list	**list;
-	t_tunnels	*tmp_tunnels;
-	int		i;
-	int		no_link;
+	t_adj_list		**list;
+	t_tunnels		*tmp_tunnels;
+	int				i;
+	int				no_link;
 
 	list = datas_graph->adj_list;
 	i = 0;
@@ -138,8 +160,10 @@ int				ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph)
 	while (i < datas_graph->nb_rooms)
 	{
 		tmp_tunnels = tunnels;
+		ft_reset_checked_tunnels(tmp_tunnels);
 		if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
 			return (-1);
+		ft_reset_checked_tunnels(tmp_tunnels);
 		if (!(list[i]->rooms_linked = ft_init_rooms_linked(tmp_tunnels, datas_graph, list[i]->nb_tunnels, list[i]->name)))
 			no_link++;
 		i++;

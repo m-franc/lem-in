@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   updated: 2017/07/13 20:54:26 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 16:23:15 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,7 @@ void			ft_push_back_room_way(t_ways *way, t_adj_list *next_room)
 t_adj_list		*ft_new_room_way(t_adj_list *content_elem_list)
 {
 	t_adj_list	*new_room;
-//	t_adj_list	**list_rooms;
-//	int		i;
 
-	/*	i = -1;	
-		list_rooms = datas_graph->adj_list;
-		while (++i < content_elem_list->id)
-		{
-		if (ft_strequ(list_rooms[i]->name, content_elem_list->name))
-		return (NULL);
-		}*/
 	new_room = ft_memalloc(sizeof(t_adj_list));
 	new_room = ft_memcpy(new_room, content_elem_list, sizeof(t_adj_list));
 	return (new_room);
@@ -159,7 +150,7 @@ void			ft_init_second_room(t_datas_graph *datas_graph)
 	t_adj_list	*new_room;
 	t_ways		*ways;
 	int		i;
-
+start
 	ways = datas_graph->ways;
 	second_rooms_ways = datas_graph->adj_list[0]->rooms_linked;
 	i = 0;

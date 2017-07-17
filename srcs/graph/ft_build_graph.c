@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/11 18:21:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 16:05:33 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 	i = 0;
 	while (i < datas_graph->nb_rooms)
 	{
-		rooms_linked = list[i]->rooms_linked;
-		o = 0;
-		ft_printf("{blue}%p{eoc}\n", rooms_linked[o]);
-		while (o < list[i]->nb_tunnels)
+		if (list[i]->rooms_linked) 
 		{
-			matrix[i][rooms_linked[o]->id] = 1;
-			o++;
+			rooms_linked = list[i]->rooms_linked;
+			o = 0;
+			while (o < list[i]->nb_tunnels)
+			{
+				matrix[i][rooms_linked[o]->id] = 1;
+				o++;
+			}
 		}
 		i++;
 	}
@@ -72,10 +74,10 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 		return (-1);
 	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
 		return (-1);
-	ft_put_adj_list(datas_graph);
-//	ft_update_rooms_id(datas_graph);
+	ft_update_rooms_id(datas_graph);
 //	if ((ft_reorganize_tunnels_adj_list(datas_graph))-1)
-//		return (-1);
+//			return (-1);
+//	ft_put_adj_list(datas_graph);
 	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }
