@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 16:01:55 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 18:40:29 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph
 	while (i < datas_graph->nb_rooms)
 	{
 		if (ft_strequ(room_to_find, list[i]->name))
-		{
 			return (list[i]);
-		}
 		i++;
 	}
 	return (NULL);
@@ -161,7 +159,9 @@ int					ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph
 	{
 		tmp_tunnels = tunnels;
 		ft_reset_checked_tunnels(tmp_tunnels);
-		if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
+		if (list[i]->end)
+			list[i]->nb_tunnels = 0;
+		else if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
 			return (-1);
 		ft_reset_checked_tunnels(tmp_tunnels);
 		if (!(list[i]->rooms_linked = ft_init_rooms_linked(tmp_tunnels, datas_graph, list[i]->nb_tunnels, list[i]->name)))

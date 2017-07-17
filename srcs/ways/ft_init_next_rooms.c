@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 16:23:15 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 18:55:19 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_adj_list		*ft_new_room_way(t_adj_list *content_elem_list)
 
 	new_room = ft_memalloc(sizeof(t_adj_list));
 	new_room = ft_memcpy(new_room, content_elem_list, sizeof(t_adj_list));
+	new_room->linked = 1;
 	return (new_room);
 }
 
@@ -98,27 +99,50 @@ void			ft_update_ways_id(t_ways *ways)
 	}	
 }
 
+int				ft_get_antecedant(t_adj_list *current_room, t_ways *ways)
+{
+	t_adj_list	*rooms;
+//	t_ways		*tmp_ways;
+
+//	tmp_ways = ways;
+//	while (tmp_ways)
+//	{
+	rooms = ways->rooms;
+	while (rooms)
+	{
+		if (ft_strequ(rooms->name, current_room->name))
+			return (1);
+		rooms = rooms->next;
+	}
+//		tmp_ways = tmp_ways->next;
+//	}
+	return (0);
+}
+
 void			ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways *way)
 {
-	int		o;
+	int			o;
 	t_ways		*new_way;
 	t_ways		*tmp_way;
 	t_adj_list	*new_room;
-	int		last_rooms_links;
+	int			last_rooms_links;
 
 	o = 0;
 	tmp_way = ft_way_dup(way);
 	last_rooms_links = datas_graph->adj_list[last_room->id]->nb_tunnels;
 	while (o < last_rooms_links)
 	{
-		new_room = ft_new_room_way(last_room_rooms_linked[o]);
-		ft_push_back_room_way(way, new_room);
-		if (o == (last_rooms_links - 1))
-			break ;
-		new_way = ft_way_dup(tmp_way);
-		ft_push_back_after_nway(datas_graph->ways, new_way, way->id);
-		ft_update_ways_id(datas_graph->ways);
-		way = new_way;
+		if (!ft_get_antecedant(last_room_rooms_linked[o], way))
+		{
+			new_room = ft_new_room_way(last_room_rooms_linked[o]);
+			ft_push_back_room_way(way, new_room);
+			if (o == (last_rooms_links - 1))
+				break ;
+			new_way = ft_way_dup(tmp_way);
+			ft_push_back_after_nway(datas_graph->ways, new_way, way->id);
+			ft_update_ways_id(datas_graph->ways);
+			way = new_way;
+		}
 		o++;
 	}
 }
@@ -130,6 +154,7 @@ void			ft_init_next_rooms(t_datas_graph *datas_graph, t_ways *way)
 	t_adj_list	*new_room;
 
 	last_room = ft_get_current_last_room_way(way);
+	ft_printf("{green}%s{eoc}\n", last_room->name);
 	if (last_room->end)
 		return ;
 	last_room_rooms_linked = datas_graph->adj_list[last_room->id]->rooms_linked;	
@@ -150,7 +175,7 @@ void			ft_init_second_room(t_datas_graph *datas_graph)
 	t_adj_list	*new_room;
 	t_ways		*ways;
 	int		i;
-start
+
 	ways = datas_graph->ways;
 	second_rooms_ways = datas_graph->adj_list[0]->rooms_linked;
 	i = 0;

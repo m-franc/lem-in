@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 16:18:31 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 18:54:13 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int			ft_build_ways(t_datas_graph *datas_graph)
 				ended++;
 			rooms = rooms->next;
 		}
+		PSTR("FGR")
+		ft_put_ways(datas_graph->ways);
+		sleep(1);
 		ways = ways->next;
 	}
 	return (1);

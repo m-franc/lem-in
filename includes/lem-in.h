@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 16:20:37 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 18:48:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct 			s_datas_graph
 void					ft_put_data_parsed(t_data_store *data_store);
 void					ft_put_adj_list(t_datas_graph *datas_graph);
 void					ft_put_adj_matrix(t_datas_graph *datas_graph);
+void					ft_put_ways(t_ways *ways);
 
 /*
  ** main.c.c

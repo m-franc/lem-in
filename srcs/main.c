@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/13 20:51:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 18:44:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,5 @@ int 					main(void)
 //	ft_put_adj_matrix(datas_graph);
 	if (!ft_build_ways(datas_graph))
 		ft_exit_error();
-	while (datas_graph->ways)
-	{
-		while (datas_graph->ways->rooms && datas_graph->ways->rooms->next)
-		{
-			ft_printf("{red}%s{eoc} -> ", datas_graph->ways->rooms->name);
-			datas_graph->ways->rooms = datas_graph->ways->rooms->next;
-		}
-		if (datas_graph->ways->rooms)
-		{
-			ft_printf("{red}%s{eoc}", datas_graph->ways->rooms->name);
-			datas_graph->ways->rooms = datas_graph->ways->rooms->next;	
-		}
-		ENDL
-		datas_graph->ways = datas_graph->ways->next;
-	}
 	return (0);
 }

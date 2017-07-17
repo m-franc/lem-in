@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:54:00 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/13 20:54:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/17 17:48:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ void			ft_push_back_ways(t_ways **ways, t_ways *new_way)
 t_ways			*ft_new_way(t_adj_list *content_elem_list, int id)
 {
 	t_ways		*new_way;
-	t_adj_list	*content_elem_way;
 
 	new_way = ft_memalloc(sizeof(t_ways));
-	content_elem_way = ft_memalloc(sizeof(t_adj_list));
 	new_way->id = id; 
 	new_way->ended = 0;
 	new_way->nb_rooms = 1;
-	new_way->rooms = ft_memcpy(content_elem_way, content_elem_list, sizeof(t_adj_list));
+	new_way->rooms = ft_new_room_way(content_elem_list);
 	new_way->next = NULL;
 	return (new_way);
 }
