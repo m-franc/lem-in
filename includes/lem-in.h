@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 11:35:15 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/18 22:22:23 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct			s_ways
 	int					nb_rooms;
 	t_adj_list			*rooms;
 	struct s_ways		*next;
+	struct s_ways		*prev;
 }						t_ways;
 
 typedef struct 			s_datas_graph
@@ -195,8 +196,8 @@ t_adj_list				*ft_get_current_last_room_way(t_ways *way);
 t_ways					*ft_way_dup(t_ways *way_src);
 void					ft_push_back_after_nway(t_ways *og_ways, t_ways *new_way, int nway);
 void					ft_update_ways_id(t_ways *ways);
-void					ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways **way);
-void					ft_init_next_rooms(t_datas_graph *datas_graph, t_ways **way);
+int						ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways *way);
+int						ft_init_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_ways *way);
 void					ft_init_second_room(t_datas_graph *datas_graph);
 
 #endif

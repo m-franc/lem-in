@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:54:00 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 17:48:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/18 22:22:37 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 void			ft_push_back_ways(t_ways **ways, t_ways *new_way)
 {
 	t_ways		*tmp_ways;
+	t_ways		*prev;
 
 	if (!*ways)
+	{
 		*ways = new_way;
+		(*ways)->prev = NULL;
+	}
 	else
 	{
 		tmp_ways = *ways;
+		prev = tmp_ways;
 		while (tmp_ways && tmp_ways->next)
+		{
 			tmp_ways = tmp_ways->next;
+			prev = tmp_ways;	
+		}
 		tmp_ways->next = new_way;
+		new_way->prev = prev;
 	}
 }
 
@@ -37,6 +46,7 @@ t_ways			*ft_new_way(t_adj_list *content_elem_list, int id)
 	new_way->nb_rooms = 1;
 	new_way->rooms = ft_new_room_way(content_elem_list);
 	new_way->next = NULL;
+	new_way->prev = NULL;
 	return (new_way);
 }
 
@@ -45,7 +55,7 @@ void			ft_init_start_ways(t_datas_graph *datas_graph)
 	t_ways		*new_way;
 	t_ways		*ways;
 	t_adj_list	*start_room;
-	int		i;
+	int			i;
 
 	start_room = datas_graph->adj_list[0];
 	ways = datas_graph->ways;
