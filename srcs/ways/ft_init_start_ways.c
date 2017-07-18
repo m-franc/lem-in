@@ -6,11 +6,21 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:54:00 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 22:22:37 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/18 23:44:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+t_adj_list		*ft_new_room_way(t_adj_list *content_elem_list)
+{
+	t_adj_list	*new_room;
+
+	new_room = ft_memalloc(sizeof(t_adj_list));
+	new_room = ft_memcpy(new_room, content_elem_list, sizeof(t_adj_list));
+	new_room->linked = 1;
+	return (new_room);
+}
 
 void			ft_push_back_ways(t_ways **ways, t_ways *new_way)
 {
