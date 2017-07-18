@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 12:31:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/18 15:04:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,18 @@ int				ft_get_antecedant(t_adj_list *current_room, t_ways *ways)
 //	while (tmp_ways)
 //	{
 	rooms = ways->rooms;
-	while (rooms && !rooms->end)
+	while (rooms)
 	{
 		if (ft_strequ(rooms->name, current_room->name))
+		{
+			ft_printf("TROUVE : {cyan}%s{eoc}\n", current_room->name);
 			return (1);
+		}
 		rooms = rooms->next;
 	}
 //		tmp_ways = tmp_ways->next;
 //	}
+	PSTR("PAS TROUVE")
 	return (0);
 }
 
@@ -138,7 +142,7 @@ void			ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_
 		{
 			new_room = ft_new_room_way(last_room_rooms_linked[o]);
 			ft_push_back_room_way(*way, new_room);
-			if (o == (last_rooms_links) - 1)
+			if ((o == (last_rooms_links) - 1) || new_room->nb_tunnels == 0)
 				break ;
 			new_way = ft_way_dup(tmp_way);
 			ft_push_back_after_nway(datas_graph->ways, new_way, (*way)->id);
@@ -158,8 +162,6 @@ void			ft_init_next_rooms(t_datas_graph *datas_graph, t_ways **way)
 	t_adj_list	*new_room;
 
 	last_room = ft_get_current_last_room_way(*way);
-	if (last_room->end)
-		return ;
 	last_room_rooms_linked = datas_graph->adj_list[last_room->id]->rooms_linked;	
 	if (last_room->nb_tunnels == 0)
 		return ;
