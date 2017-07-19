@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/19 15:06:42 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/19 20:07:23 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 void			ft_push_back_room_way(t_ways *way, t_adj_list *next_room)
 {
 	t_adj_list	*tmp_rooms;
+	t_adj_list	*prev;
 
 	tmp_rooms = way->rooms;
 	while (tmp_rooms && tmp_rooms->next)
+	{
 		tmp_rooms = tmp_rooms->next;
+		prev = tmp_rooms;
+	}
 	tmp_rooms->next = next_room;
+	next_room->prev = tmp_rooms;
 	way->nb_rooms++;
 }
 
@@ -139,11 +144,11 @@ int				ft_init_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_w
 {
 	t_adj_list	**last_room_rooms_linked;
 	t_adj_list	*new_room;
+	t_adj_list	*first_room;
 	int			o;
 	int			i;
 
 	last_room_rooms_linked = last_room->rooms_linked;
-	ft_init_multiple_next_rooms(datas_graph, last_room, last_room_rooms_linked, way);
 }
 
 void			ft_init_second_room(t_datas_graph *datas_graph)
@@ -151,7 +156,7 @@ void			ft_init_second_room(t_datas_graph *datas_graph)
 	t_adj_list	**second_rooms_ways;
 	t_adj_list	*new_room;
 	t_ways		*ways;
-	int		i;
+	int			i;
 
 	ways = datas_graph->ways;
 	second_rooms_ways = datas_graph->adj_list[0]->rooms_linked;
