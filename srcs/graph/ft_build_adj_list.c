@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 22:21:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/19 14:28:17 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	elem_list->nb_tunnels = nb_tunnels;
 	elem_list->rooms_linked = NULL;
 	elem_list->next = NULL;
+	elem_list->prev = NULL;
 	return (elem_list);
 }
 
@@ -88,7 +89,6 @@ t_adj_list			*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *da
 		}
 		tmptmp_tunnels = tmptmp_tunnels->next;
 	}
-	PSTR("COCUOUUUU")
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 23:44:26 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/19 14:29:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct			s_adj_list
 	int					nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
+	struct s-adj_list	*prev;
 }						t_adj_list;
 
 typedef struct			s_ways
