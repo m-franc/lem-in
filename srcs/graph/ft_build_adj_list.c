@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/19 14:28:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/20 20:18:20 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	elem_list->start = (tmp_rooms->start == 1) ? 1 : 0;
 	elem_list->end = (tmp_rooms->end == 1) ? 1 : 0;
 	elem_list->linked = 0;
+	elem_list->weight = 0;
 	elem_list->nb_tunnels = nb_tunnels;
 	elem_list->rooms_linked = NULL;
 	elem_list->next = NULL;

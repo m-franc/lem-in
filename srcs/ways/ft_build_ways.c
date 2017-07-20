@@ -6,16 +6,33 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/19 20:07:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/20 20:16:46 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
+void			ft_init_room_dst()
+
+void			ft_antsystem(t_datas_graph *datas_graph)
+{
+	t_adj_list	**rooms_linked;
+	t_adj_list	*end;
+	int			i;
+	int			j;
+
+	i = 0;
+	end = datas_graph->adj_list[datas_graph->nb_rooms - 1];
+	while (i < end->nb_tunnels)
+	{
+		
+		i++;
+	}
+}
+
 int			ft_build_ways(t_datas_graph *datas_graph)
 {
-	t_ways		*ways;
-	t_adj_list	*last_room;
+	ft_antsystem(datas_graph);
 
 /*	ft_init_start_ways(datas_graph);
 	ft_init_second_room(datas_graph);	

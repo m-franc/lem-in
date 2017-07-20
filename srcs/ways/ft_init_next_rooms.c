@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/19 20:07:23 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/20 14:35:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ t_adj_list		*ft_get_same_room(t_ways *way, char *same_room)
 	return (NULL);
 }
 
-
+/*
 int				ft_init_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_ways *way)
 {
 	t_adj_list	**last_room_rooms_linked;
@@ -150,7 +150,7 @@ int				ft_init_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_w
 
 	last_room_rooms_linked = last_room->rooms_linked;
 }
-
+*/
 void			ft_init_second_room(t_datas_graph *datas_graph)
 {
 	t_adj_list	**second_rooms_ways;

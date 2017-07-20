@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/19 20:07:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/20 20:18:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ typedef struct			s_adj_list
 	int					start;
 	int					end;
 	int					linked;
+	int					weight;
 	int					nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
-	struct s-adj_list	*prev;
+	struct s_adj_list	*prev;
 }						t_adj_list;
 
 typedef struct			s_ways
@@ -81,6 +82,7 @@ typedef struct			s_ways
 typedef struct 			s_datas_graph
 {
 	int					nb_rooms;
+	int					nb_links;
 	int					**adj_matrix;
 	t_adj_list			**adj_list;
 	t_ways				*ways;
