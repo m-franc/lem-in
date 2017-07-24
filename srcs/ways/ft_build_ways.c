@@ -6,13 +6,11 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/20 20:16:46 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/24 18:37:03 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-
-void			ft_init_room_dst()
 
 void			ft_antsystem(t_datas_graph *datas_graph)
 {
@@ -25,7 +23,8 @@ void			ft_antsystem(t_datas_graph *datas_graph)
 	end = datas_graph->adj_list[datas_graph->nb_rooms - 1];
 	while (i < end->nb_tunnels)
 	{
-		
+		end->rooms_linked[i]->dst = 1;
+		ft_init_room_way(end->rooms_linked[i], 2);
 		i++;
 	}
 }
