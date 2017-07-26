@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:23:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:41:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int 					main(void)
 		ft_exit_error();
 	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
 	ft_put_adj_list_dist(datas_graph);
+	ft_put_adj_matrix(datas_graph);
 	return (0);
 }

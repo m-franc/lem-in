@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:09:03 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:41:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 		adj_matrix[i] = elem_adj_matrix;
 	}
 	datas_graph->adj_matrix = adj_matrix;
-	i = -1;
 	adj_list = ft_memalloc(sizeof(t_adj_list*) * (data_store->nb_rooms));
 	datas_graph->adj_list = adj_list;
 	datas_graph->nb_links = 0;
@@ -50,21 +49,19 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 
 	matrix = datas_graph->adj_matrix;
 	list = datas_graph->adj_list;
-	i = 0;
-	while (i < datas_graph->nb_rooms)
+	i = -1;
+	while (++i < datas_graph->nb_rooms)
 	{
 		if (list[i]->rooms_linked) 
 		{
 			rooms_linked = list[i]->rooms_linked;
-			o = 0;
-			while (o < list[i]->nb_tunnels)
+			o = -1;
+			while (++o < list[i]->nb_tunnels)
 			{
 				matrix[i][rooms_linked[o]->id] = 1;
 				datas_graph->nb_links++;
-				o++;
 			}
 		}
-		i++;
 	}
 }
 
@@ -76,7 +73,6 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 		return (-1);
 	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
 		return (-1);
-	ft_update_rooms_id(datas_graph);
 	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }
