@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/17 18:44:49 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:23:53 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_data_store			*ft_data_store_init(void)
 	data_store->tunnels = NULL;
 	data_store->nb_tunnels = 0;
 	data_store->commands = NULL;
+	data_store->nb_commands = 0;
 	return (data_store);
 }
 
@@ -43,16 +44,11 @@ int 					main(void)
 	data_store = ft_data_store_init();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
-//	if ((ft_check_room_tunnel(data_store)) == -1)
-//		ft_exit_error();
 	if (!(datas_graph = ft_init_datas_graph(data_store)))
 		ft_exit_error();
-//	ft_put_data_parsed(data_store);
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
 		ft_exit_error();
-	ft_put_adj_list(datas_graph);
-//	ft_put_adj_matrix(datas_graph);
-	if (!ft_build_ways(datas_graph))
-		ft_exit_error();
+	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
+	ft_put_adj_list_dist(datas_graph);
 	return (0);
 }

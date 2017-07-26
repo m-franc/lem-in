@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/20 18:51:44 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:09:03 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
 		return (-1);
 	ft_update_rooms_id(datas_graph);
-//	if ((ft_reorganize_tunnels_adj_list(datas_graph))-1)
-//			return (-1);
-//	ft_put_adj_list(datas_graph);
 	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }

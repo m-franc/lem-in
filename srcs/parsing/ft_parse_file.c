@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 19:31:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 18:48:23 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@ t_line_is_command	g_line_is_command[] =
 
 static void	ft_store_command(t_data_store *data_store, char *line)
 {
-	t_list	*last_commands;
 	t_list	*new_command;
 
 	new_command = ft_lstnew(line, ft_strlen(line) + 1);
-	last_commands = data_store->commands;
-	if (!last_commands)
-		ft_push_back_command(&data_store->commands, new_command);
-	else
-		ft_push_back_command(&last_commands, new_command);
+	ft_push_back_command(&data_store->commands, new_command);
+	data_store->nb_commands++;
 }
 
 int			ft_parse_file(t_data_store *data_store)
@@ -57,7 +53,7 @@ int			ft_parse_file(t_data_store *data_store)
 		if (i == 5)
 			break ;
 	}
-	if (gnl == -1 || ft_listcount(data_store->commands) == 0)
+	if (gnl == -1 || data_store->nb_commands == 0)
 		return (-1);
 	return (1);
 }

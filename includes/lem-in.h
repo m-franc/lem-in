@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/21 16:23:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:22:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct			s_data_store
 	t_tunnels			*tunnels;
 	int					nb_tunnels;
 	t_list				*commands;
+	int					nb_commands;
 }						t_data_store;
 
 typedef struct			s_adj_list
@@ -62,7 +63,6 @@ typedef struct			s_adj_list
 	int					start;
 	int					end;
 	int					linked;
-	int					weight;
 	int					nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 	struct s_adj_list	*next;
@@ -93,6 +93,7 @@ typedef struct 			s_datas_graph
  */
 void					ft_put_data_parsed(t_data_store *data_store);
 void					ft_put_adj_list(t_datas_graph *datas_graph);
+void					ft_put_adj_list_dist(t_datas_graph *datas_graph);
 void					ft_put_adj_matrix(t_datas_graph *datas_graph);
 void					ft_put_ways(t_ways *ways);
 
@@ -133,7 +134,6 @@ int						ft_store_modif_command(t_data_store *data_store, char *line);
 void					ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel);
 void					ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room);
 void					ft_push_back_command(t_list **commands, t_list *new_command);
-void					ft_push_back_room_linked(t_list **last_rooms_linked, t_list *new_room_linked);
 
 /*
  ** ft_check.c
@@ -141,7 +141,6 @@ void					ft_push_back_room_linked(t_list **last_rooms_linked, t_list *new_room_l
 int						ft_check_duplicate(t_data_rooms *last_rooms, char **data_room);
 int						ft_str_is_room(char *room);
 int						ft_check_data_room(char **tab);
-int						ft_add_rooms_linked(t_data_rooms *rooms, t_tunnels *tunnels);
 
 /*
  ** ft_build_graph.c
@@ -181,7 +180,7 @@ void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
 /*
  ** ft_build_ways.c
  */
-int					ft_build_ways(t_datas_graph *datas_graph);
+void					ft_init_dist(t_adj_list *current_room, int dist);
 
 /*
  ** ft_init_start_ways.c

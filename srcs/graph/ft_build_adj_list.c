@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/20 20:18:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:17:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	elem_list->start = (tmp_rooms->start == 1) ? 1 : 0;
 	elem_list->end = (tmp_rooms->end == 1) ? 1 : 0;
 	elem_list->linked = 0;
-	elem_list->weight = 0;
 	elem_list->nb_tunnels = nb_tunnels;
 	elem_list->rooms_linked = NULL;
 	elem_list->next = NULL;
@@ -71,10 +70,8 @@ t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph
 
 t_adj_list			*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room)
 {
-	int				i;
 	t_tunnels		*tmptmp_tunnels;
 
-	i = 0;
 	tmptmp_tunnels = rooms_to_find;
 	while (tmptmp_tunnels)
 	{
@@ -160,9 +157,7 @@ int					ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph
 	{
 		tmp_tunnels = tunnels;
 		ft_reset_checked_tunnels(tmp_tunnels);
-		if (list[i]->end)
-			list[i]->nb_tunnels = 0;
-		else if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
+		if ((list[i]->nb_tunnels = ft_get_nb_tunnels(tmp_tunnels, list[i]->name)) == -1)
 			return (-1);
 		ft_reset_checked_tunnels(tmp_tunnels);
 		if (!(list[i]->rooms_linked = ft_init_rooms_linked(tmp_tunnels, datas_graph, list[i]->nb_tunnels, list[i]->name)))

@@ -6,47 +6,26 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/25 13:12:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/07/26 19:23:06 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void			ft_antsystem(t_adj_list *current_room)
+void			ft_init_dist(t_adj_list *current_room, int dist)
 {
-	t_adj_list	*end;
+	t_adj_list	**next_rooms;
 	int			i;
-	int			dist;
 
-	i = 0;
-	end = datas_graph->adj_list[datas_graph->nb_rooms - 1];
-	dist = 0;
-	while (i < end->nb_tunnels)
+	current_room->dist = dist;
+	if (current_room->start == 1)
+		return ;
+	i = -1;
+	next_rooms = current_room->rooms_linked;
+	while (++i < current_room->nb_tunnels)
 	{
-		end->rooms_linked[i]->dist = dist;
-		ft_init_room_way(end->rooms_linked[i], dist++);
-		i++;
+		if (!next_rooms[i]->end)
+			if (!next_rooms[i]->dist || next_rooms[i]->dist > (dist + 1))
+				ft_init_dist(next_rooms[i], dist + 1);
 	}
-}
-
-int			ft_build_ways(t_datas_graph *datas_graph)
-{
-	ft_antsystem(datas_graph->adj_list[datas_graph->nb_rooms - 1]);
-
-/*	ft_init_start_ways(datas_graph);
-	ft_init_second_room(datas_graph);	
-	ways = datas_graph->ways;
-	while (ways)
-	{
-		last_room = ft_get_current_last_room_way(ways);
-		if (last_room->nb_tunnels == 0 || last_room->end)
-			ways = ways->next;
-		else
-		{
-			if (ft_init_next_rooms(datas_graph, last_room, ways) == 0)
-				ways = ways->next;	
-		}
-	}*/
-//	ft_put_ways(datas_graph->ways);
-	return (1);
 }

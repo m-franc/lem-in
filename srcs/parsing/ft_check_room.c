@@ -15,13 +15,16 @@
 
 int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 {
+	t_data_rooms	*tmp_last_rooms;
+	
 	if (!last_rooms)
 		return (1);
-	while (last_rooms)
+	tmp_last_rooms = last_rooms;
+	while (tmp_last_rooms)
 	{
-		if (ft_strcmp(last_rooms->name, data_room[0]) == 0)
+		if (ft_strequ(tmp_last_rooms->name, data_room[0]))
 			return (-1);
-		last_rooms = last_rooms->next;
+		tmp_last_rooms = tmp_last_rooms->next;
 	}
 	return (1);
 }
@@ -45,53 +48,4 @@ int		ft_check_data_room(char **tab)
 		return (0);
 	else
 		return (1);
-}
-
-int		ft_add_rooms_linked(t_data_rooms *rooms, t_tunnels *tunnels)
-{
-	t_list	*new_room_linked;
-	t_list	*last_rooms_linked;
-
-	last_rooms_linked = rooms->rooms_linked;
-	if (ft_strcmp(rooms->name, tunnels->first_room) == 0
-			&& ft_strcmp(rooms->name, tunnels->second_room) == 0) 
-		return (-1);
-	else if (ft_strcmp(rooms->name, tunnels->second_room) == 0 && tunnels->checked == 0)
-	{
-		new_room_linked = ft_lstnew(tunnels->first_room, ft_strlen(tunnels->first_room) + 1);
-		tunnels->checked = 1;
-	}
-	else if (ft_strcmp(rooms->name, tunnels->first_room) == 0 && tunnels->checked == 0)
-	{
-		new_room_linked = ft_lstnew(tunnels->second_room, ft_strlen(tunnels->second_room) + 1);
-		tunnels->checked = 1;
-	}
-	else
-		return (0);
-	if (!last_rooms_linked)
-		ft_push_back_room_linked(&rooms->rooms_linked, new_room_linked);
-	else
-		ft_push_back_room_linked(&last_rooms_linked, new_room_linked);
-	rooms->tunnels++;
-	return (1);
-}
-
-int		ft_check_room_tunnel(t_data_store *data_store)
-{
-	t_data_rooms	*rooms;
-	t_tunnels		*tunnels;
-
-	rooms = data_store->rooms;
-	while (rooms)
-	{
-		tunnels = data_store->tunnels;
-		while (tunnels)
-		{
-			if ((ft_add_rooms_linked(rooms, tunnels)) == -1)
-				return (-1);
-			tunnels = tunnels->next;
-		}
-		rooms = rooms->next;
-	}
-	return (1);
 }
