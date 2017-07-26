@@ -6,12 +6,12 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/07/12 16:29:47 by mfranc           ###   ########.fr        #
+#    Updated: 2017/07/26 19:47:14 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 CC = gcc $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
