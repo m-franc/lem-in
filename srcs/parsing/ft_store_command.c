@@ -102,7 +102,11 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 	new_room->tunnels = 0;
 	new_room->rooms_linked = NULL;
 	if ((ft_init_start_end(data_store, new_room)) == -1)
+	{	
+		ft_strdel(&new_room->name);
+		ft_memdel((void**)&new_room);
 		return (-1);
+	}
 	new_room->x = ft_atoi(data_room[1]);
 	new_room->y = ft_atoi(data_room[2]);
 	new_room->next = NULL;
