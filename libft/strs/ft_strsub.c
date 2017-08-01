@@ -20,9 +20,10 @@ char	*ft_strsub(char const *s, unsigned int start, size_t n)
 	if (!s)
 		return (NULL);
 	i = 0;
-	new = ft_strnew(n);
+	if (!(new = ft_strnew(n)))
+		return (NULL);
 	if (new == NULL)
-		exit(1);
+		return (NULL);
 	while (i < n)
 		new[i++] = s[start++];
 	new[i] = '\0';

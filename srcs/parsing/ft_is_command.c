@@ -22,14 +22,15 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 	if (strcmp(line, "-") == 0)
 		return (0);
 	ti = strcspn(line, "-");
-	f_room = ft_strsub(line, 0, ti);
+	if (!(f_room = ft_strsub(line, 0, ti)))
+		return (-1);
 	if (!ft_str_is_room(f_room) || line[ft_strlen(f_room)] != '-')
 	{
 		ft_strdel(&f_room);	
 		return (0);
 	}
 	other_ti = strcspn(line + (ti + 1), "-");
-	s_room = ft_strsub(line, ti + 1, other_ti);
+	if (!(s_room = ft_strsub(line, ti + 1, other_ti)))
 	if (!ft_str_is_room(s_room) || line[ti + other_ti + 1] != '\0')
 	{
 		ft_strdel(&f_room);	
@@ -56,7 +57,8 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 {
 	char	**tab;
 	
-	tab = ft_strsplit(line, ' ');
+	if (!(tab = ft_strsplit(line, ' ')))
+		return (-1);
 	if (!ft_check_data_room(tab))
 	{
 		ft_tabdel(&tab);

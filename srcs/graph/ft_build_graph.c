@@ -12,26 +12,39 @@
 
 #include "lem-in.h"
 
+/*static int		**ft_init_adj_matrix(t_data_store *data_store)
+{
+	int		i;
+	int		**adj_matrix;
+	int		*elem_adj_matrix;
+
+	if (!(adj_matrix = ft_memalloc(sizeof(int*) * (data_store->nb_rooms))))
+		return (NULL);
+	i = -1;
+	while (++i < data_store->nb_rooms)
+	{
+		if (!(elem_adj_matrix = ft_memalloc(sizeof(int) * data_store->nb_rooms)))
+			return (NULL);
+		adj_matrix[i] = elem_adj_matrix;
+	}
+	return (adj_matrix);
+}
+*/
 t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 {
 	t_datas_graph	*datas_graph;
-	int				**adj_matrix;
-	int				*elem_adj_matrix;
+//	int				**adj_matrix;
 	t_adj_list		**adj_list;
-	int				i;
 
 	if (data_store->nb_rooms == 0)
 		return (NULL);
-	datas_graph = ft_memalloc(sizeof(t_datas_graph));
-	i = -1;
-	adj_matrix = ft_memalloc(sizeof(int*) * (data_store->nb_rooms));
-	while (++i < data_store->nb_rooms)
-	{
-		elem_adj_matrix = ft_memalloc(sizeof(int) * data_store->nb_rooms);
-		adj_matrix[i] = elem_adj_matrix;
-	}
-	datas_graph->adj_matrix = adj_matrix;
-	adj_list = ft_memalloc(sizeof(t_adj_list*) * (data_store->nb_rooms));
+	if (!(datas_graph = ft_memalloc(sizeof(t_datas_graph))))
+		return (NULL);
+//	if (!(adj_matrix = ft_init_adj_matrix(data_store)))
+//		return (NULL);
+//	datas_graph->adj_matrix = adj_matrix;
+	if (!(adj_list = ft_memalloc(sizeof(t_adj_list*) * (data_store->nb_rooms))))
+		return (NULL);
 	datas_graph->adj_list = adj_list;
 	datas_graph->nb_links = 0;
 	datas_graph->nb_rooms = data_store->nb_rooms;
@@ -73,6 +86,6 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 		return (-1);
 	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
 		return (-1);
-	ft_switchon_tunnels_adj_matrix(datas_graph);
+//	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }

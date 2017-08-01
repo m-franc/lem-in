@@ -46,7 +46,7 @@ char			**ft_strsplit(char const *s, char c)
 
 	if ((!s) || !(tab = (char **)malloc(sizeof(*tab)
 					* (ft_word_count(s, c) + 1))))
-		exit(1);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])
@@ -56,7 +56,7 @@ char			**ft_strsplit(char const *s, char c)
 		if (s[i] != c && s[i])
 		{
 			if (!(tab[j++] = ft_strsub(s, i, ft_slen_untilc(s + i, c))))
-				exit(1);
+				return (NULL);
 			while (s[i] != c && s[i])
 				i++;
 		}

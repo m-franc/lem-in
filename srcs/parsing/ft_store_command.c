@@ -16,9 +16,12 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 {
 	t_tunnels	*new_tunnel;
 
-	new_tunnel = ft_memalloc(sizeof(t_tunnels));
-	new_tunnel->first_room = ft_strdup(first_room);
-	new_tunnel->second_room = ft_strdup(second_room);
+	if (!(new_tunnel = ft_memalloc(sizeof(t_tunnels))))
+		return (-1);
+	if (!(new_tunnel->first_room = ft_strdup(first_room)))
+		return (-1);
+	if (!(new_tunnel->second_room = ft_strdup(second_room)))
+		return (-1);
 	new_tunnel->checked = 0;
 	new_tunnel->next = NULL;
 	ft_push_back_tunnel(&data_store->tunnels, new_tunnel);
@@ -81,9 +84,11 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 
 	if (ft_check_duplicate(data_store->rooms, data_room) == -1)	
 		return (-1);
-	new_room = ft_memalloc(sizeof(t_data_rooms));
+	if (!(new_room = ft_memalloc(sizeof(t_data_rooms))))
+		return (-1);
 	new_room->id = data_store->nb_rooms;
-	new_room->name = ft_strdup(data_room[0]);
+	if (!(new_room->name = ft_strdup(data_room[0])))
+		return (-1);
 	new_room->tunnels = 0;
 	new_room->rooms_linked = NULL;
 	if ((ft_init_start_end(data_store, new_room)) == -1)

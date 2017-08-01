@@ -21,39 +21,55 @@ t_line_is_command	g_line_is_command[] =
 	ft_line_is_comment
 };
 
-static void	ft_store_command(t_data_store *data_store, char *line)
+static t_list		*ft_new_command(t_data_store *data_store, char *line)
 {
 	t_list	*new_command;
 
-	new_command = ft_lstnew(line, ft_strlen(line) + 1);
-	ft_push_back_command(&data_store->commands, new_command);
+	if (!(new_command = ft_lstnew(line, ft_strlen(line) + 1)))
+		return (NULL);
 	data_store->nb_commands++;
+	return (new_command);
+}
+
+static int		ft_line_is_command(t_data_store *data_store, char *line)
+{
+	int		i;
+	int		line_is_command;
+
+	i = -1;
+	while (++i < 5)
+	{
+		line_is_command = g_line_is_command[i](line, data_store);
+		if (line_is_command == 1)
+			return (1);
+		else if (line_is_command == -1)
+			return (-1);
+	}
+	ft_strdel(&line);
+	if (i == 5)
+		return (5);
+	return (1);
 }
 
 int			ft_parse_file(t_data_store *data_store)
 {
 	int		gnl;
-	int		i;
 	char	*line;
 	int		line_is_command;
+	t_list		*new_command;
 
 	while ((gnl = get_next_line(0, &line)) == 1)
 	{
-		i = -1;
-		ft_store_command(data_store, line);
-		while (++i < 5)
-		{
-			line_is_command = g_line_is_command[i](line, data_store);
-			if (line_is_command == 1)
-				break ;
-			else if (line_is_command == -1)
-				return (-1);
-		}
-		ft_strdel(&line);
-		if (i == 5)
+		if (!(new_command = ft_new_command(data_store, line)))
+			return (-1);
+		ft_push_back_command(&data_store->commands, new_command);
+		line_is_command = ft_line_is_command(data_store, line);
+		if (line_is_command == -1)
+			return (-1);
+		else if (line_is_command == 5)
 			break ;
 	}
-	if (gnl == -1 || data_store->nb_commands == 0)
+	if (gnl == -1 || data_store->nb_commands == 0 || data_store->nb_ants == 0)
 		return (-1);
 	return (1);
 }

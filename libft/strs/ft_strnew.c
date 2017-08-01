@@ -19,7 +19,7 @@ char	*ft_strnew(size_t n)
 
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(char) * (n + 1))))
-		exit(1);
+		return (NULL);
 	while (i <= n)
 		str[i++] = 0;
 	return (str);

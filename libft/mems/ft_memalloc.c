@@ -17,9 +17,9 @@ void	*ft_memalloc(size_t n)
 	void	*area;
 
 	if (n < 1)
-		exit(1);
+		return (NULL);
 	if (!(area = malloc(n)))
-		exit(1);
+		return (NULL);
 	ft_bzero(area, n);
 	return (area);
 }

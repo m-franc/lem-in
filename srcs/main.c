@@ -16,7 +16,8 @@ t_data_store			*ft_data_store_init(void)
 {
 	t_data_store 		*data_store;
 
-	data_store = ft_memalloc(sizeof(t_data_store));
+	if (!(data_store = ft_memalloc(sizeof(t_data_store))))
+		return (NULL);
 	data_store->nb_ants = 0;
 	data_store->start_mark = 0;
 	data_store->end_mark = 0;
@@ -41,9 +42,11 @@ int 					main(void)
 	int					parsing_ret;
 	t_datas_graph		*datas_graph;
 	
-	data_store = ft_data_store_init();
+	if (!(data_store = ft_data_store_init()))
+		ft_exit_error();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
+	ft_put_data_parsed(data_store);
 	if (!(datas_graph = ft_init_datas_graph(data_store)))
 		ft_exit_error();
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
