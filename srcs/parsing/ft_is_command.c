@@ -12,6 +12,17 @@
 
 #include "lem-in.h"
 
+int			ft_del_before_return(void *null, ...)
+{
+	va_list		list_to_del;
+	void		*to_del;
+	
+	va_start(to_del, null);
+	while ((to_del = va_arg(list_to_del, void*)))
+		ft_memdel(&to_del);
+	return (-1);
+}
+
 int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 {
 	int		ti;
@@ -25,16 +36,13 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 	if (!(f_room = ft_strsub(line, 0, ti)))
 		return (-1);
 	if (!ft_str_is_room(f_room) || line[ft_strlen(f_room)] != '-')
-	{
-		ft_strdel(&f_room);	
-		return (0);
-	}
+		return (ft_del_before_return(NULL, f_room, NULL));
 	other_ti = strcspn(line + (ti + 1), "-");
 	if (!(s_room = ft_strsub(line, ti + 1, other_ti)))
+		return (-1);
 	if (!ft_str_is_room(s_room) || line[ti + other_ti + 1] != '\0')
 	{
-		ft_strdel(&f_room);	
-		ft_strdel(&s_room);
+		return (ft_del_before_return(NULL, f_room, s_room, NULL));
 		return (0);
 	}
 	return (ft_store_tunnel(data_store, f_room, s_room));
