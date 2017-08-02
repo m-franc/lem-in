@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/02 19:16:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:36:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 	if (!(elem_list = ft_memalloc(sizeof(t_adj_list))))
 		return (NULL);
 	elem_list->id = id;
-	elem_list->name = tmp_rooms->name;
+	if (!(elem_list->name = ft_strdup(tmp_rooms->name)))
+	{
+		ft_memdel((void **)&elem_list);
+		return (NULL);
+	}
 	elem_list->dist = 0;
 	elem_list->ant_in = 0;
 	elem_list->x = tmp_rooms->x;
