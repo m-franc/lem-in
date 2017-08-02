@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 18:37:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:08:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,9 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 	if (!(new_tunnel = ft_memalloc(sizeof(t_tunnels))))
 		return (-1);
 	if (!(new_tunnel->first_room = ft_strdup(first_room)))
-	{
-		ft_memdel((void**)&new_tunnel);
-		return (-1);
-	}
+		return (ft_exit_function(-1, new_tunnel, NULL));
 	if (!(new_tunnel->second_room = ft_strdup(second_room)))
-	{
-		ft_strdel(&new_tunnel->first_room);
-		ft_memdel((void**)&new_tunnel);
-		return (-1);
-	}
+		return (ft_exit_function(-1, new_tunnel->first_room, new_tunnel, NULL));
 	new_tunnel->checked = 0;
 	new_tunnel->next = NULL;
 	ft_push_back_tunnel(&data_store->tunnels, new_tunnel);
@@ -95,18 +88,11 @@ int					ft_store_room(t_data_store *data_store, char **data_room)
 		return (-1);
 	new_room->id = data_store->nb_rooms;
 	if (!(new_room->name = ft_strdup(data_room[0])))
-	{
-		ft_memdel((void**)&new_room);
-		return (-1);
-	}
+		return (ft_exit_function(-1, new_room, NULL));
 	new_room->tunnels = 0;
 	new_room->rooms_linked = NULL;
 	if ((ft_init_start_end(data_store, new_room)) == -1)
-	{	
-		ft_strdel(&new_room->name);
-		ft_memdel((void**)&new_room);
-		return (-1);
-	}
+		return (ft_exit_function(-1, new_room->name, new_room, NULL));
 	new_room->x = ft_atoi(data_room[1]);
 	new_room->y = ft_atoi(data_room[2]);
 	new_room->next = NULL;

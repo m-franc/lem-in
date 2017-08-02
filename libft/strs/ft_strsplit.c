@@ -6,11 +6,12 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 17:10:28 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 17:30:15 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:05:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
 static	int		ft_word_count(char const *s, char c)
 {

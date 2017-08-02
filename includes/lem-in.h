@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:41:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 17:54:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void					ft_put_ways(t_ways *ways);
  */
 t_data_store			*ft_data_store_init(void);
 void					ft_exit_error(void);
+int						ft_exit_function(int return_value, ...);
 int						ft_check_room_tunnel(t_data_store *data_store);
 
 /*

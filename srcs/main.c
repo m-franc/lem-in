@@ -6,11 +6,22 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:47:50 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:08:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+int						ft_exit_function(int return_value, ...)
+{
+	va_list				elems_to_del;
+	void				*elem;
+
+	va_start(elems_to_del, return_value);
+	while ((elem = va_arg(elems_to_del, void*)))
+		ft_memdel(&elem);
+	return (return_value);
+}
 
 t_data_store			*ft_data_store_init(void)
 {
@@ -52,7 +63,7 @@ int 					main(void)
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
 		ft_exit_error();
 	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
-//	ft_put_adj_list_dist(datas_graph);
+	ft_put_adj_list_dist(datas_graph);
 //	ft_put_adj_matrix(datas_graph);
 	return (0);
 }

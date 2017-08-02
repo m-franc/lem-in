@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/30 19:31:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:08:15 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,16 @@ int			ft_line_is_tunnel(char *line, t_data_store *data_store)
 	if (!(f_room = ft_strsub(line, 0, ti)))
 		return (-1);
 	if (!ft_str_is_room(f_room) || line[ft_strlen(f_room)] != '-')
-	{
-		ft_strdel(&f_room);
-		return (0);
-	}
+		return (ft_exit_function(0, f_room, NULL));
 	other_ti = strcspn(line + (ti + 1), "-");
 	if (!(s_room = ft_strsub(line, ti + 1, other_ti)))
-	{
-		ft_strdel(&f_room);
-		return (0);
-	}
+		return (ft_exit_function(0, f_room, NULL));
 	if (!ft_str_is_room(s_room) || line[ti + other_ti + 1] != '\0')
-	{
-		ft_strdel(&f_room);
-		ft_strdel(&s_room);
-		return (0);
-	}
-	return (ft_store_tunnel(data_store, f_room, s_room));
+		return (ft_exit_function(0, f_room, s_room, NULL));
+	if (ft_store_tunnel(data_store, f_room, s_room) == -1)
+		return (ft_exit_function(-1, f_room, s_room, NULL));
+	else
+		return (1);
 }
 
 int			ft_line_is_ants_number(char *line, t_data_store *data_store)
@@ -70,11 +63,11 @@ int			ft_line_is_room(char *line, t_data_store *data_store)
 	}
 	if ((ft_atoi(tab[1]) > 2147483647 || ft_atoi(tab[1]) < -2147483648)
 		|| (ft_atoi(tab[2]) > 2147483647 || ft_atoi(tab[2]) < -2147483648))
-	{
-		ft_tabdel(&tab);
-		return (0);	
-	}
-	return (ft_store_room(data_store, tab));
+		return (ft_exit_function(0, tab[0], tab[1], tab[2], NULL));
+	if (ft_store_room(data_store, tab) == -1)
+		return (ft_exit_function(-1, tab[0], tab[1], tab[2], NULL));
+	else
+		return (1);
 }
 
 int			ft_line_is_comment(char *line, t_data_store *data_store)
