@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:41:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:16:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_adj_list			*ft_init_elem_list_adj(t_data_rooms *tmp_rooms, int id, int nb_tunn
 {
 	t_adj_list		*elem_list;
 
-	elem_list = ft_memalloc(sizeof(t_adj_list));
+	if (!(elem_list = ft_memalloc(sizeof(t_adj_list))))
+		return (NULL);
 	elem_list->id = id;
 	elem_list->name = tmp_rooms->name;
 	elem_list->dist = 0;
@@ -137,7 +138,8 @@ t_adj_list			**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas
 	i = -1;
 	if (nb_tunnels == 0)
 		return (NULL);
-	rooms_linked = ft_memalloc(sizeof(t_adj_list*) * nb_tunnels);
+	if (!(rooms_linked = ft_memalloc(sizeof(t_adj_list*) * nb_tunnels)))
+		return (NULL);
 	while (++i < nb_tunnels)
 		rooms_linked[i] = ft_get_room_by_tunnels(tmp_tunnels, datas_graph, current_room);
 	return (rooms_linked);

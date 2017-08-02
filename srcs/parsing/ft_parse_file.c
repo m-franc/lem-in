@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/02 19:08:11 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/02 19:22:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int			ft_parse_file(t_data_store *data_store)
 			return (-1);
 		ft_push_back_command(&data_store->commands, new_command);
 		line_is_command = ft_line_is_command(data_store, line);
-		ft_strdel(&line);
 		if (line_is_command == -1)
 			return (-1);
 		else if (line_is_command == 5)
 			break ;
+		ft_strdel(&line);
 	}
 	if (gnl == -1 || data_store->nb_commands == 0 || data_store->nb_ants == 0)
 		return (-1);
