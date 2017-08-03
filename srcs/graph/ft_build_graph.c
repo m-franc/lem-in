@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/02 19:36:13 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/03 12:16:17 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 //		return (NULL);
 //	datas_graph->adj_matrix = adj_matrix;
 	if (!(adj_list = ft_memalloc(sizeof(t_adj_list*) * (data_store->nb_rooms))))
+	{
+		ft_memdel((void**)&datas_graph)	;
 		return (NULL);
+	}
 	datas_graph->adj_list = adj_list;
 	datas_graph->nb_links = 0;
 	datas_graph->nb_rooms = data_store->nb_rooms;

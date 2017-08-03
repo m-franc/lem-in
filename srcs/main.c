@@ -6,20 +6,17 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/02 19:36:05 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/03 13:15:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int						ft_exit_function(int return_value, ...)
+int						ft_exit_function(int return_value, void *st_elem, void *nd_elem, void *rd_elem)
 {
-	va_list				elems_to_del;
-	void				*elem;
-
-	va_start(elems_to_del, return_value);
-	while ((elem = va_arg(elems_to_del, void*)))
-		ft_memdel(&elem);
+	ft_memdel(&st_elem);
+	ft_memdel(&nd_elem);
+	ft_memdel(&rd_elem);
 	return (return_value);
 }
 
@@ -33,10 +30,13 @@ t_data_store			*ft_data_store_init(void)
 	data_store->start_mark = 0;
 	data_store->end_mark = 0;
 	data_store->rooms = NULL;
+	data_store->last_rooms = NULL;
 	data_store->nb_rooms = 0;
 	data_store->tunnels = NULL;
+	data_store->last_tunnels = NULL;
 	data_store->nb_tunnels = 0;
 	data_store->commands = NULL;
+	data_store->last_commands = NULL;
 	data_store->nb_commands = 0;
 	return (data_store);
 }
@@ -57,7 +57,8 @@ int 					main(void)
 		ft_exit_error();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
-	if (!(datas_graph = ft_init_datas_graph(data_store)))
+	ft_put_data_parsed(data_store);
+	if (!(datas_graph = ft_init_datas_graph(data_store)))		
 		ft_exit_error();
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
 		ft_exit_error();

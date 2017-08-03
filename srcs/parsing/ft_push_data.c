@@ -6,59 +6,50 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:31:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:41:49 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/03 13:13:07 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void				ft_push_back_tunnel(t_tunnels **tunnels, t_tunnels *new_tunnel)
+void				ft_push_back_tunnel(t_data_store *data_store, t_tunnels *new_tunnel)
 {
-	t_tunnels		*tmp;
-
-	if (!*tunnels)
-		*tunnels = new_tunnel;
+	if (data_store->tunnels)
+	{
+		data_store->last_tunnels->next = new_tunnel;
+		data_store->last_tunnels = data_store->last_tunnels->next;	
+	}
 	else
 	{
-		tmp = *tunnels;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_tunnel;
+		data_store->tunnels = new_tunnel;
+		data_store->last_tunnels = new_tunnel;
 	}
 }
 
-void				ft_push_back_room(t_data_rooms **rooms, t_data_rooms *new_room)
+void				ft_push_back_room(t_data_store *data_store, t_data_rooms *new_room)
 {
-	t_data_rooms	*tmp;
-
-	if (!*rooms)
-	{	
-		*rooms = new_room;
-		return ;
+	if (data_store->rooms)
+	{
+		data_store->last_rooms->next = new_room;
+		data_store->last_rooms = data_store->last_rooms->next;	
 	}
 	else
 	{
-		tmp = *rooms;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_room;
+		data_store->rooms = new_room;
+		data_store->last_rooms = new_room;
 	}
 }
 
-void				ft_push_back_command(t_list **commands, t_list *new_command)
+void				ft_push_back_command(t_data_store *data_store, t_list *new_command)
 {
-	t_list			*tmp;
-
-	if (!*commands)
-	{	
-		*commands = new_command;
-		return ;
+	if (data_store->commands)
+	{		
+		data_store->last_commands->next = new_command;
+		data_store->last_commands = data_store->last_commands->next;
 	}
 	else
 	{
-		tmp = *commands;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_command;
+		data_store->commands = new_command;
+		data_store->last_commands = new_command;
 	}
 }
