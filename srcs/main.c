@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 13:15:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/03 14:58:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int 					main(void)
 		ft_exit_error();
 	if ((parsing_ret = ft_parse_file(data_store)) == -1)
 		ft_exit_error();
-	ft_put_data_parsed(data_store);
 	if (!(datas_graph = ft_init_datas_graph(data_store)))		
 		ft_exit_error();
 	if ((ft_build_graph(data_store, datas_graph)) == -1)
