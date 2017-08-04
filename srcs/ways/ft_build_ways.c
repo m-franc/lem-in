@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 17:12:54 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/04 11:47:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
 	return (og_rooms[shortter_to_end_room]);
 }
 
+int				ft_ant_in_map(t_datas_graph *datas_graph)
+{
+	int			i;
+
+	i = 0;
+	while (i < datas_graph->nb_rooms && datas_graph->adj_list[i]->ant_in)
+		i++;
+	if (i != datas_graph->nb_rooms)
+		return (0);
+	else
+		return (1);
+}
+
 void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
 {
 	int			ant_number;
@@ -55,10 +68,10 @@ void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
 
 	ant_number = 1;
 	nb_ants_cpy = nb_ants;
-	while (42)
+	if (nb_ants == nb_ants_cpy)	
+		curr_room = rooms[0];
+	while (ft_ant_in_map(datas_graph))
 	{
-		if (nb_ants == nb_ants_cpy)	
-			curr_room = rooms[0];
 		else
 			curr_room = ft_get_next_room(datas_graph->adj_list, curr_room)
 		if (nb_ants == ant_number && curr_room->end)
