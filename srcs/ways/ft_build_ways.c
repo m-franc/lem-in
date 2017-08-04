@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/04 14:56:33 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/04 15:32:50 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,13 @@ t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
 		return (1);
 }*/
 
-void			ft_launch_ants_map(int ant_number, int nb_ants, t_adj_list *first_room)
+void			ft_launch_ants_map(int *ant_number, int nb_ants, t_adj_list *first_room)
 {
-	
+	if (ant_number == nb_ants)
+		return ;
+	first_room->ant_in = *ant_number;
+	if (*ant_number <= nb_ants)
+		*ant_number += 1;
 }
 
 void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
@@ -72,12 +76,10 @@ void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
 
 	ant_number = 1;
 	rooms = datas_graph->adj_list;
-	curr_room = rooms[0];
+	ft_launch_ants_map(&ant_number, nb_ants, rooms[0]);
 	while (datas_graph->adj_list[datas_graph->nb_rooms - 1]->ant_in != nb_ants)
 	{
-		ft_launch_ants_map(ant_number, nb_ants, rooms);
-		curr_room = ft_get_next_room(datas_graph->adj_list, curr_room)
-		if (ant_number <= nb_ants)
-			ant_number++;
+		curr_room = ft_get_next_room(datas_graph->adj_list, curr_room);
+		ft_launch_ants_map(&ant_number, nb_ants, rooms[0]);
 	}
 }
