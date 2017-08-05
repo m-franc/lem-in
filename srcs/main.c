@@ -47,6 +47,24 @@ void					ft_exit_error(void)
 	exit(1);
 }
 
+int			ft_fibonacci(int n)
+{
+	if (n <= 1)
+		return (n);
+	else
+		return ((ft_fibonacci(n - 1) + ft_fibonacci(n - 2)));
+}
+
+/*int			ft_kbonacci(int n, int k)
+{
+	int		term;
+
+	term = 0;
+	while (k-- > 0)
+		term += ft_fibonacci((n + k) - 1);
+	return (term / 10);
+}
+*/
 int 					main(void)
 {
 	t_data_store		*data_store;
@@ -63,6 +81,7 @@ int 					main(void)
 		ft_exit_error();
 	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
 	ft_put_adj_list_dist(datas_graph);
+	PNBR(ft_fibonacci(45));
 //	ft_put_adj_matrix(datas_graph);
 	return (0);
 }

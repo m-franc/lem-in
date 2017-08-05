@@ -30,6 +30,8 @@ void			ft_init_dist(t_adj_list *current_room, int dist)
 	}
 }
 
+
+/*
 t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
 {
 	int			nb_tunnels;
@@ -44,7 +46,7 @@ t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
 	}
 	return (og_rooms[shortter_to_end_room]);
 }
-
+*/
 /*int				ft_ant_in_map(t_datas_graph *datas_graph)
 {
 	int			i;
@@ -58,7 +60,7 @@ t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
 		return (1);
 }*/
 
-void			ft_launch_ants_map(int *ant_number, int nb_ants, t_adj_list *first_room)
+/*void			ft_launch_ants_map(int *ant_number, int nb_ants, t_adj_list *first_room)
 {
 	if (ant_number == nb_ants)
 		return ;
@@ -66,8 +68,8 @@ void			ft_launch_ants_map(int *ant_number, int nb_ants, t_adj_list *first_room)
 	if (*ant_number <= nb_ants)
 		*ant_number += 1;
 }
-
-void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
+*/
+/*void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
 {
 	int			ant_number;
 	t_adj_list	**rooms;
@@ -82,4 +84,4 @@ void			ft_map_crosser(int nb_ants, t_datas_graph *datas_graph)
 		curr_room = ft_get_next_room(datas_graph->adj_list, curr_room);
 		ft_launch_ants_map(&ant_number, nb_ants, rooms[0]);
 	}
-}
+}*/
