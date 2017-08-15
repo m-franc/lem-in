@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 12:09:59 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/15 18:52:33 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ int			ft_line_is_comment(char *line, t_data_store *data_store)
 	if (!(comment_att = ft_strnstr(line, "#", 1)))
 		return (0);
 	else
-	{
-		ft_putendl("Its comment");
 		return (1);
-	}
 }
 
 int			ft_line_is_modif_command(char *line, t_data_store *data_store)
