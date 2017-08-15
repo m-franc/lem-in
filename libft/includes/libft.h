@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 18:04:22 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/28 20:06:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/15 14:58:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int					ft_countword(char const *s);
 void				**ft_tabnew(size_t n);
 void				ft_sort_int_tab(int *tab, unsigned int size);
 int					ft_get_median(int *tab, unsigned int size);
+int					ft_fibonacci(int n);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lststrnew(void const *content, size_t content_size);

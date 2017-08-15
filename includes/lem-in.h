@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 12:48:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/15 17:53:11 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct 			s_datas_graph
 {
 	int					nb_rooms;
 	int					nb_links;
+	int					ants_at_end;
 	int					**adj_matrix;
 	t_adj_list			**adj_list;
 	t_ways				*ways;
@@ -193,6 +194,7 @@ void					ft_init_start_ways(t_datas_graph *datas_graph);
 t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
 t_ways					*ft_new_way(t_adj_list *content_elem_list, int id);
 void					ft_push_back_ways(t_ways **ways, t_ways *new_way);
+void					ft_map_crosser(int nb_ants, t_datas_graph *datas_graph);
 
 /*
  ** ft_init_next_rooms.c

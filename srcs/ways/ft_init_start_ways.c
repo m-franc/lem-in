@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:54:00 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/18 23:44:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/15 17:51:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,3 @@ void			ft_init_start_ways(t_datas_graph *datas_graph)
 			ft_push_back_ways(&ways, new_way);
 	}
 }
-
-

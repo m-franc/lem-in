@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 18:43:40 by mfranc            #+#    #+#              #
-#    Updated: 2017/06/28 20:05:41 by mfranc           ###   ########.fr        #
+#    Updated: 2017/08/15 14:55:08 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -188,7 +188,8 @@ SRCS = 	mems/ft_memset.c				\
 		maths/ft_sort_int_tab.c	\
 		maths/ft_get_median.c	\
 		maths/ft_abs.c			\
-		detects/ft_str_isdigit.c
+		detects/ft_str_isdigit.c	\
+		maths/ft_fibonacci.c
 
 OBJECTS = $(SRCS:%.c=%.o)
 

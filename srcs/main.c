@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 14:58:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/15 17:52:22 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,7 @@ void					ft_exit_error(void)
 	exit(1);
 }
 
-int			ft_fibonacci(int n)
-{
-	if (n <= 1)
-		return (n);
-	else
-		return ((ft_fibonacci(n - 1) + ft_fibonacci(n - 2)));
-}
+
 
 /*int			ft_kbonacci(int n, int k)
 {
@@ -81,7 +75,7 @@ int 					main(void)
 		ft_exit_error();
 	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
 	ft_put_adj_list_dist(datas_graph);
-	PNBR(ft_fibonacci(45));
+	ft_map_crosser(data_store->nb_ants, datas_graph);
 //	ft_put_adj_matrix(datas_graph);
 	return (0);
 }
