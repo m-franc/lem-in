@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/13 20:57:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/16 18:47:03 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,41 @@ int			ft_sort_graph(t_datas_graph *datas_graph)
 		ft_put_end_bottom(datas_graph->adj_list, index_end, (datas_graph->nb_rooms - 1));
 	return (1);
 }
+
+void			ft_sort_link_graph(t_adj_list **rooms, int size)
+{
+	t_ajd_list	**links;
+	t_ajd_list	*tmp_link;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	while (++i < size)
+	{
+		links = rooms[i]->rooms_linked;
+		while (++j < rooms[i]->nb_tunnels)
+		{
+			while (links[j]->dist > links[j + 1]->dist)
+			{
+				tmp_link = links[j];
+				links[j] = links[j + 1];
+				links[j + 1] = tmp_link;
+				j = -1;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
