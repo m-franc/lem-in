@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 12:46:50 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 16:12:31 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ typedef struct			s_ways
 typedef struct			s_ants
 {
 	int					ant_number;
-	t_ajd_list			*curr_room;
-	int					onroad;
+	t_adj_list			*curr_room;
 }						t_ants;
 
 typedef struct 			s_datas_graph
@@ -190,6 +189,7 @@ int						ft_get_index_start(t_datas_graph *datas_graph);
 int						ft_sort_graph(t_datas_graph *datas_graph);
 void					ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom);
 void					ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top);
+void					ft_sort_link_graph(t_adj_list **rooms, int size);
 
 /*
  ** ft_build_ways.c
@@ -203,7 +203,7 @@ void					ft_init_start_ways(t_datas_graph *datas_graph);
 t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
 t_ways					*ft_new_way(t_adj_list *content_elem_list, int id);
 void					ft_push_back_ways(t_ways **ways, t_ways *new_way);
-void					ft_map_crosser(int nb_ants, t_datas_graph *datas_graph);
+void					ft_map_crosser(t_datas_graph *datas_graph);
 
 /*
  ** ft_init_next_rooms.c
@@ -216,5 +216,11 @@ void					ft_update_ways_id(t_ways *ways);
 int						ft_init_multiple_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_adj_list **last_room_rooms_linked, t_ways *way);
 int						ft_init_next_rooms(t_datas_graph *datas_graph, t_adj_list *last_room, t_ways *way);
 void					ft_init_second_room(t_datas_graph *datas_graph);
+
+/*
+ ** ft_init_ants.c
+ */
+t_ants					*ft_new_ant(int ant_number, t_adj_list *start_room);
+int						ft_init_ants(t_datas_graph *datas_graph);
 
 #endif

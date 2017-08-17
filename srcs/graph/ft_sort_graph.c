@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 12:37:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 16:29:11 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,28 @@ int			ft_sort_graph(t_datas_graph *datas_graph)
 
 void			ft_sort_link_graph(t_adj_list **rooms, int size)
 {
-	t_ajd_list	**links;
-	t_ajd_list	*tmp_link;
-	int			i;
+	t_adj_list	**links;
+	t_adj_list	*tmp_link;
 	int			j;
+	int			i;
 
 	i = 0;
 	j = 0;
-	while (++i < size)
+	while (i < size)
 	{
 		links = rooms[i]->rooms_linked;
-		while (++j < rooms[i]->nb_tunnels)
+		while (j < rooms[i]->nb_tunnels - 1)
 		{
-			while (links[j]->dist >= links[j + 1]->dist)
+			while (links[j]->dist > links[j + 1]->dist)
 			{
 				tmp_link = links[j];
 				links[j] = links[j + 1];
 				links[j + 1] = tmp_link;
-				j = -1;
+				j = 0;
 			}
+			j++;
 		}
+		i++;
 	}
 }
 
