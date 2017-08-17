@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 17:37:30 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 19:44:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,6 @@ int				ft_ant_in_map(t_datas_graph *datas_graph)
 		return (1);
 }
 
-void			ft_launch_ants_map(int *ant_number, int nb_ants, t_adj_list *first_room)
-{
-	if (*ant_number == nb_ants)
-		return ;
-	first_room->ant_in = *ant_number;
-	if (*ant_number <= nb_ants)
-		*ant_number += 1;
-}
-
 /*void			ft_print_ants_map(int ant_num_max, t_datas_graph *datas_graph)
 {
 	int			index_room;
@@ -105,8 +96,9 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 			ants[i]->curr_room = next_room[0];
 			if (ants[i]->curr_room->end)
 				ants[i]->comed = 1;
-			ft_printf("{green}L%d{eoc}-{cyan}%s{eoc}", ants[i]->ant_number, ants[i]->curr_room->name);
-			ft_putchar(' ');
+			ft_printf("L%d-%s", ants[i]->ant_number, ants[i]->curr_room->name);
+			if (i != (datas_graph->nb_ants - 1) && !ants[i + 1]->curr_room->start)
+				ft_putchar(' ');
 		}
 		i++;
 	}
