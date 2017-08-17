@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 16:12:45 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 17:37:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,15 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	while (i < datas_graph->nb_ants)
 	{
 		next_room = ants[i]->curr_room->rooms_linked;
-		if (next_room[0]->ant_in == 0 || next_room[0]->end)
+		if (!ants[i]->comed && (!next_room[0]->ant_in || next_room[0]->end))
 		{
 			next_room[0]->ant_in += ants[i]->ant_number;
 			ants[i]->curr_room->ant_in = 0;
 			ants[i]->curr_room = next_room[0];
-			ft_printf("L%s-%d", ants[i]->curr_room->name, ants[i]->ant_number);
-			if (i != (datas_graph->nb_ants - 1))
-				ft_putchar(' ');
-			else
-				ft_putchar('\n');
+			if (ants[i]->curr_room->end)
+				ants[i]->comed = 1;
+			ft_printf("{green}L%d{eoc}-{cyan}%s{eoc}", ants[i]->ant_number, ants[i]->curr_room->name);
+			ft_putchar(' ');
 		}
 		i++;
 	}
@@ -127,14 +126,15 @@ int				ft_init_ants_at_end(t_ants **ants, int nb_ants)
 
 void			ft_map_crosser(t_datas_graph *datas_graph)
 {
-	t_ants		**ants;
 	t_adj_list	**rooms;
 	t_adj_list	*end_room;
 
-	ants = datas_graph->ants;
 	rooms = datas_graph->adj_list;
 	end_room = datas_graph->adj_list[datas_graph->nb_rooms - 1];
-	datas_graph->ants_at_end = ft_init_ants_at_end(ants, datas_graph->nb_ants);
+	datas_graph->ants_at_end = ft_init_ants_at_end(datas_graph->ants, datas_graph->nb_ants);
 	while (end_room->ant_in != datas_graph->ants_at_end)
+	{	
 		ft_move_ants_map(datas_graph);
+		ft_putchar('\n');
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 16:12:31 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 17:12:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct			s_ants
 {
 	int					ant_number;
 	t_adj_list			*curr_room;
+	int					comed;
 }						t_ants;
 
 typedef struct 			s_datas_graph
