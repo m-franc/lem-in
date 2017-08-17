@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/16 21:26:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 13:20:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,21 @@ void			ft_print_ants_map(int ant_num_max, t_datas_graph *datas_graph)
 
 void			ft_move_ants_map(int ant_num_max, t_datas_graph  *datas_graph)
 {
-	int			index_room;
-	t_adj_list	*next_room;
+	int			i;
+	t_adj_list	**next_room;
+	t_ants		**ants;
 	t_adj_list	**rooms;
 
-	index_room = datas_graph->nb_rooms - 1;
-	while (index_room > 0)
+	i = 0;
+	while (i < datas_graph->nb_ants)
 	{
-		if (rooms[index_room]->ant_in)
+		next_rooms = ants->rooms->rooms_linked;
+		while (ants->rooms->rooms_linked)
 		{
-			next_room = rooms[index_room]->rooms_linked[0];
-			next_room->ant_in += rooms[index_room]->ant_in;
-			datas_graph->ants[next_room->ant_in - 1]->curr_room = next_room;
-			rooms[index_room]->ant_in = 0;
 			if (next_room->ant_in == ant_num_max)
 				break ;
 		}
-		index_room--;
+		rrsssdddd;
 	}
 }
 

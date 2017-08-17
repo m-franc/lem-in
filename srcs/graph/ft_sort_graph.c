@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/16 21:26:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/17 12:37:53 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			ft_sort_link_graph(t_adj_list **rooms, int size)
 		links = rooms[i]->rooms_linked;
 		while (++j < rooms[i]->nb_tunnels)
 		{
-			while (links[j]->dist > links[j + 1]->dist)
+			while (links[j]->dist >= links[j + 1]->dist)
 			{
 				tmp_link = links[j];
 				links[j] = links[j + 1];
