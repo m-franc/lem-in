@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/18 13:08:05 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/18 16:43:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,29 @@ void			ft_init_dist(t_adj_list *current_room, int dist)
 	}
 }
 
-t_adj_list		*ft_get_next_room(t_adj_list **og_rooms, t_adj_list *curr_room)
+t_adj_list		*ft_get_next_room(t_adj_list *curr_room)
 {
 	int			nb_tunnels;
+	int			shortter_dist_to_end_room;
+	int			i_shortter_room_to_end;
 	int			i;
-	int			shortter_to_end_room;
+	t_adj_list	**next_rooms;
 
-	i - 0;
 	nb_tunnels = curr_room->nb_tunnels;
-	shortter_to_end_room = 2147483647;
-	while (nb_tunnels-- > 0)
+	next_rooms = curr_room->rooms_linked;
+	shortter_dist_to_end_room = 2147483647;
+	i = 0;
+	while (i < nb_tunnels)
 	{
-		if ((shortter_to_end_room > curr_room->rooms_linked[nb_tunnels]->dist)
-				&& curr_room->rooms_linked[nb_tunnels]->dist > 0)
-			shortter_to_end_room = curr_room->rooms_linked[nb_tunnels]->id;
+		if (next_rooms[i]->end || (shortter_dist_to_end_room > next_rooms[i]->dist && next_rooms[i]->dist > 0))
+		{
+			shortter_dist_to_end_room = next_rooms[i]->dist;
+			i_shortter_room_to_end = i;	
+		}
+		i++;
 	}
-//	if (shortter_to_end_room == 2147483647)
-//		return (NULL);
-	return (og_rooms[shortter_to_end_room]);
+//	ft_printf("index de la salle la plus proche : %d\n", shortter_to_end_room);
+	return (next_rooms[i_shortter_room_to_end]);
 }
 
 int				ft_ant_in_map(t_datas_graph *datas_graph)
@@ -90,7 +95,7 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	ants = datas_graph->ants;
 	while (i < datas_graph->nb_ants)
 	{
-		next_room = ft_get_next_room(ants[i]->curr_room->rooms_linked, ants[i]->curr_room);
+		next_room = ft_get_next_room(ants[i]->curr_room);
 		if (!ants[i]->comed && (!next_room->ant_in || next_room->end))
 		{
 			next_room->ant_in += ants[i]->ant_number;
@@ -98,9 +103,8 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 			ants[i]->curr_room = next_room;
 			if (ants[i]->curr_room->end)
 				ants[i]->comed = 1;
-	//		ft_printf("L%d-%s", ants[i]->ant_number, ants[i]->curr_room->name);
-	//		if (i != (datas_graph->nb_ants - 1) && !ants[i + 1]->curr_room->start)
-	//			ft_putchar(' ');
+			ft_printf("L%d-%s", ants[i]->ant_number, ants[i]->curr_room->name);
+			ft_putchar(' ');
 		}
 		i++;
 	}
@@ -128,7 +132,8 @@ void			ft_map_crosser(t_datas_graph *datas_graph)
 	datas_graph->ants_at_end = ft_init_ants_at_end(datas_graph->ants, datas_graph->nb_ants);
 	while (end_room->ant_in != datas_graph->ants_at_end)
 	{	
+//		sleep(1);
 		ft_move_ants_map(datas_graph);
-//		ft_putchar('\n');
+		ft_putchar('\n');
 	}
 }
