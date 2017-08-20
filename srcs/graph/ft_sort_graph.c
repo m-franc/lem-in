@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 17:32:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/20 15:02:04 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
 {
 	t_adj_list	*tmp_top;
 	int			id_top;
-	
+
 	tmp_top = adj_list[index_top];
 	id_top = tmp_top->id;
 	adj_list[index_top]->id = adj_list[index_start]->id;
@@ -57,7 +57,7 @@ void			ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom)
 {
 	t_adj_list	*tmp_bottom;
 	int			id_bottom;
-	
+
 	tmp_bottom = adj_list[index_bottom];
 	id_bottom = tmp_bottom->id;
 	adj_list[index_bottom]->id = adj_list[index_end]->id;
@@ -70,7 +70,7 @@ int			ft_sort_graph(t_datas_graph *datas_graph)
 {
 	int		index_start;
 	int		index_end;
-	
+
 	if ((index_start = ft_get_index_start(datas_graph)) == -1)
 		return (-1);
 	if ((index_end = ft_get_index_end(datas_graph)) == -1)
@@ -82,32 +82,7 @@ int			ft_sort_graph(t_datas_graph *datas_graph)
 	return (1);
 }
 
-void			ft_sort_link_graph(t_adj_list **rooms, int size)
-{
-	t_adj_list	**links;
-	t_adj_list	*tmp_link;
-	int			j;
-	int			i;
 
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		links = rooms[i]->rooms_linked;
-		while (j < rooms[i]->nb_tunnels - 1)
-		{
-			while (links[j]->dist > links[j + 1]->dist)
-			{
-				tmp_link = links[j];
-				links[j] = links[j + 1];
-				links[j + 1] = tmp_link;
-				j = 0;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 
 

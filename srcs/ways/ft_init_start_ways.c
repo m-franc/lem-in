@@ -6,12 +6,12 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:54:00 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/15 17:51:30 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/20 14:18:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-
+/*
 t_adj_list		*ft_new_room_way(t_adj_list *content_elem_list)
 {
 	t_adj_list	*new_room;
@@ -79,4 +79,4 @@ void			ft_init_start_ways(t_datas_graph *datas_graph)
 		else
 			ft_push_back_ways(&ways, new_way);
 	}
-}
+}*/

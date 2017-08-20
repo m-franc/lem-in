@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/18 14:30:00 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/20 13:48:19 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		ft_put_adj_matrix(t_datas_graph *datas_graph)
 	}
 }
 
-void			ft_put_ways(t_ways *ways)
+/*void			ft_put_ways(t_ways *ways)
 {
 	t_ways		*tmp_ways;
 	t_adj_list	*rooms;
@@ -151,4 +151,4 @@ void			ft_put_ways(t_ways *ways)
 		ENDL
 		tmp_ways = tmp_ways->next;
 	}
-}
+}*/
