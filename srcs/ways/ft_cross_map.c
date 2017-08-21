@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 17:12:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 18:55:29 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,32 @@ index_room = -1; rooms = datas_graph->adj_list; while (++index_room < datas_grap
 void			ft_delete_ant(t_datas_graph *datas_graph, t_ants *ant)
 {
 	t_ants		*tmp_ant;
+	t_ants		*ant_to_free;
 
 	tmp_ant = ant;
-	tmp_ant->prev->next = tmp_ant->next;
-	ft_memdel((void**)&tmp_ant);
+	ant_to_free = ant;
+	if (datas_graph->nb_ants == 1)
+	{
+		datas_graph->ants = NULL;
+		datas_graph->last_ant = NULL;
+	}
+	else if (!tmp_ant->prev)
+	{
+		ant->next->prev = NULL;
+		datas_graph->ants = ant->next;
+	}
+	else if (!tmp_ant->next)
+	{
+		ant->prev->next = NULL;
+		datas_graph->last_ant = datas_graph->last_ant->prev;
+	}
+	else
+	{
+		ant->prev = ant->next;
+		ant->next->prev = tmp_ant->prev;
+	}
+	datas_graph->nb_ants--;
+	ft_memdel((void**)&ant_to_free);
 }
 
 void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
