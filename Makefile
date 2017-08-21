@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/08/20 20:02:00 by mfranc           ###   ########.fr        #
+#    Updated: 2017/08/21 14:39:05 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  graph/ft_build_adj_list.c		\
 								  ways/ft_init_next_rooms.c			\
 								  ways/ft_init_start_ways.c		\
-								  ways/ft_build_ways.c			\
+								  ways/ft_cross_map.c			\
 								  ways/ft_init_ants.c			\
 								  ways/ft_init_ways.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

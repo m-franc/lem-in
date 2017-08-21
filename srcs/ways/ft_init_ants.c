@@ -6,11 +6,26 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 12:59:55 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 15:24:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+void				ft_push_back_ants(t_datas_graph *datas_graph, t_ants *new_ant)
+{
+	if (datas_graph->ants)
+	{
+		new_ant->prev = datas_graph->last_ant;
+		datas_graph->ants->next = new_ant;
+		datas_graph->last_ant = datas_graph->ants->next;	
+	}
+	else
+	{
+		datas_graph->ants = new_ant;
+		datas_graph->last_ant = new_ant;
+	}
+}
 
 t_ants			*ft_new_ant(int ant_number, t_adj_list *start_room)
 {
@@ -21,6 +36,8 @@ t_ants			*ft_new_ant(int ant_number, t_adj_list *start_room)
 	ant->ant_number = ant_number;
 	ant->curr_room = start_room;
 	ant->comed = 0;
+	ant->next = NULL;
+	ant->next = NULL;
 	return (ant);
 }
 
@@ -28,15 +45,15 @@ int				ft_init_ants(t_datas_graph *datas_graph)
 {
 	int			ant_number;
 	int			i;
+	t_ants		*new_ant;
 	
-	if (!(datas_graph->ants = ft_memalloc(sizeof(t_ants*) * datas_graph->nb_ants)))
-		return (-1);
 	i = -1;
 	ant_number = 1;
 	while (++i < datas_graph->nb_ants)
 	{
-		if (!(datas_graph->ants[i] = ft_new_ant(ant_number, datas_graph->adj_list[0])))
+		if (!(new_ant = ft_new_ant(ant_number, datas_graph->adj_list[0])))
 			return (-1);
+		ft_push_back_ants(datas_graph, new_ant);
 		ant_number++;
 	}
 	return (1);
@@ -44,5 +61,5 @@ int				ft_init_ants(t_datas_graph *datas_graph)
 
 void			ft_init_way_ants(t_datas_graph *datas_graph)
 {
-	
+
 }

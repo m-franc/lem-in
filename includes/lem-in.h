@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 12:19:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 15:12:32 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct			s_ants
 	t_adj_list			*curr_room;
 	int					way_id;
 	int					comed;
+	struct s_ants		*next;
+	struct s_ants		*prev;
 }						t_ants;
 
 typedef struct 			s_datas_graph
@@ -95,8 +97,8 @@ typedef struct 			s_datas_graph
 	int					nb_links;
 	t_adj_list			**adj_list;
 	int					nb_ants;
-	int					ants_at_end;
-	t_ants				**ants;
+	t_ants				*ants;
+	t_ants				*last_ant;
 }						t_datas_graph;
 
 /*
