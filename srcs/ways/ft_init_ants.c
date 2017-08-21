@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/17 17:12:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 12:59:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,22 @@ t_ants			*ft_new_ant(int ant_number, t_adj_list *start_room)
 int				ft_init_ants(t_datas_graph *datas_graph)
 {
 	int			ant_number;
-	t_ants		**ants;
 	int			i;
 	
-	if (!(ants = ft_memalloc(sizeof(t_ants*) * datas_graph->nb_ants)))
+	if (!(datas_graph->ants = ft_memalloc(sizeof(t_ants*) * datas_graph->nb_ants)))
 		return (-1);
 	i = -1;
 	ant_number = 1;
-	datas_graph->ants = ants;
 	while (++i < datas_graph->nb_ants)
 	{
-		if (!(ants[i] = ft_new_ant(ant_number, datas_graph->adj_list[0])))
+		if (!(datas_graph->ants[i] = ft_new_ant(ant_number, datas_graph->adj_list[0])))
 			return (-1);
 		ant_number++;
 	}
 	return (1);
 }
 
+void			ft_init_way_ants(t_datas_graph *datas_graph)
+{
+	
+}

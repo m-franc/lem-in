@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/20 14:52:59 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 12:19:58 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct			s_ants
 {
 	int					ant_number;
 	t_adj_list			*curr_room;
+	int					way_id;
 	int					comed;
 }						t_ants;
 
@@ -217,5 +218,13 @@ void					ft_init_second_room(t_datas_graph *datas_graph);
  */
 t_ants					*ft_new_ant(int ant_number, t_adj_list *start_room);
 int						ft_init_ants(t_datas_graph *datas_graph);
+
+/*
+ ** ft_init_ways.c
+ */
+
+void			ft_sort_link_room(t_adj_list *room);
+int				ft_init_way(t_adj_list *start_room_link, int way_id);
+void			ft_init_ways(t_datas_graph *datas_graph);
 
 #endif
