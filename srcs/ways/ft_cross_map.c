@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 15:53:27 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/21 17:12:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants *ant)
 
 	tmp_ant = ant;
 	tmp_ant->prev->next = tmp_ant->next;
-	if ()
-	ft_memde(&(void*)tmp_ant);
+	ft_memdel((void**)&tmp_ant);
 }
 
 void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
@@ -139,7 +138,6 @@ void			ft_map_crosser(t_datas_graph *datas_graph)
 	end_room = datas_graph->adj_list[datas_graph->nb_rooms - 1];
 	while (datas_graph->ants)
 	{	
-//		sleep(1);
 		ft_move_ants_map(datas_graph);
 		ft_putchar('\n');
 	}
