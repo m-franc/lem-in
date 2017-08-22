@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/20 13:48:19 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 13:15:07 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 	ft_putstrcolor("ajdacences\'s distances list\n", GREEN);
 	while (o < datas_graph->nb_rooms)
 	{
-		ft_printf("{grey}%s{eoc} (dist to end : {red}%d{eoc})", list[o]->name, list[o]->dist);
+		ft_printf("{grey}%s{eoc} (chemin : {red}%d{eoc})", list[o]->name, list[o]->way_id);
 		if (!list[o]->rooms_linked)
 			ft_putchar('\n');
 		else

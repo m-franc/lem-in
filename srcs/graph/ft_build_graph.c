@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 14:30:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 12:25:44 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 	datas_graph->adj_list = adj_list;
 	datas_graph->nb_links = 0;
 	datas_graph->nb_rooms = data_store->nb_rooms;
+	datas_graph->nb_ways = 0;
 	datas_graph->nb_ants = data_store->nb_ants;
 	datas_graph->ants = NULL;
 	return (datas_graph);

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 18:56:00 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 12:57:46 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,24 @@ int				ft_init_ants(t_datas_graph *datas_graph)
 
 void			ft_init_way_ants(t_datas_graph *datas_graph)
 {
-	(void)datas_graph; // a faire demain mardi
+	t_ants		*ants;
+	int			way_by_ant_factor;
+	int			i;
+	int			way_id;
+
+	i = 0;
+	ants = datas_graph->ants;
+	way_by_ant_factor = datas_graph->nb_ants / datas_graph->nb_ways;
+	way_id = 1;
+	while (ants)
+	{
+		ants->way_id = way_id;
+		if (i == way_by_ant_factor)
+		{
+			i = 0;
+			way_id++;
+		}
+		i++;
+		ants = ants->next;
+	}
 }

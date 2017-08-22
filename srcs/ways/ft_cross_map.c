@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 18:55:29 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 13:14:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,26 @@ void			ft_init_dist(t_adj_list *current_room, int dist)
 	}
 }
 
-t_adj_list		*ft_get_next_room(t_adj_list *curr_room)
+t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, int way_id)
 {
+
 	int			nb_tunnels;
-	int			shortter_dist_to_end_room;
+//	int			shortter_dist_to_end_room;
 	int			i_shortter_room_to_end;
 	int			i;
 	t_adj_list	**next_rooms;
 
 	nb_tunnels = curr_room->nb_tunnels;
 	next_rooms = curr_room->rooms_linked;
-	shortter_dist_to_end_room = 2147483647;
 	i = 0;
 	while (i < nb_tunnels)
 	{
-		if (next_rooms[i]->end || (shortter_dist_to_end_room > next_rooms[i]->dist && next_rooms[i]->dist > 0))
-		{
-			shortter_dist_to_end_room = next_rooms[i]->dist;
+		if (next_rooms[i]->end || next_rooms[i]->way_id == way_id)
 			i_shortter_room_to_end = i;	
-		}
 		i++;
 	}
 	return (next_rooms[i_shortter_room_to_end]);
+
 }
 /*
 int				ft_ant_in_map(t_datas_graph *datas_graph)
@@ -129,8 +127,8 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	ants = datas_graph->ants;
 	while (ants)
 	{
-		next_room = ft_get_next_room(ants->curr_room);
-		if (!ants->comed && (!next_room->ant_in || next_room->end))
+		next_room = ft_get_next_room_way(ants->curr_room, ants->way_id);
+		if (!next_room->ant_in || next_room->end)
 			ft_move_ant_room(next_room, ants);
 		if (ants->curr_room->end)
 			ft_delete_ant(datas_graph, ants);
@@ -142,7 +140,7 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 int				ft_init_ants_at_end(t_ants **ants, int nb_ants)
 {
 	int			ants_at_end;
-	int			i;
+	int			i
 
 	i = -1;
 	ants_at_end = 0;

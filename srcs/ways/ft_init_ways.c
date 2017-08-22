@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/21 12:49:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 12:53:29 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	{
 		if ((ft_init_way(start_room->rooms_linked[i], way_id)) == -1)
 			start_room->rooms_linked[i]->way_id = 0;
-		way_id++;
+		else
+			way_id++;
 	}
+	datas_graph->nb_ways = way_id;
 }
