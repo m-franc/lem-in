@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 12:57:46 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 20:50:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void				ft_push_back_ants(t_datas_graph *datas_graph, t_ants *new_ant)
 	if (datas_graph->ants)
 	{
 		new_ant->prev = datas_graph->last_ant;
-		datas_graph->ants->next = new_ant;
-		datas_graph->last_ant = datas_graph->ants->next;	
+		datas_graph->last_ant->next = new_ant;
+		datas_graph->last_ant = new_ant;
 	}
 	else
 	{

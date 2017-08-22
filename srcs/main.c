@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 13:15:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 20:52:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,16 @@ int 					main(void)
 	ft_init_dist(datas_graph->adj_list[datas_graph->nb_rooms - 1], 0);
 	if (datas_graph->adj_list[0]->dist == 0)
 		ft_exit_error();
-	ft_init_ants(datas_graph);
 	ft_init_ways(datas_graph);
-	ft_init_way_ants(datas_graph);
-	ft_put_adj_list_dist(datas_graph);
-	ENDL
+//	ft_put_adj_list_dist(datas_graph);
+	ft_init_ants(datas_graph);
+/*	while (datas_graph->ants)
+	{
+		ft_printf("%d\n", datas_graph->ants->ant_number);
+		datas_graph->ants = datas_graph->ants->next;
+	}*/
+//	ft_init_way_ants(datas_graph);
+//	ENDL
 	ft_map_crosser(datas_graph);
 //	ft_put_adj_matrix(datas_graph);
 	return (0);
