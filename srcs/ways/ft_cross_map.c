@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 20:54:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 21:09:24 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	ant_to_free = *ant;
 	if (datas_graph->nb_ants == 1)
 	{
+		*ant = NULL;
 		datas_graph->ants = NULL;
 		datas_graph->last_ant = NULL;
 	}

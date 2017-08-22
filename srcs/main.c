@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 20:52:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/22 21:11:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int 					main(void)
 	if (datas_graph->adj_list[0]->dist == 0)
 		ft_exit_error();
 	ft_init_ways(datas_graph);
-//	ft_put_adj_list_dist(datas_graph);
+	ft_put_adj_list_dist(datas_graph);
 	ft_init_ants(datas_graph);
 /*	while (datas_graph->ants)
 	{
