@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/23 18:29:32 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/23 20:00:24 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				ft_init_way(t_adj_list *start_room_link, int *way_id)
 	int			i;
 
 	curr_room = start_room_link;
-	ft_printf("{green}%der{eoc} lien de start : {cyan}%s{eoc}\n", *way_id, curr_room->name);
+//	ft_printf("{green}%der{eoc} lien de start : {cyan}%s{eoc}\n", *way_id, curr_room->name);
 	while (!curr_room->end)
 	{
 		ft_sort_link_room(curr_room);
@@ -54,7 +54,7 @@ int				ft_init_way(t_adj_list *start_room_link, int *way_id)
 		}
 		if (index_next_room == -1)
 			return (-1);
-		ft_printf("Name prochaine salle : {blue}%s{eoc}\n", curr_room->rooms_linked[index_next_room]->name);
+//		ft_printf("Name prochaine salle : {blue}%s{eoc}\n", curr_room->rooms_linked[index_next_room]->name);
 		if (!curr_room->rooms_linked[index_next_room]->end)
 			curr_room->rooms_linked[index_next_room]->way_id = *way_id;
 		curr_room = curr_room->rooms_linked[index_next_room];
