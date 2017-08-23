@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/08/22 21:02:26 by mfranc           ###   ########.fr        #
+#    Updated: 2017/08/23 14:43:36 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,3 +60,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+git:
+	git add -u; git commit -m "WIP"; git push
+

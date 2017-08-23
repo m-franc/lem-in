@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/23 13:07:54 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/23 14:42:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				ft_init_way(t_adj_list *start_room_link, int way_id)
 	{
 		ft_sort_link_room(curr_room);
 		i = 0;
-		while (i < curr_room->nb_tunnels && curr_room->rooms_linked[i]->way_id)
+		while (i < curr_room->nb_tunnels && curr_room->rooms_linked[i]->way_id != 0)
 			i++;
 		if (i == curr_room->nb_tunnels)
 			return (-1);
@@ -64,6 +64,7 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	way_id = 1;
 	i = -1;
 	start_room = datas_graph->adj_list[0];
+	start_room->way_id = 0;
 	ft_sort_link_room(start_room);
 	next_rooms = start_room->rooms_linked;
 	while (++i < start_room->nb_tunnels)
