@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 21:15:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/23 13:07:54 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int				ft_init_way(t_adj_list *start_room_link, int way_id)
 	int			i;
 
 	curr_room = start_room_link;
+	ft_printf("{green}%der{eoc} lien de start : {cyan}%s{eoc}\n", way_id, curr_room->name);
 	while (!curr_room->end)
 	{
 		ft_sort_link_room(curr_room);
-		i = -1;
-		while (++i < curr_room->nb_tunnels && curr_room->rooms_linked[i]->way_id)
-			;
+		i = 0;
+		while (i < curr_room->nb_tunnels && curr_room->rooms_linked[i]->way_id)
+			i++;
 		if (i == curr_room->nb_tunnels)
 			return (-1);
 		curr_room->rooms_linked[i]->way_id = way_id;
