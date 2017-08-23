@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 21:09:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/23 18:36:21 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 
 	tmp_ant = *ant;
 	ant_to_free = *ant;
+	PSTR("COUCOU")
 	if (datas_graph->nb_ants == 1)
 	{
 		*ant = NULL;
@@ -103,6 +104,7 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	ants = datas_graph->ants;
 	while (ants)
 	{
+		ft_printf("IL RESTE {yellow}%d{eoc} ET ON EST SUR LA {grey}%d{eoc}\n", datas_graph->nb_ants, ants->ant_number);
 		next_room = ft_get_next_room_way(ants->curr_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)
 			ft_move_ant_room(next_room, ants);
