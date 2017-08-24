@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/24 12:27:18 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/24 14:45:43 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	}
 	else if (!tmp_ant->prev)
 	{
-		(*ant)->next->prev = NULL;
 		datas_graph->ants = (*ant)->next;
 		*ant = datas_graph->ants;
+		(*ant)->prev = NULL;
 	}
 	else if (!tmp_ant->next)
 	{
@@ -80,9 +80,10 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	}
 	else
 	{
-		*ant = (*ant)->next;
-		(*ant)->prev = tmp_ant->next; 
-		(*ant)->next->prev = tmp_ant->prev;
+		(*ant)->next->prev = (*ant)->next;
+		*ant = tmp_ant->next;
+		ft_printf("{purple}%p{eoc}", (*ant)->prev);
+		(*ant)->prev = tmp_ant->prev; 
 	}
 	datas_graph->nb_ants--;
 	ft_memdel((void**)&ant_to_free);
