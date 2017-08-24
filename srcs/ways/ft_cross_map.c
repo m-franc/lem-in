@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/23 21:02:38 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/24 12:27:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,16 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 
 	tmp_ant = *ant;
 	ant_to_free = *ant;
-//	ft_printf("NB DE FOURMIS: {cyan}%d{eoc}\n", datas_graph->nb_ants);
-//	ft_printf("ON LIBERE CELLE CI : {green}%d{eoc}\n", ant_to_free->ant_number);
+	//	ft_printf("NB DE FOURMIS: {cyan}%d{eoc}\n", datas_graph->nb_ants);
+	//	ft_printf("ON LIBERE CELLE CI : {green}%d{eoc}\n", ant_to_free->ant_number);
 	if (datas_graph->nb_ants == 1)
-	{
+	{ 
 		*ant = NULL;
 		datas_graph->ants = NULL;
 		datas_graph->last_ant = NULL;
 	}
 	else if (!tmp_ant->prev)
 	{
-		PSTR("YO ON EST LA")
 		(*ant)->next->prev = NULL;
 		datas_graph->ants = (*ant)->next;
 		*ant = datas_graph->ants;
@@ -82,7 +81,7 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	else
 	{
 		*ant = (*ant)->next;
-		(*ant)->prev = tmp_ant->next;
+		(*ant)->prev = tmp_ant->next; 
 		(*ant)->next->prev = tmp_ant->prev;
 	}
 	datas_graph->nb_ants--;
@@ -91,7 +90,7 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 
 void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
 {
-	next_room->ant_in += ant->ant_number;			
+	next_room->ant_in += ant->ant_number;
 	ant->curr_room->ant_in = 0;
 	ant->curr_room = next_room;
 	ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
@@ -101,34 +100,33 @@ void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
 void			ft_move_ants_map(t_datas_graph  *datas_graph)
 {
 	t_adj_list	*next_room;
-	t_ants		*ants;
-
+	t_ants	*ants;
+	
 	ants = datas_graph->ants;
 	while (ants)
 	{
 		next_room = ft_get_next_room_way(ants->curr_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)
-			ft_move_ant_room(next_room, ants);
+			ft_move_ant_room(next_room, ants); 
 		if (ants->curr_room->end)
 			ft_delete_ant(datas_graph, &ants);
 		else
 			ants = ants->next;
-		PSTR("COUCOU")
 	}
 }
 /*
-int				ft_init_ants_at_end(t_ants **ants, int nb_ants)
-{
-	int			ants_at_end;
-	int			i
+   int				ft_init_ants_at_end(t_ants **ants, int nb_ants)
+   {
+   int			ants_at_end;
+   int			i
 
-	i = -1;
-	ants_at_end = 0;
-	while (++i < nb_ants)
-		ants_at_end += ants[i]->ant_number;
-	return (ants_at_end);
-}
-*/
+   i = -1;
+   ants_at_end = 0;
+   while (++i < nb_ants)
+   ants_at_end += ants[i]->ant_number;
+   return (ants_at_end);
+   }
+   */
 void			ft_map_crosser(t_datas_graph *datas_graph)
 {
 	t_adj_list	**rooms;
