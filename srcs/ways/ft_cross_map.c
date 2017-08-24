@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/24 14:45:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/24 18:16:36 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	ant_to_free = *ant;
 	//	ft_printf("NB DE FOURMIS: {cyan}%d{eoc}\n", datas_graph->nb_ants);
 	//	ft_printf("ON LIBERE CELLE CI : {green}%d{eoc}\n", ant_to_free->ant_number);
-	if (datas_graph->nb_ants == 1)
+/*	if (datas_graph->nb_ants == 1)
 	{ 
-		*ant = NULL;
 		datas_graph->ants = NULL;
 		datas_graph->last_ant = NULL;
 	}
@@ -76,15 +75,15 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	{
 		(*ant)->prev->next = NULL;
 		datas_graph->last_ant = datas_graph->last_ant->prev;
-		*ant = datas_graph->last_ant;
-	}
-	else
-	{
+		*ant = datas_graph->last_ant;*/
+//	}
+//	else
+//	{
 		(*ant)->next->prev = (*ant)->next;
 		*ant = tmp_ant->next;
 		ft_printf("{purple}%p{eoc}", (*ant)->prev);
 		(*ant)->prev = tmp_ant->prev; 
-	}
+//	}
 	datas_graph->nb_ants--;
 	ft_memdel((void**)&ant_to_free);
 }
