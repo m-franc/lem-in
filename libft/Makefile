@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 CC = gcc $(FLAGS)
 
@@ -200,7 +200,7 @@ $(NAME) : $(OBJECTS)
 	ranlib $@
 
 %.o: %.c
-	$(CC) -g -c $< -o $@ -I $(INCLUDES)
+	$(CC) -c $< -o $@ -I $(INCLUDES)
 
 clean:
 	rm -f $(OBJECTS)

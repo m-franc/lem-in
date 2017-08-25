@@ -74,8 +74,8 @@ int			ft_buff_customer(char **ucvchar)
 		return (0);
 	else
 	{
-		i = -1;
-		while (ucvchar[0][++i])
+		i = 0;
+		while (ucvchar[0][i])
 		{
 			if (ucvchar[0][i] == '{')
 			{
@@ -83,7 +83,11 @@ int			ft_buff_customer(char **ucvchar)
 					return (-1);
 				else if (find_custom == 1)
 					i--;
+				else
+					i++;
 			}
+			else
+				i++;
 		}
 		return (1);
 	}

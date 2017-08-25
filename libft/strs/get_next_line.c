@@ -71,10 +71,11 @@ void				remove_file(t_file **file)
 	t_file	*supp;
 
 	supp = *file;
-	supp->fd = -1;
-	ft_strdel(&((*file)->tmp));
-	free(supp);
-	*file = (*file)->next;
+	if ((*file)->next)
+		*file = (*file)->next;
+	else
+		*file = NULL;
+	ft_memdel((void**)&supp);
 }
 
 int					save_lines(char *ndtmp, t_file **file, char **line)
