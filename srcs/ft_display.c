@@ -6,11 +6,26 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/22 13:15:07 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/27 18:06:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+
+void			ft_put_ants(t_ants *ants)
+{
+	t_ants	*tmp_ants;
+
+	tmp_ants = ants;
+//	ft_putstrcolor("LISTE DES FOURMIS\n", GREEN);
+	while (tmp_ants)
+	{
+		ft_printf("ant Num : {cyan}%d{eoc}, room : {red}%s{eoc}, way : {grey}%d{eoc}\n", tmp_ants->ant_number, tmp_ants->curr_room->name, tmp_ants->way_id);
+		tmp_ants = tmp_ants->next;
+	}
+	ENDL
+}
 
 void				ft_put_data_parsed(t_data_store *data_store)
 {

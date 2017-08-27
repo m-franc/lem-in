@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/23 18:27:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/27 18:16:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void					ft_put_data_parsed(t_data_store *data_store);
 void					ft_put_adj_list(t_datas_graph *datas_graph);
 void					ft_put_adj_list_dist(t_datas_graph *datas_graph);
 void					ft_put_adj_matrix(t_datas_graph *datas_graph);
+void			ft_put_ants(t_ants *ants);
 //void					ft_put_ways(t_ways *ways);
 
 /*
@@ -228,7 +229,7 @@ void					ft_init_way_ants(t_datas_graph *datas_graph);
  */
 
 void			ft_sort_link_room(t_adj_list *room);
-int				ft_init_way(t_adj_list *start_room_link, int *way_id);
+int				ft_init_way(t_adj_list *start_room_link, int way_id);
 void			ft_init_ways(t_datas_graph *datas_graph);
 
 #endif

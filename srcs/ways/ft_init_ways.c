@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/23 20:00:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/27 18:18:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			ft_sort_link_room(t_adj_list *room)
 	}
 }
 
-int				ft_init_way(t_adj_list *start_room_link, int *way_id)
+int				ft_init_way(t_adj_list *start_room_link, int way_id)
 {
 	t_adj_list	*curr_room;
 	int			index_next_room;
@@ -56,9 +56,8 @@ int				ft_init_way(t_adj_list *start_room_link, int *way_id)
 			return (-1);
 //		ft_printf("Name prochaine salle : {blue}%s{eoc}\n", curr_room->rooms_linked[index_next_room]->name);
 		if (!curr_room->rooms_linked[index_next_room]->end)
-			curr_room->rooms_linked[index_next_room]->way_id = *way_id;
+			curr_room->rooms_linked[index_next_room]->way_id = way_id;
 		curr_room = curr_room->rooms_linked[index_next_room];
-		*way_id += 1;
 	}
 	return (1);
 }
@@ -76,11 +75,13 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	ft_sort_link_room(start_room);
 	start_room->way_id = -1;
 	datas_graph->adj_list[datas_graph->nb_rooms - 1]->way_id = -1;
+	datas_graph->nb_ways = start_room->nb_tunnels;
 	next_rooms = start_room->rooms_linked;
 	while (++i < start_room->nb_tunnels)
 	{
-		if ((ft_init_way(start_room->rooms_linked[i], &way_id)) == -1)
+		if ((ft_init_way(start_room->rooms_linked[i], way_id)) == -1)
 			start_room->rooms_linked[i]->way_id = 0;
+		else
+			way_id++;
 	}
-	datas_graph->nb_ways = way_id;
 }

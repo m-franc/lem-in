@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/26 20:14:59 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/27 18:06:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,70 +62,49 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	//	ft_printf("ON LIBERE CELLE CI : {green}%d{eoc}\n", ant_to_free->ant_number);
 	if (datas_graph->nb_ants == 1)
 	{ 
-		ft_printf("{red}%p{eoc}\n", *ant);
-		ft_putstr("COUCOU\n");
+	//	ft_printf("{red}%p{eoc}\n", *ant);
+	//	ft_putstr("COUCOU\n");
 		datas_graph->ants = NULL;
 		datas_graph->last_ant = NULL;
+		*ant = NULL;
 		ft_bzero(ant_to_free, sizeof(t_ants));
 		ft_memdel((void**)&ant_to_free);
-		ft_putstr("AU REVOIR\n");
+	//	ft_putstr("AU REVOIR\n");
 	}
 	else if (!tmp_ant->prev)
 	{
-		ft_printf("{red}%p{eoc}\n", *ant);
-		ft_putstr("SALUT\n");
+	//	ft_printf("{red}%p{eoc}\n", *ant);
+	//	ft_putstr("SALUT\n");
 		datas_graph->ants = tmp_ant->next;
 		datas_graph->ants->prev = NULL;
 		ft_bzero(ant_to_free, sizeof(t_ants));
 		ft_memdel((void**)&ant_to_free);
 		*ant = datas_graph->ants;
-		ft_putstr("AU\n");
-	}
-	else if (!tmp_ant->next)
-	{
-		ft_printf("{red}%p{eoc}\n", *ant);
-		ft_putstr("pqsnex\n");
-		(*ant)->prev->next = NULL;
-		datas_graph->last_ant = datas_graph->last_ant->prev;
-		*ant = datas_graph->last_ant;
-		ft_bzero(ant_to_free, sizeof(t_ants));
-		ft_memdel((void**)&ant_to_free);
-		ft_putstr("plusnex\n");
+	//	ft_putstr("AU\n");
 	}
 	else
 	{
-		ft_printf("{red}%p{eoc}\n", *ant);
-		ft_putstr(">>>oo\n");
+//		ft_printf("{red}%p{eoc}\n", *ant);
+//		ft_putstr(">>>oo\n");
+		(*ant)->prev->next = tmp_ant->next;
+		(*ant)->next->prev = tmp_ant->prev;
 		*ant = tmp_ant->next;
-		(*ant)->prev = tmp_ant->prev; 
-		(*ant)->next->prev = *ant;
+	//	(*ant)->prev = tmp_ant->prev;
 		ft_bzero(ant_to_free, sizeof(t_ants));
 		ft_memdel((void**)&ant_to_free);
-		ft_putstr("???\n");
+//		ft_putstr("???\n");
 	}
 	datas_graph->nb_ants--;
 }
 
-void			ft_put_ants(t_ants *ants)
-{
-	t_ants	*tmp_ants;
 
-	tmp_ants = ants;
-	ft_putstrcolor("LISTE DES FOURMIS\n", GREEN);
-	while (tmp_ants)
-	{
-		ft_printf("ant Num : {cyan}%d{eoc}, room : {red}%s{eoc}\n", tmp_ants->ant_number, tmp_ants->curr_room->name);
-		tmp_ants = tmp_ants->next;
-	}
-	ENDL
-}
 
 void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
 {
 	next_room->ant_in += ant->ant_number;
 	ant->curr_room->ant_in = 0;
 	ant->curr_room = next_room;
-	//ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
+	ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
 	ft_putchar(' ');
 }
 
@@ -138,7 +117,7 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	while (ants)
 	{
 		//ft_put_ants(ants);
-		ft_printf("%p\n", ants);
+//		ft_printf("%p\n", ants);
 		next_room = ft_get_next_room_way(ants->curr_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)
 			ft_move_ant_room(next_room, ants); 
