@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/27 18:18:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/27 19:01:43 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,37 @@ void			ft_sort_link_room(t_adj_list *room)
 	}
 }
 
+int				ft_get_index_next_room(t_adj_list *curr_room)
+{
+	int			i;
+	int			index_next_room;
+	int			dist_min;
+	
+	i = -1;
+	dist_min = 999999999;
+	index_next_room = -1;
+	while (++i < curr_room->nb_tunnels)
+	{
+		if (curr_room->rooms_linked[i]->end ||
+				(curr_room->rooms_linked[i]->dist < dist_min
+				 && curr_room->rooms_linked[i]->dist > 0 
+				 && curr_room->rooms_linked[i]->way_id == 0))
+			index_next_room = i;
+	}
+	return (index_next_room);
+}
+
 int				ft_init_way(t_adj_list *start_room_link, int way_id)
 {
 	t_adj_list	*curr_room;
 	int			index_next_room;
-	int			i;
 
+	start_room_link->way_id = way_id;
 	curr_room = start_room_link;
-//	ft_printf("{green}%der{eoc} lien de start : {cyan}%s{eoc}\n", *way_id, curr_room->name);
 	while (!curr_room->end)
 	{
-		ft_sort_link_room(curr_room);
-		i = 0;
-		index_next_room = -1;
-		while (i < curr_room->nb_tunnels)
-		{
-			if (curr_room->rooms_linked[i]->way_id == 0 || curr_room->rooms_linked[i]->end)
-				index_next_room = i;
-			i++;
-		}
-		if (index_next_room == -1)
+		if ((index_next_room = ft_get_index_next_room(curr_room)) == -1)
 			return (-1);
-//		ft_printf("Name prochaine salle : {blue}%s{eoc}\n", curr_room->rooms_linked[index_next_room]->name);
 		if (!curr_room->rooms_linked[index_next_room]->end)
 			curr_room->rooms_linked[index_next_room]->way_id = way_id;
 		curr_room = curr_room->rooms_linked[index_next_room];
