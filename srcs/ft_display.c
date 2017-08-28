@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/27 18:06:49 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/28 11:24:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			ft_put_ants(t_ants *ants)
 	t_ants	*tmp_ants;
 
 	tmp_ants = ants;
-//	ft_putstrcolor("LISTE DES FOURMIS\n", GREEN);
+	//	ft_putstrcolor("LISTE DES FOURMIS\n", GREEN);
 	while (tmp_ants)
 	{
 		ft_printf("ant Num : {cyan}%d{eoc}, room : {red}%s{eoc}, way : {grey}%d{eoc}\n", tmp_ants->ant_number, tmp_ants->curr_room->name, tmp_ants->way_id);
@@ -44,21 +44,21 @@ void				ft_put_data_parsed(t_data_store *data_store)
 		}
 	}
 	ENDL
-	if (rooms)
-	{
-		ft_putstrcolor("ROOMS : \n", CYAN);
-		while (rooms)
+		if (rooms)
 		{
-			if (rooms->start)
-				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}start{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->start);
-			else if (rooms->end)
-				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}end{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->end);
-			else
-				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n", rooms->name, rooms->x, rooms->y);
-			ft_putlist(rooms->rooms_linked);
-			rooms = rooms->next;
+			ft_putstrcolor("ROOMS : \n", CYAN);
+			while (rooms)
+			{
+				if (rooms->start)
+					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}start{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->start);
+				else if (rooms->end)
+					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}end{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->end);
+				else
+					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n", rooms->name, rooms->x, rooms->y);
+				ft_putlist(rooms->rooms_linked);
+				rooms = rooms->next;
+			}
 		}
-	}
 }
 
 void	ft_put_adj_list(t_datas_graph *datas_graph)
@@ -98,22 +98,28 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 	ft_putstrcolor("ajdacences\'s distances list\n", GREEN);
 	while (o < datas_graph->nb_rooms)
 	{
-		ft_printf("{grey}%s{eoc} (chemin : {red}%d{eoc})", list[o]->name, list[o]->way_id);
-		if (!list[o]->rooms_linked)
-			ft_putchar('\n');
+		if (list[o]->end)
+			ft_printf("{green}%s{eoc}\n", list[o]->name);
 		else
 		{
-			ft_putstr(" -> ");
-			i = 0;
-			t_adj_list **tmp_list = list[o]->rooms_linked;
-			while (i < list[o]->nb_tunnels)
+			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, chemin : {red}%d{eoc})", list[o]->name, list[o]->dist, list[o]->way_id);
+			if (!list[o]->rooms_linked)
+				ft_putchar('\n');
+			else
 			{
-				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
-				if (i != (list[o]->nb_tunnels - 1))
-					ft_putstr(", ");	
-				i++;
+				ft_putstr(" -> ");
+				i = 0;
+				t_adj_list **tmp_list = list[o]->rooms_linked;
+				while (i < list[o]->nb_tunnels)
+				{
+					ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
+					if (i != (list[o]->nb_tunnels - 1))
+						ft_putstr(", ");	
+					i++;
+				}
+				ft_putchar('\n');
 			}
-			ft_putchar('\n');
+
 		}
 		o++;
 	}
@@ -140,30 +146,30 @@ void		ft_put_adj_matrix(t_datas_graph *datas_graph)
 			o++;
 		}
 		ENDL
-		i++;
+			i++;
 	}
 }
 
 /*void			ft_put_ways(t_ways *ways)
-{
-	t_ways		*tmp_ways;
-	t_adj_list	*rooms;
+  {
+  t_ways		*tmp_ways;
+  t_adj_list	*rooms;
 
-	tmp_ways = ways;
-	while (tmp_ways)
-	{
-		rooms = tmp_ways->rooms;
-		while (rooms && rooms->next)
-		{
-			ft_printf("{red}%s{eoc} -> ", rooms->name);
-			rooms = rooms->next;
-		}
-		if (rooms)
-		{
-			ft_printf("{red}%s{eoc}", rooms->name);
-			rooms = rooms->next;	
-		}
-		ENDL
-		tmp_ways = tmp_ways->next;
-	}
-}*/
+  tmp_ways = ways;
+  while (tmp_ways)
+  {
+  rooms = tmp_ways->rooms;
+  while (rooms && rooms->next)
+  {
+  ft_printf("{red}%s{eoc} -> ", rooms->name);
+  rooms = rooms->next;
+  }
+  if (rooms)
+  {
+  ft_printf("{red}%s{eoc}", rooms->name);
+  rooms = rooms->next;	
+  }
+  ENDL
+  tmp_ways = tmp_ways->next;
+  }
+  }*/
