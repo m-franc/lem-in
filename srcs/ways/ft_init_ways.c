@@ -6,13 +6,13 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/28 12:00:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/28 16:05:36 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-/*void			ft_sort_link_room(t_adj_list *room)
+void			ft_sort_link_room(t_adj_list *room)
 {
 	t_adj_list	**links;
 	t_adj_list	*tmp_link;
@@ -31,7 +31,7 @@
 		}
 		j++;
 	}
-}*/
+}
 
 int				ft_get_index_next_room(t_adj_list *curr_room)
 {
@@ -40,7 +40,7 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 	int			dist_min;
 	
 	i = -1;
-	dist_min = 999999999;
+	dist_min = 2147483647;
 	index_next_room = -1;
 	while (++i < curr_room->nb_tunnels)
 	{
@@ -81,6 +81,7 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	way_id = 1;
 	i = -1;
 	start_room = datas_graph->adj_list[0];
+	ft_sort_link_room(start_room);
 	start_room->way_id = -1;
 	datas_graph->adj_list[datas_graph->nb_rooms - 1]->way_id = -1;
 	datas_graph->nb_ways = start_room->nb_tunnels;

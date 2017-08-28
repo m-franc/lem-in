@@ -6,7 +6,7 @@
 /*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/27 19:19:52 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/28 17:11:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, int way_id)
 	while (i < nb_tunnels)
 	{
 		if (next_rooms[i]->end || (next_rooms[i]->way_id == way_id && curr_room->dist > next_rooms[i]->dist))
+		{
+		
+			//PSTR("COUCOU")
 			i_shortter_room_to_end = i;	
+		}
 		i++;
 	}
 	return (next_rooms[i_shortter_room_to_end]);
@@ -54,50 +58,30 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, int way_id)
 void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 {
 	t_ants		*tmp_ant;
-	t_ants		*ant_to_free;
 
 	tmp_ant = *ant;
-	ant_to_free = *ant;
-	//	ft_printf("NB DE FOURMIS: {cyan}%d{eoc}\n", datas_graph->nb_ants);
-	//	ft_printf("ON LIBERE CELLE CI : {green}%d{eoc}\n", ant_to_free->ant_number);
 	if (datas_graph->nb_ants == 1)
 	{ 
-	//	ft_printf("{red}%p{eoc}\n", *ant);
-	//	ft_putstr("COUCOU\n");
 		datas_graph->ants = NULL;
 		datas_graph->last_ant = NULL;
 		*ant = NULL;
-		ft_bzero(ant_to_free, sizeof(t_ants));
-		ft_memdel((void**)&ant_to_free);
-	//	ft_putstr("AU REVOIR\n");
 	}
 	else if (!tmp_ant->prev)
 	{
-	//	ft_printf("{red}%p{eoc}\n", *ant);
-	//	ft_putstr("SALUT\n");
 		datas_graph->ants = tmp_ant->next;
 		datas_graph->ants->prev = NULL;
-		ft_bzero(ant_to_free, sizeof(t_ants));
-		ft_memdel((void**)&ant_to_free);
 		*ant = datas_graph->ants;
-	//	ft_putstr("AU\n");
 	}
 	else
 	{
-//		ft_printf("{red}%p{eoc}\n", *ant);
-//		ft_putstr(">>>oo\n");
 		(*ant)->prev->next = tmp_ant->next;
 		(*ant)->next->prev = tmp_ant->prev;
 		*ant = tmp_ant->next;
-	//	(*ant)->prev = tmp_ant->prev;
-		ft_bzero(ant_to_free, sizeof(t_ants));
-		ft_memdel((void**)&ant_to_free);
-//		ft_putstr("???\n");
 	}
+	ft_bzero(tmp_ant, sizeof(t_ants));
+	ft_memdel((void**)&tmp_ant);
 	datas_graph->nb_ants--;
 }
-
-
 
 void			ft_move_ant_room(t_adj_list *next_room, t_ants *ant)
 {
@@ -118,6 +102,14 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	{
 		//ft_put_ants(ants);
 //		ft_printf("%p\n", ants);
+		
+/*		int i= -1;
+		ft_printf("%d\n", ants->way_id);
+		while (++i < ants->curr_room->nb_tunnels)
+			ft_printf("{green}%s{eoc} - ", ants->curr_room->rooms_linked[i]->name);
+		ENDL
+		ft_printf("{yellow}%s{eoc}\n", next_room->name);
+		ENDL*/
 		next_room = ft_get_next_room_way(ants->curr_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)
 			ft_move_ant_room(next_room, ants); 

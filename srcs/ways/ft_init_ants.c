@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/28 12:17:54 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/28 17:04:41 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void				ft_push_back_ants(t_datas_graph *datas_graph, t_ants *new_ant)
 	}
 }
 
-t_ants			*ft_new_ant(int ant_number, t_adj_list *start_room)
+t_ants				*ft_new_ant(int ant_number, t_adj_list *start_room)
 {
-	t_ants		*ant;
+	t_ants			*ant;
 
 	if (!(ant = ft_memalloc(sizeof(t_ants))))
 		return (NULL);
@@ -41,11 +41,11 @@ t_ants			*ft_new_ant(int ant_number, t_adj_list *start_room)
 	return (ant);
 }
 
-int				ft_init_ants(t_datas_graph *datas_graph)
+int					ft_init_ants(t_datas_graph *datas_graph)
 {
-	int			ant_number;
-	int			i;
-	t_ants		*new_ant;
+	int				ant_number;
+	int				i;
+	t_ants			*new_ant;
 	
 	i = -1;
 	ant_number = 1;
@@ -59,12 +59,12 @@ int				ft_init_ants(t_datas_graph *datas_graph)
 	return (1);
 }
 
-void			ft_init_way_ants(t_datas_graph *datas_graph)
+void				ft_init_way_ants(t_datas_graph *datas_graph)
 {
-	t_ants		*ants;
-	int			way_by_ant_factor;
-	int			i;
-	int			way_id;
+	t_ants			*ants;
+	int				way_by_ant_factor;
+	int				i;
+	int				way_id;
 
 	i = 0;
 	ants = datas_graph->ants;
@@ -72,14 +72,14 @@ void			ft_init_way_ants(t_datas_graph *datas_graph)
 	way_id = 1;
 	while (ants)
 	{
-		if (i == way_by_ant_factor && way_id < datas_graph->nb_ways)
+	/*	if (i == way_by_ant_factor && way_id < datas_graph->nb_ways)
 		{
 			i = 0;
 			way_id++;
-		}
-		ants->way_id = way_id;
-		i++;
+		}*/
+//		ants->way_id = way_id;
+//		i++;
+		ants->way_id = 1;
 		ants = ants->next;
 	}
-	PNBR(way_id)
 }
