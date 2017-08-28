@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/27 18:26:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/28 12:17:54 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			ft_init_way_ants(t_datas_graph *datas_graph)
 	way_id = 1;
 	while (ants)
 	{
-		if (i == way_by_ant_factor)
+		if (i == way_by_ant_factor && way_id < datas_graph->nb_ways)
 		{
 			i = 0;
 			way_id++;
@@ -81,4 +81,5 @@ void			ft_init_way_ants(t_datas_graph *datas_graph)
 		i++;
 		ants = ants->next;
 	}
+	PNBR(way_id)
 }
