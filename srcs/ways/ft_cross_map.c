@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_build_ways.c                                    :+:      :+:    :+:   */
+/*   ft_cross_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 13:16:39 by mfranc           ###   ########.fr       */
+/*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
+/*   Updated: 2017/08/29 15:18:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, 
 	next_rooms = curr_room->rooms_linked;
 	i = 0;
 	i_shortter_room_to_end = 0;
-	//ft_printf("ID de la fourmi: {cyan}%d{eoc}, distance de la salle courante : {red}%d{eoc}\n", way_id, curr_room->dist);
 	while (i < nb_tunnels)
 	{
-	//	ft_printf("ID de la salle suivante : {cyan}%d{eoc}, distance de la salle suivante : {red}%d{eoc}\n", next_rooms[i]->way_id, next_rooms[i]->dist);
 		if (next_rooms[i]->end)
 			i_shortter_room_to_end = i;	
 		else if (next_rooms[i]->way_id == way_id && !ft_strequ(prev_room->name, next_rooms[i]->name))
@@ -90,49 +88,32 @@ void			ft_move_ant_room(t_adj_list *curr_room, t_adj_list *next_room, t_ants *an
 	ant->curr_room = next_room;
 	ant->prev_room = curr_room;
 	ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
-	ft_putchar(' ');
 }
 
 void			ft_move_ants_map(t_datas_graph  *datas_graph)
 {
 	t_adj_list	*next_room;
-	t_ants	*ants;
+	t_ants		*ants;
+	int			i;
 	
 	ants = datas_graph->ants;
+	i = 0;
 	while (ants)
 	{
-		//ft_put_ants(ants);
-//		ft_printf("%p\n", ants);
-		
-//		int i= -1;
-//		ft_printf("%d\n", ants->way_id);
-//		while (++i < ants->curr_room->nb_tunnels)
-//			ft_printf("{green}%s{eoc} - ", ants->curr_room->rooms_linked[i]->name);
-//		ENDL
 		next_room = ft_get_next_room_way(ants->curr_room, ants->prev_room, ants->way_id);
-//		ft_printf("{yellow}%s{eoc}\n", next_room->name);
-//		ENDL
 		if (!next_room->ant_in || next_room->end)
+		{	
+			if (i++ != 0)
+				ft_putchar(' ');
 			ft_move_ant_room(ants->curr_room, next_room, ants); 
+		}
 		if (ants->curr_room->end)
 			ft_delete_ant(datas_graph, &ants);
 		else
 			ants = ants->next;
 	}
 }
-/*
-   int				ft_init_ants_at_end(t_ants **ants, int nb_ants)
-   {
-   int			ants_at_end;
-   int			i
 
-   i = -1;
-   ants_at_end = 0;
-   while (++i < nb_ants)
-   ants_at_end += ants[i]->ant_number;
-   return (ants_at_end);
-   }
-   */
 void			ft_map_crosser(t_datas_graph *datas_graph)
 {
 	t_adj_list	**rooms;
@@ -140,7 +121,7 @@ void			ft_map_crosser(t_datas_graph *datas_graph)
 
 	rooms = datas_graph->adj_list;
 	end_room = datas_graph->adj_list[datas_graph->nb_rooms - 1];
-//	exit(0);
+	ft_putstrcolor("map crossing\n", GREEN);
 	while (datas_graph->ants)
 	{	
 		ft_move_ants_map(datas_graph);

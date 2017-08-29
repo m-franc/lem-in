@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 12:52:41 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 14:32:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 	index_next_room = -1;
 	while (++i < curr_room->nb_tunnels)
 	{
-		if (curr_room->rooms_linked[i]->end || (!ft_strequ(curr_room->name, curr_room->rooms_linked[i]->name) && curr_room->rooms_linked[i]->dist > 0 && curr_room->rooms_linked[i]->way_id == 0))
-			index_next_room = i;
+		if (curr_room->rooms_linked[i]->end)
+			return (i);
 		else if (curr_room->rooms_linked[i]->dist < dist_min && curr_room->rooms_linked[i]->dist > 0 && curr_room->rooms_linked[i]->way_id == 0)
 		{
 			dist_min = curr_room->rooms_linked[i]->dist;	

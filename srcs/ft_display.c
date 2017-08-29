@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/28 11:24:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 14:48:50 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			ft_put_ants(t_ants *ants)
 	t_ants	*tmp_ants;
 
 	tmp_ants = ants;
-	//	ft_putstrcolor("LISTE DES FOURMIS\n", GREEN);
+	ft_putstrcolor("ants\'s list\n", GREEN);
 	while (tmp_ants)
 	{
 		ft_printf("ant Num : {cyan}%d{eoc}, room : {red}%s{eoc}, way : {grey}%d{eoc}\n", tmp_ants->ant_number, tmp_ants->curr_room->name, tmp_ants->way_id);
@@ -99,7 +99,7 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 	while (o < datas_graph->nb_rooms)
 	{
 		if (list[o]->end)
-			ft_printf("{green}%s{eoc}\n", list[o]->name);
+			ft_printf("{yellow}%s{eoc}\n", list[o]->name);
 		else
 		{
 			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, chemin : {red}%d{eoc})", list[o]->name, list[o]->dist, list[o]->way_id);
@@ -123,6 +123,7 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 		}
 		o++;
 	}
+	ENDL
 }
 
 void		ft_put_adj_matrix(t_datas_graph *datas_graph)
