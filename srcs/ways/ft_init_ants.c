@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/28 18:01:21 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 13:11:31 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_ants				*ft_new_ant(int ant_number, t_adj_list *start_room)
 		return (NULL);
 	ant->ant_number = ant_number;
 	ant->curr_room = start_room;
+	ant->prev_room = start_room;
 	ant->comed = 0;
 	ant->next = NULL;
 	ant->prev = NULL;

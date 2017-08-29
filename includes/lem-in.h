@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/28 11:38:40 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 13:11:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct			s_ants
 {
 	int					ant_number;
 	t_adj_list			*curr_room;
+	t_adj_list			*prev_room;
 	int					way_id;
 	int					comed;
 	struct s_ants		*next;
