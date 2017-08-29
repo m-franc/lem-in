@@ -6,29 +6,30 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 18:25:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 19:06:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void			ft_init_dist(t_adj_list *current_room, int dist)
+void			ft_init_dist(t_adj_list **current_room, int dist)
 {
-	t_adj_list	**next_rooms;
+	t_adj_list	*next_rooms;
 	int			i;
 
-//	PNBR(dist)
-	current_room->dist = dist;
-	if (current_room->start == 1)
+	PNBR(dist)
+	if ((*current_room)->start == 1)
 		return ;
+	(*current_room)->dist = dist;
 	i = -1;
-	next_rooms = &current_room->rooms_linked;
-	while (++i < current_room->nb_tunnels)
+//	ft_printf("{green}%s{eoc}", (*current_room)->name);
+	next_rooms = (*current_room)->rooms_linked;
+	while (++i < (*current_room)->nb_tunnels)
 	{
-		PNBR(next_rooms[0][i].dist)
-		if (!next_rooms[0][i].end)
-			if (!next_rooms[0][i].dist || next_rooms[0][i].dist > (dist + 1))
-				ft_init_dist(&next_rooms[0][i], dist + 1);
+		PNBR(next_rooms[i].dist)
+		if (!next_rooms[i].end)
+			if (!next_rooms[i].dist || next_rooms[i].dist > (dist + 1))
+				ft_init_dist(&(&next_rooms)[i], dist + 1);
 	}
 }
 
