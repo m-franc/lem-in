@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 14:32:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 17:25:38 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void			ft_sort_link_room(t_adj_list *room)
 {
-	t_adj_list	**links;
-	t_adj_list	*tmp_link;
+	t_adj_list	*links;
+	t_adj_list	tmp_link;
 	int			j;
 
 	j = 0;
 	links = room->rooms_linked;
 	while (j < room->nb_tunnels - 1)
 	{
-		while (links[j]->dist > links[j + 1]->dist)
+		while (links[j].dist > links[j + 1].dist)
 		{
 			tmp_link = links[j];
 			links[j] = links[j + 1];
@@ -44,11 +44,11 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 	index_next_room = -1;
 	while (++i < curr_room->nb_tunnels)
 	{
-		if (curr_room->rooms_linked[i]->end)
+		if (curr_room->rooms_linked[i].end)
 			return (i);
-		else if (curr_room->rooms_linked[i]->dist < dist_min && curr_room->rooms_linked[i]->dist > 0 && curr_room->rooms_linked[i]->way_id == 0)
+		else if (curr_room->rooms_linked[i].dist < dist_min && curr_room->rooms_linked[i].dist > 0 && curr_room->rooms_linked[i].way_id == 0)
 		{
-			dist_min = curr_room->rooms_linked[i]->dist;	
+			dist_min = curr_room->rooms_linked[i].dist;	
 			index_next_room = i;
 		}
 	}
@@ -66,9 +66,9 @@ int				ft_init_way(t_adj_list *start_room_link, int way_id)
 	{
 		if ((index_next_room = ft_get_index_next_room(curr_room)) == -1)
 			return (-1);
-		if (!curr_room->rooms_linked[index_next_room]->end)
-			curr_room->rooms_linked[index_next_room]->way_id = way_id;
-		curr_room = curr_room->rooms_linked[index_next_room];
+		if (!curr_room->rooms_linked[index_next_room].end)
+			curr_room->rooms_linked[index_next_room].way_id = way_id;
+		curr_room = &curr_room->rooms_linked[index_next_room];
 	}
 	return (1);
 }
@@ -77,23 +77,23 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 {
 	int			way_id;
 	int			i;
-	t_adj_list	**next_rooms;
+	t_adj_list	*next_rooms;
 	t_adj_list	*start_room;
 
 	way_id = 1;
 	i = -1;
-	start_room = datas_graph->adj_list[0];
+	start_room = &datas_graph->adj_list[0];
 	ft_sort_link_room(start_room);
 	start_room->way_id = -1;
-	datas_graph->adj_list[datas_graph->nb_rooms - 1]->way_id = -1;
+	datas_graph->adj_list[datas_graph->nb_rooms - 1].way_id = -1;
 	datas_graph->nb_ways = start_room->nb_tunnels;
 	next_rooms = start_room->rooms_linked;
 	while (++i < start_room->nb_tunnels)
 	{
-		if ((ft_init_way(start_room->rooms_linked[i], way_id)) == -1)
+		if ((ft_init_way(&start_room->rooms_linked[i], way_id)) == -1)
 		{
 			datas_graph->nb_ways--;	
-			start_room->rooms_linked[i]->way_id = 0;
+			start_room->rooms_linked[i].way_id = 0;
 		}
 		else
 			way_id++;

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 14:48:50 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 16:39:35 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ void	ft_put_adj_list(t_datas_graph *datas_graph)
 {
 	int o = 0;
 	int i = 0;
-	t_adj_list **list = datas_graph->adj_list;
+	t_adj_list *list = datas_graph->adj_list;
 	ft_putstrcolor("ajdacences\'s list\n", GREEN);
 	while (o < datas_graph->nb_rooms)
 	{
-		ft_printf("{grey}%s{eoc}", list[o]->name);
-		if (!list[o]->rooms_linked)
+		ft_printf("{grey}%s{eoc}", list[o].name);
+		if (!list[o].rooms_linked)
 			ft_putchar('\n');
 		else
 		{
-			ft_putstr(" -> ");
+			ft_putstr(" . ");
 			i = 0;
-			t_adj_list **tmp_list = list[o]->rooms_linked;
-			while (i < list[o]->nb_tunnels)
+			t_adj_list *tmp_list = list[o].rooms_linked;
+			while (i < list[o].nb_tunnels)
 			{
-				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
-				if (i != (list[o]->nb_tunnels - 1))
+				ft_printf("{cyan}%s{eoc}", tmp_list[i].name);
+				if (i != (list[o].nb_tunnels - 1))
 					ft_putstr(", ");	
 				i++;
 			}
@@ -94,26 +94,26 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 {
 	int o = 0;
 	int i = 0;
-	t_adj_list **list = datas_graph->adj_list;
+	t_adj_list *list = datas_graph->adj_list;
 	ft_putstrcolor("ajdacences\'s distances list\n", GREEN);
 	while (o < datas_graph->nb_rooms)
 	{
-		if (list[o]->end)
-			ft_printf("{yellow}%s{eoc}\n", list[o]->name);
+		if (list[o].end)
+			ft_printf("{yellow}%s{eoc}\n", list[o].name);
 		else
 		{
-			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, chemin : {red}%d{eoc})", list[o]->name, list[o]->dist, list[o]->way_id);
-			if (!list[o]->rooms_linked)
+			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, chemin : {red}%d{eoc})", list[o].name, list[o].dist, list[o].way_id);
+			if (!list[o].rooms_linked)
 				ft_putchar('\n');
 			else
 			{
-				ft_putstr(" -> ");
+				ft_putstr(" . ");
 				i = 0;
-				t_adj_list **tmp_list = list[o]->rooms_linked;
-				while (i < list[o]->nb_tunnels)
+				t_adj_list *tmp_list = list[o].rooms_linked;
+				while (i < list[o].nb_tunnels)
 				{
-					ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
-					if (i != (list[o]->nb_tunnels - 1))
+					ft_printf("{cyan}%s{eoc}", tmp_list[i].name);
+					if (i != (list[o].nb_tunnels - 1))
 						ft_putstr(", ");	
 					i++;
 				}
@@ -159,18 +159,18 @@ void		ft_put_adj_matrix(t_datas_graph *datas_graph)
   tmp_ways = ways;
   while (tmp_ways)
   {
-  rooms = tmp_ways->rooms;
-  while (rooms && rooms->next)
+  rooms = tmp_ways.rooms;
+  while (rooms && rooms.next)
   {
-  ft_printf("{red}%s{eoc} -> ", rooms->name);
-  rooms = rooms->next;
+  ft_printf("{red}%s{eoc} . ", rooms->name);
+  rooms = rooms.next;
   }
   if (rooms)
   {
-  ft_printf("{red}%s{eoc}", rooms->name);
-  rooms = rooms->next;	
+  ft_printf("{red}%s{eoc}", rooms.name);
+  rooms = rooms.next;	
   }
   ENDL
-  tmp_ways = tmp_ways->next;
+  tmp_ways = tmp_ways.next;
   }
   }*/

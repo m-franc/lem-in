@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 15:24:31 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 17:20:54 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	ant_number = 1;
 	while (++i < datas_graph->nb_ants)
 	{
-		if (!(new_ant = ft_new_ant(ant_number, datas_graph->adj_list[0])))
+		if (!(new_ant = ft_new_ant(ant_number, &datas_graph->adj_list[0])))
 			return (-1);
 		ft_push_back_ants(datas_graph, new_ant);
 		ant_number++;

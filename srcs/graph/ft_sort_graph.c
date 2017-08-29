@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/20 15:02:04 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/29 16:43:20 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int			ft_get_index_start(t_datas_graph *datas_graph)
 {
-	t_adj_list	**tmp_list;
+	t_adj_list	*tmp_list;
 	int		i;
 
 	tmp_list = datas_graph->adj_list;
 	i = 0;
-	while (i < datas_graph->nb_rooms && !tmp_list[i]->start)
+	while (i < datas_graph->nb_rooms && !tmp_list[i].start)
 		i++;
 	if (i == datas_graph->nb_rooms)
 		return (-1);
@@ -28,41 +28,41 @@ int			ft_get_index_start(t_datas_graph *datas_graph)
 
 int			ft_get_index_end(t_datas_graph *datas_graph)
 {
-	t_adj_list	**tmp_list;
+	t_adj_list	*tmp_list;
 	int		i;
 
 	tmp_list = datas_graph->adj_list;
 	i = 0;
-	while (i < datas_graph->nb_rooms && !tmp_list[i]->end)
+	while (i < datas_graph->nb_rooms && !tmp_list[i].end)
 		i++;
 	if (i == datas_graph->nb_rooms)
 		return (-1);
 	return (i);
 }
 
-void			ft_put_start_top(t_adj_list **adj_list, int index_start, int index_top)
+void			ft_put_start_top(t_adj_list *adj_list, int index_start, int index_top)
 {
-	t_adj_list	*tmp_top;
+	t_adj_list	tmp_top;
 	int			id_top;
 
 	tmp_top = adj_list[index_top];
-	id_top = tmp_top->id;
-	adj_list[index_top]->id = adj_list[index_start]->id;
+	id_top = tmp_top.id;
+	adj_list[index_top].id = adj_list[index_start].id;
 	adj_list[index_top] = adj_list[index_start];
-	adj_list[index_start]->id = id_top;
+	adj_list[index_start].id = id_top;
 	adj_list[index_start] = tmp_top;
 }
 
-void			ft_put_end_bottom(t_adj_list **adj_list, int index_end, int index_bottom)
+void			ft_put_end_bottom(t_adj_list *adj_list, int index_end, int index_bottom)
 {
-	t_adj_list	*tmp_bottom;
+	t_adj_list	tmp_bottom;
 	int			id_bottom;
 
 	tmp_bottom = adj_list[index_bottom];
-	id_bottom = tmp_bottom->id;
-	adj_list[index_bottom]->id = adj_list[index_end]->id;
+	id_bottom = tmp_bottom.id;
+	adj_list[index_bottom].id = adj_list[index_end].id;
 	adj_list[index_bottom] = adj_list[index_end];
-	adj_list[index_end]->id = id_bottom;
+	adj_list[index_end].id = id_bottom;
 	adj_list[index_end] = tmp_bottom;
 }
 
