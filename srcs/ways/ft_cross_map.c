@@ -6,30 +6,32 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 13:08:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 14:58:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void			ft_init_dist(t_adj_list **og_rooms, t_adj_list *current_room, int dist, int n)
+void			ft_init_dist(t_adj_list *og_rooms, t_adj_list *current_room, int dist
 {
 	t_adj_list	*next_rooms;
-	t_adj_list	*tmp_curr_room;
 	int			i;
 
 	if (current_room->start == 1)
 		return ;
-	tmp_curr_room = current_room;
-	(*og_rooms)[n].dist = dist;
-//	PNBR(tmp_curr_room->dist)
+	og_rooms[n].dist = dist;
+	//PSTR("OK")
 	i = -1;
-	next_rooms = tmp_curr_room->rooms_linked;
+	next_rooms = current_room->rooms_linked;
 	while (++i < current_room->nb_tunnels)
 	{
 		if (!next_rooms[i].end)
+		{
+			ft_putstr("BONJOUR ");
+			PNBR(i)
 			if (!next_rooms[i].dist || next_rooms[i].dist > (dist + 1))
-				ft_init_dist(og_rooms, &(next_rooms)[i], dist + 1, i);
+				ft_init_dist(og_rooms, &(next_rooms)[i], dist + 1);
+		}
 	}
 }
 

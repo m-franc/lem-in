@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 13:09:33 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 14:53:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,9 @@ void					ft_graph_building_and_setting(t_data_store *data_store, t_datas_graph *
 		ft_exit_error();
 	if ((ft_build_graph(data_store, tmp_datas_graph)) == -1)
 		ft_exit_error();
-	PSTR("CPOUCOU")
 	tmp_rooms = tmp_datas_graph->adj_list;
 
-	ft_init_dist(&tmp_rooms, &(tmp_rooms)[tmp_datas_graph->nb_rooms - 1], 0, tmp_datas_graph->nb_rooms - 1);
+	ft_init_dist(tmp_rooms, &tmp_rooms[tmp_datas_graph->nb_rooms - 1], 0, tmp_datas_graph->nb_rooms - 1);
 
 	ft_put_adj_list_dist(tmp_datas_graph);
 	if (tmp_datas_graph->adj_list[0].dist == 0)
