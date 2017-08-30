@@ -6,30 +6,30 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 19:06:30 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 13:08:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void			ft_init_dist(t_adj_list **current_room, int dist)
+void			ft_init_dist(t_adj_list **og_rooms, t_adj_list *current_room, int dist, int n)
 {
 	t_adj_list	*next_rooms;
+	t_adj_list	*tmp_curr_room;
 	int			i;
 
-	PNBR(dist)
-	if ((*current_room)->start == 1)
+	if (current_room->start == 1)
 		return ;
-	(*current_room)->dist = dist;
+	tmp_curr_room = current_room;
+	(*og_rooms)[n].dist = dist;
+//	PNBR(tmp_curr_room->dist)
 	i = -1;
-//	ft_printf("{green}%s{eoc}", (*current_room)->name);
-	next_rooms = (*current_room)->rooms_linked;
-	while (++i < (*current_room)->nb_tunnels)
+	next_rooms = tmp_curr_room->rooms_linked;
+	while (++i < current_room->nb_tunnels)
 	{
-		PNBR(next_rooms[i].dist)
 		if (!next_rooms[i].end)
 			if (!next_rooms[i].dist || next_rooms[i].dist > (dist + 1))
-				ft_init_dist(&(&next_rooms)[i], dist + 1);
+				ft_init_dist(og_rooms, &(next_rooms)[i], dist + 1, i);
 	}
 }
 
@@ -61,16 +61,16 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	datas_graph->nb_ants--;
 }
 
-void			ft_move_ant_room(t_adj_list *curr_room, t_adj_list next_room, t_ants *ant)
+void			ft_move_ant_room(t_adj_list *curr_room, t_adj_list *next_room, t_ants *ant)
 {
-	next_room.ant_in += ant->ant_number;
+	next_room->ant_in += ant->ant_number;
 	ant->curr_room->ant_in = 0;
-	ant->curr_room = &next_room;
+	ant->curr_room = next_room;
 	ant->prev_room = curr_room;
 	ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
 }
 
-t_adj_list		ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, int way_id)
+t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, int way_id)
 {
 
 	int			nb_tunnels;
@@ -90,12 +90,12 @@ t_adj_list		ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, i
 			i_shortter_room_to_end = i;	
 		i++;
 	}
-	return (next_rooms[i_shortter_room_to_end]);
+	return (&next_rooms[i_shortter_room_to_end]);
 }
 
 void			ft_move_ants_map(t_datas_graph  *datas_graph)
 {
-	t_adj_list	next_room;
+	t_adj_list	*next_room;
 	t_ants		*ants;
 	int			i;
 	
@@ -104,7 +104,7 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	while (ants)
 	{
 		next_room = ft_get_next_room_way(ants->curr_room, ants->prev_room, ants->way_id);
-		if (!next_room.ant_in || next_room.end)
+		if (!next_room->ant_in || next_room->end)
 		{	
 			if (i++ != 0)
 				ft_putchar(' ');

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 18:55:14 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 13:08:15 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void					ft_sort_link_graph(t_adj_list *rooms, int size);
 /*
  ** ft_build_ways.c
  */
-void					ft_init_dist(t_adj_list **current_room, int dist);
+void			ft_init_dist(t_adj_list **og_rooms, t_adj_list *current_room, int dist, int n);
 void					ft_init_start_ways(t_datas_graph *datas_graph);
 void					ft_sort_link_room(t_adj_list *room);
 //t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);
