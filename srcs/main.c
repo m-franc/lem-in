@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 17:44:18 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 17:47:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ int 					main(void)
 	ft_putlist(data_store->commands);
 	ENDL
 	ft_map_crosser(datas_graph);
-	while (1);
 	return (0);
 }
