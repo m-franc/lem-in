@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 14:51:18 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:15:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int					ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph)
 	return (1);
 }
 
-int					ft_get_room_by_name(t_adj_list *tunnel, char *room_to_find, t_datas_graph *datas_graph)
+t_adj_list			*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph)
 {
 	int				i;
 	t_adj_list		*list;
@@ -58,16 +58,13 @@ int					ft_get_room_by_name(t_adj_list *tunnel, char *room_to_find, t_datas_grap
 	while (i < datas_graph->nb_rooms)
 	{
 		if (ft_strequ(room_to_find, list[i].name))
-		{	
-			*tunnel = list[i];
-			return (1);
-		}
+			return (&list[i]);
 		i++;
 	}
-	return (-1);
+	return (NULL);
 }
 
-int					ft_get_room_by_tunnels(t_adj_list *tunnel, t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room)
+t_adj_list			*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room)
 {
 	t_tunnels		*tmptmp_tunnels;
 
@@ -77,20 +74,16 @@ int					ft_get_room_by_tunnels(t_adj_list *tunnel, t_tunnels *rooms_to_find, t_d
 		if (ft_strequ(current_room, tmptmp_tunnels->first_room) && tmptmp_tunnels->checked == 0)
 		{
 			tmptmp_tunnels->checked = 1;
-			if ((ft_get_room_by_name(tunnel, tmptmp_tunnels->second_room, datas_graph)) == -1)
-				return (-1);
-			return (1);
+			return (ft_get_room_by_name(tmptmp_tunnels->second_room, datas_graph));
 		}
 		else if (ft_strequ(current_room, tmptmp_tunnels->second_room) && tmptmp_tunnels->checked == 0)
 		{	
 			tmptmp_tunnels->checked = 1;
-			if ((ft_get_room_by_name(tunnel, tmptmp_tunnels->first_room, datas_graph)) == -1)
-				return (-1);
-			return (1);
+			return (ft_get_room_by_name(tmptmp_tunnels->first_room, datas_graph));
 		}
 		tmptmp_tunnels = tmptmp_tunnels->next;
 	}
-	return (-1);
+	return (NULL);
 }
 
 int					ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room)
@@ -132,19 +125,19 @@ void				ft_reset_checked_tunnels(t_tunnels *tmp_tunnels)
 	}
 }
 
-t_adj_list			*ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room)
+t_adj_list			**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room)
 {
 	int				i;
-	t_adj_list		*rooms_linked;
+	t_adj_list		**rooms_linked;
 
 	i = -1;
 	if (nb_tunnels == 0)
 		return (NULL);
-	if (!(rooms_linked = ft_memalloc(sizeof(t_adj_list) * nb_tunnels)))
+	if (!(rooms_linked = ft_memalloc(sizeof(t_adj_list*) * nb_tunnels)))
 		return (NULL);
 	while (++i < nb_tunnels)
 	{	
-		if ((ft_get_room_by_tunnels(&rooms_linked[i], tmp_tunnels, datas_graph, current_room)) == -1)
+		if (!(rooms_linked[i] = ft_get_room_by_tunnels(tmp_tunnels, datas_graph, current_room)))
 			return (NULL);
 	}
 	return (rooms_linked);

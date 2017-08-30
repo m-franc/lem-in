@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:32:21 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/07 15:01:54 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 17:37:22 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void				remove_file(t_file **file)
 	t_file	*supp;
 
 	supp = *file;
+	ft_strdel(&(*file)->tmp);
 	if ((*file)->next)
 		*file = (*file)->next;
 	else

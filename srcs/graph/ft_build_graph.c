@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 16:24:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:13:11 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 {
 	int			**matrix;
 	t_adj_list	*list;
-	t_adj_list	*rooms_linked;
+	t_adj_list	**rooms_linked;
 	int			i;
 	int			o;
 
@@ -76,7 +76,7 @@ void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
 			o = -1;
 			while (++o < list[i].nb_tunnels)
 			{
-				matrix[i][rooms_linked[o].id] = 1;
+				matrix[i][rooms_linked[o]->id] = 1;
 				datas_graph->nb_links++;
 			}
 		}

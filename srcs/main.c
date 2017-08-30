@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 14:53:45 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 17:44:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,17 @@ void					ft_exit_error(void)
 	exit(1);
 }
 
-
-/*int			ft_kbonacci(int n, int k)
-  {
-  int		term;
-
-  term = 0;
-  while (k-- > 0)
-  term += ft_fibonacci((n + k) - 1);
-  return (term / 10);
-  }
-  */
-
 void					ft_graph_building_and_setting(t_data_store *data_store, t_datas_graph **datas_graph)
 {
-	t_datas_graph		*tmp_datas_graph;
 	t_adj_list			*tmp_rooms;
 	
-	tmp_datas_graph = *datas_graph;
-	if (!(tmp_datas_graph = ft_init_datas_graph(data_store)))		
+	if (!(*datas_graph = ft_init_datas_graph(data_store)))		
 		ft_exit_error();
-	if ((ft_build_graph(data_store, tmp_datas_graph)) == -1)
+	if ((ft_build_graph(data_store, *datas_graph)) == -1)
 		ft_exit_error();
-	tmp_rooms = tmp_datas_graph->adj_list;
-
-	ft_init_dist(tmp_rooms, &tmp_rooms[tmp_datas_graph->nb_rooms - 1], 0, tmp_datas_graph->nb_rooms - 1);
-
-	ft_put_adj_list_dist(tmp_datas_graph);
-	if (tmp_datas_graph->adj_list[0].dist == 0)
+	tmp_rooms = (*datas_graph)->adj_list;
+	ft_init_dist(&tmp_rooms[(*datas_graph)->nb_rooms - 1], 0);
+	if ((*datas_graph)->adj_list[0].dist == 0)
 		ft_exit_error();
 }
 
@@ -97,11 +80,14 @@ int 					main(void)
 	datas_graph = NULL;
 	ft_parse_and_store(&data_store);
 	ft_graph_building_and_setting(data_store, &datas_graph);
-
 	ft_init_ways(datas_graph);
 	ft_init_ants(datas_graph);
+//	ft_put_adj_list_dist(datas_graph);
 	ft_init_way_ants(datas_graph);
-	ft_put_ants(datas_graph->ants);
+//	ft_put_ants(datas_graph->ants);
+	ft_putlist(data_store->commands);
+	ENDL
 	ft_map_crosser(datas_graph);
+	while (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 14:59:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:10:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct			s_adj_list
 	int					end;
 	int					way_id;
 	int					nb_tunnels;
-	struct s_adj_list	*rooms_linked;
+	struct s_adj_list	**rooms_linked;
 }						t_adj_list;
 /*
 typedef struct			s_ways
@@ -179,11 +179,11 @@ int						ft_reorganize_tunnels_adj_list(t_datas_graph *datas_graph);
  */
 int						ft_build_adj_list(t_data_store *data_store, t_datas_graph *datas_graph);
 int						ft_init_elem_list_adj(t_adj_list *elem_list, t_data_rooms *tmp_rooms, int id, int nb_tunnels);
-int						ft_get_room_by_name(t_adj_list *tunnel, char *room_to_find, t_datas_graph *datas_graph);
-int						ft_get_room_by_tunnels(t_adj_list *tunnel, t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room);
+t_adj_list				*ft_get_room_by_name(char *room_to_find, t_datas_graph *datas_graph);
+t_adj_list				*ft_get_room_by_tunnels(t_tunnels *rooms_to_find, t_datas_graph *datas_graph, char *current_room);
 int						ft_get_nb_tunnels(t_tunnels *tmp_tunnels, char *current_room);
 int						ft_build_tunnels_adj_list(t_tunnels *tunnels, t_datas_graph *datas_graph);
-t_adj_list				*ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room);
+t_adj_list				**ft_init_rooms_linked(t_tunnels *tmp_tunnels, t_datas_graph *datas_graph, int nb_tunnels, char *current_room);
 
 /*
  ** ft_sort_graph.c
@@ -198,7 +198,7 @@ void					ft_sort_link_graph(t_adj_list *rooms, int size);
 /*
  ** ft_build_ways.c
  */
-void			ft_init_dist(t_adj_list *og_rooms, t_adj_list *current_room, int dist);
+void					ft_init_dist(t_adj_list *current_room, int dist);
 void					ft_init_start_ways(t_datas_graph *datas_graph);
 void					ft_sort_link_room(t_adj_list *room);
 //t_adj_list				*ft_new_room_way(t_adj_list *content_elem_list);

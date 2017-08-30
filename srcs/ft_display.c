@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 14:50:11 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:29:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	ft_put_adj_list(t_datas_graph *datas_graph)
 		{
 			ft_putstr(" . ");
 			i = 0;
-			t_adj_list *tmp_list = list[o].rooms_linked;
+			t_adj_list **tmp_list = list[o].rooms_linked;
 			while (i < list[o].nb_tunnels)
 			{
-				ft_printf("{cyan}%s{eoc}", tmp_list[i].name);
+				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
 				if (i != (list[o].nb_tunnels - 1))
 					ft_putstr(", ");	
 				i++;
@@ -107,12 +107,12 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 				ft_putchar('\n');
 			else
 			{
-				ft_putstr(" . ");
+				ft_putstr(" -> ");
 				i = 0;
-				t_adj_list *tmp_list = list[o].rooms_linked;
+				t_adj_list **tmp_list = list[o].rooms_linked;
 				while (i < list[o].nb_tunnels)
 				{
-					ft_printf("{cyan}%s{eoc}", tmp_list[i].name);
+					ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
 					if (i != (list[o].nb_tunnels - 1))
 						ft_putstr(", ");	
 					i++;

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 20:23:31 by mfranc            #+#    #+#             */
-/*   Updated: 2017/01/09 15:50:23 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:55:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "libft.h"
 
-# define BUFF_SIZE 100
+# define BUFF_SIZE 10000
 
 typedef struct			s_file
 {

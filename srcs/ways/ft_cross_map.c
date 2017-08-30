@@ -6,31 +6,28 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 14:58:56 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/30 16:36:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void			ft_init_dist(t_adj_list *og_rooms, t_adj_list *current_room, int dist
+void			ft_init_dist(t_adj_list *current_room, int dist)
 {
-	t_adj_list	*next_rooms;
+	t_adj_list	**next_rooms;
 	int			i;
 
+	current_room->dist = dist;
 	if (current_room->start == 1)
 		return ;
-	og_rooms[n].dist = dist;
-	//PSTR("OK")
 	i = -1;
 	next_rooms = current_room->rooms_linked;
 	while (++i < current_room->nb_tunnels)
 	{
-		if (!next_rooms[i].end)
+		if (!next_rooms[i]->end)
 		{
-			ft_putstr("BONJOUR ");
-			PNBR(i)
-			if (!next_rooms[i].dist || next_rooms[i].dist > (dist + 1))
-				ft_init_dist(og_rooms, &(next_rooms)[i], dist + 1);
+			if (!next_rooms[i]->dist || next_rooms[i]->dist > (dist + 1))
+				ft_init_dist(next_rooms[i], dist + 1);
 		}
 	}
 }
@@ -78,7 +75,7 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, 
 	int			nb_tunnels;
 	int			i_shortter_room_to_end;
 	int			i;
-	t_adj_list	*next_rooms;
+	t_adj_list	**next_rooms;
 
 	nb_tunnels = curr_room->nb_tunnels;
 	next_rooms = curr_room->rooms_linked;
@@ -86,13 +83,13 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, 
 	i_shortter_room_to_end = 0;
 	while (i < nb_tunnels)
 	{
-		if (next_rooms[i].end)
+		if (next_rooms[i]->end)
 			i_shortter_room_to_end = i;	
-		else if (next_rooms[i].way_id == way_id && !ft_strequ(prev_room->name, next_rooms[i].name))
+		else if (next_rooms[i]->way_id == way_id && !ft_strequ(prev_room->name, next_rooms[i]->name))
 			i_shortter_room_to_end = i;	
 		i++;
 	}
-	return (&next_rooms[i_shortter_room_to_end]);
+	return (next_rooms[i_shortter_room_to_end]);
 }
 
 void			ft_move_ants_map(t_datas_graph  *datas_graph)
