@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 17:47:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/31 17:33:50 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ int 					main(void)
 	ft_graph_building_and_setting(data_store, &datas_graph);
 	ft_init_ways(datas_graph);
 	ft_init_ants(datas_graph);
-//	ft_put_adj_list_dist(datas_graph);
+	ft_put_adj_list_dist(datas_graph);
 	ft_init_way_ants(datas_graph);
-//	ft_put_ants(datas_graph->ants);
-	ft_putlist(data_store->commands);
-	ENDL
-	ft_map_crosser(datas_graph);
+	ft_put_ants(datas_graph->ants);
+//	ft_putlist(data_store->commands);
+//	ENDL
+//	ft_map_crosser(datas_graph);
 	return (0);
 }

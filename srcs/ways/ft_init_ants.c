@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 17:20:54 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/31 17:49:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_ants				*ft_new_ant(int ant_number, t_adj_list *start_room)
 {
 	t_ants			*ant;
 
-	if (!(ant = ft_memalloc(sizeof(t_ants))))
+	if (!(ant = malloc(sizeof(t_ants))))
 		return (NULL);
 	ant->ant_number = ant_number;
 	ant->curr_room = start_room;
@@ -63,21 +63,38 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 void				ft_init_way_ants(t_datas_graph *datas_graph)
 {
 	t_ants			*ants;
-	int				way_by_ant_factor;
 	int				i;
+	int				nb_ants_in_way;
 	int				way_id;
+	t_adj_list		**starts_ways;
+	int				starts_ways_index;
 
-	i = 0;
+	i = 0;		
+	starts_ways_index = 0;
 	ants = datas_graph->ants;
-	way_by_ant_factor = (datas_graph->nb_ways == 0) ?
-		datas_graph->nb_ants / 1 : datas_graph->nb_ants / datas_graph->nb_ways;
 	way_id = 1;
+	nb_ants_in_way = 0;
+	starts_ways = datas_graph->adj_list[0].rooms_linked;
+	nb_ants_in_way = starts_ways[starts_ways_index]->dist;
 	while (ants)
-	{
-		if (i == way_by_ant_factor && way_id < datas_graph->nb_ways)
+	{	
+
+		if (i == nb_ants_in_way)
 		{
 			i = 0;
-			way_id++;
+			if (way_id < datas_graph->nb_ways)
+				way_id++;
+			if (starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
+				starts_ways_index++;
+			if (starts_ways[starts_ways_index]->dist == 0 && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
+				starts_ways_index++;
+			if (starts_ways_index == (datas_graph->adj_list[0].nb_tunnels - 1))
+			{	
+				way_id = 1;
+				starts_ways = datas_graph->adj_list[0].rooms_linked;
+				starts_ways_index = 0;
+			}
+			nb_ants_in_way = (*starts_ways)->dist;
 		}
 		ants->way_id = way_id;
 		i++;
