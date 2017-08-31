@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/31 17:49:05 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/08/31 19:32:24 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,22 @@ void				ft_init_way_ants(t_datas_graph *datas_graph)
 	starts_ways = datas_graph->adj_list[0].rooms_linked;
 	nb_ants_in_way = starts_ways[starts_ways_index]->dist;
 	while (ants)
-	{	
-
-		if (i == nb_ants_in_way)
+	{
+		while (ants && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
 		{
 			i = 0;
-			if (way_id < datas_graph->nb_ways)
-				way_id++;
-			if (starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
-				starts_ways_index++;
-			if (starts_ways[starts_ways_index]->dist == 0 && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
-				starts_ways_index++;
-			if (starts_ways_index == (datas_graph->adj_list[0].nb_tunnels - 1))
+			while (ants && i < nb_ants_in_way)
 			{	
-				way_id = 1;
-				starts_ways = datas_graph->adj_list[0].rooms_linked;
-				starts_ways_index = 0;
-			}
-			nb_ants_in_way = (*starts_ways)->dist;
+				ants->way_id = way_id;
+				ants = ants->next;
+				i++;
+			}	
+			way_id++;	
+			nb_ants_in_way = starts_ways[starts_ways_index]->dist;
+			starts_ways_index++;
 		}
-		ants->way_id = way_id;
-		i++;
-		ants = ants->next;
+		way_id = 1;
+		starts_ways = datas_graph->adj_list[0].rooms_linked;
+		starts_ways_index = 0;
 	}
 }
