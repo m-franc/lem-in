@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/01 13:07:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/01 16:23:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	}
 	else if (!tmp_ant->next)
 	{
-		PSTR("COUCOU")
-		(*ant)->prev->next = NULL;
 		datas_graph->last_ant = (*ant)->prev;
-		*ant = NULL;
-		exit(1);
+		(*ant)->prev->next = NULL;
+		*ant = NULL; 
 	}
 	else
 	{
@@ -102,6 +100,20 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, 
 	return (next_rooms[i_shortter_room_to_end]);
 }
 
+void			ft_del_ants_comed(t_datas_graph *datas_graph)
+{
+	t_ants		*ants;
+
+	ants = datas_graph->ants;
+	while (ants)
+	{
+		if (ants->curr_room->end)
+			ft_delete_ant(datas_graph, &ants);
+		else
+			ants = ants->next;
+	}
+}
+
 void			ft_move_ants_map(t_datas_graph  *datas_graph)
 {
 	t_adj_list	*next_room;
@@ -113,16 +125,14 @@ void			ft_move_ants_map(t_datas_graph  *datas_graph)
 	while (ants)
 	{
 		next_room = ft_get_next_room_way(ants->curr_room, ants->prev_room, ants->way_id);
+	//	ft_printf("{green}%d{eoc}", next_room->ant_in);
 		if (!next_room->ant_in || next_room->end)
 		{	
 			if (i++ != 0)
 				ft_putchar(' ');
 			ft_move_ant_room(ants->curr_room, next_room, ants); 
 		}
-		if (ants->curr_room->end)
-			ft_delete_ant(datas_graph, &ants);
-		else
-			ants = ants->next;
+		ants = ants->next;
 	}
 }
 
@@ -133,10 +143,10 @@ void			ft_map_crosser(t_datas_graph *datas_graph)
 
 	rooms = datas_graph->adj_list;
 	end_room = datas_graph->adj_list[datas_graph->nb_rooms - 1];
-	ft_putstrcolor("map crossing\n", GREEN);
 	while (datas_graph->ants)
 	{	
 		ft_move_ants_map(datas_graph);
+		ft_del_ants_comed(datas_graph);
 		ft_putchar('\n');
 	}
 }

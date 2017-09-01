@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 18:14:02 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/01 11:53:22 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/01 16:21:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,17 @@ void				ft_init_way_ants(t_datas_graph *datas_graph)
 		while (ants && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
 		{
 			i = 0;
+			nb_ants_in_way = starts_ways[starts_ways_index]->dist;
 			while (ants && i < nb_ants_in_way)
 			{	
 				ants->way_id = way_id;
 				ants = ants->next;
 				i++;
 			}	
-			way_id++;	
-			nb_ants_in_way = starts_ways[starts_ways_index]->dist;
+			way_id++;
 			starts_ways_index++;
+			if (starts_ways_index < datas_graph->adj_list[0].nb_tunnels && starts_ways[starts_ways_index]->way_id == 0)
+				break ;
 		}
 		way_id = 1;
 		starts_ways = datas_graph->adj_list[0].rooms_linked;
