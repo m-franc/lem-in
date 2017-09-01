@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:36:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/01 13:01:03 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,20 @@ void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
 	}
 	else
 	{
-		(*ant)->prev->next = tmp_ant->next;
-		(*ant)->next->prev = tmp_ant->prev;
-		*ant = tmp_ant->next;
+		if (!tmp_ant->next)
+		{
+			(*ant)->prev->next = NULL;
+			datas_graph->last_ant = (*ant)->prev;
+			*ant = datas_graph->last_ant;
+		}
+		else
+		{
+			(*ant)->prev->next = tmp_ant->next;
+			(*ant)->next->prev = tmp_ant->prev;
+			*ant = tmp_ant->next;	
+		}
+		//ft_printf("nombre de fourmis : {purple}%d{eoc} - fourmi : {cyan}%d{eoc}\n", datas_graph->nb_ants, (*ant)->ant_number);
+		//ft_printf("\n{purple}%p{eoc}\n", (*ant)->next);
 	}
 	ft_bzero(tmp_ant, sizeof(t_ants));
 	ft_memdel((void**)&tmp_ant);
