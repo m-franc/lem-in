@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/01 16:23:57 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 16:06:28 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,8 @@ void			ft_init_dist(t_adj_list *current_room, int dist)
 	}
 }
 
-void			ft_delete_ant(t_datas_graph *datas_graph, t_ants **ant)
-{
-	t_ants		*tmp_ant;
-
-	tmp_ant = *ant;
-	if (datas_graph->nb_ants == 1)
-	{ 
-		datas_graph->ants = NULL;
-		datas_graph->last_ant = NULL;
-		*ant = NULL;
-	}
-	else if (!tmp_ant->prev)
-	{
-		datas_graph->ants = tmp_ant->next;
-		datas_graph->ants->prev = NULL;
-		*ant = datas_graph->ants;
-	}
-	else if (!tmp_ant->next)
-	{
-		datas_graph->last_ant = (*ant)->prev;
-		(*ant)->prev->next = NULL;
-		*ant = NULL; 
-	}
-	else
-	{
-		(*ant)->prev->next = tmp_ant->next;
-		(*ant)->next->prev = tmp_ant->prev;
-		*ant = tmp_ant->next;	
-		//ft_printf("nombre de fourmis : {purple}%d{eoc} - fourmi : {cyan}%d{eoc}\n", datas_graph->nb_ants, (*ant)->ant_number);
-		//ft_printf("\n{purple}%p{eoc}\n", (*ant)->next);
-	}
-	ft_bzero(tmp_ant, sizeof(t_ants));
-	ft_memdel((void**)&tmp_ant);
-	datas_graph->nb_ants--;
-}
-
-void			ft_move_ant_room(t_adj_list *curr_room, t_adj_list *next_room, t_ants *ant)
+void			ft_move_ant_room(t_adj_list *curr_room,
+		t_adj_list *next_room, t_ants *ant)
 {
 	next_room->ant_in += ant->ant_number;
 	ant->curr_room->ant_in = 0;
@@ -77,9 +42,9 @@ void			ft_move_ant_room(t_adj_list *curr_room, t_adj_list *next_room, t_ants *an
 	ft_printf("L%d-%s", ant->ant_number, ant->curr_room->name);
 }
 
-t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, int way_id)
+t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room,
+		t_adj_list *prev_room, int way_id)
 {
-
 	int			nb_tunnels;
 	int			i_shortter_room_to_end;
 	int			i;
@@ -92,45 +57,32 @@ t_adj_list		*ft_get_next_room_way(t_adj_list *curr_room, t_adj_list *prev_room, 
 	while (i < nb_tunnels)
 	{
 		if (next_rooms[i]->end)
-			i_shortter_room_to_end = i;	
-		else if (next_rooms[i]->way_id == way_id && !ft_strequ(prev_room->name, next_rooms[i]->name))
-			i_shortter_room_to_end = i;	
+			i_shortter_room_to_end = i;
+		else if (next_rooms[i]->way_id == way_id
+				&& !ft_strequ(prev_room->name, next_rooms[i]->name))
+			i_shortter_room_to_end = i;
 		i++;
 	}
 	return (next_rooms[i_shortter_room_to_end]);
 }
 
-void			ft_del_ants_comed(t_datas_graph *datas_graph)
-{
-	t_ants		*ants;
-
-	ants = datas_graph->ants;
-	while (ants)
-	{
-		if (ants->curr_room->end)
-			ft_delete_ant(datas_graph, &ants);
-		else
-			ants = ants->next;
-	}
-}
-
-void			ft_move_ants_map(t_datas_graph  *datas_graph)
+void			ft_move_ants_map(t_datas_graph *datas_graph)
 {
 	t_adj_list	*next_room;
 	t_ants		*ants;
 	int			i;
-	
+
 	ants = datas_graph->ants;
 	i = 0;
 	while (ants)
 	{
-		next_room = ft_get_next_room_way(ants->curr_room, ants->prev_room, ants->way_id);
-	//	ft_printf("{green}%d{eoc}", next_room->ant_in);
+		next_room = ft_get_next_room_way(ants->curr_room,
+				ants->prev_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)
-		{	
+		{
 			if (i++ != 0)
 				ft_putchar(' ');
-			ft_move_ant_room(ants->curr_room, next_room, ants); 
+			ft_move_ant_room(ants->curr_room, next_room, ants);
 		}
 		ants = ants->next;
 	}
@@ -144,7 +96,7 @@ void			ft_map_crosser(t_datas_graph *datas_graph)
 	rooms = datas_graph->adj_list;
 	end_room = datas_graph->adj_list[datas_graph->nb_rooms - 1];
 	while (datas_graph->ants)
-	{	
+	{
 		ft_move_ants_map(datas_graph);
 		ft_del_ants_comed(datas_graph);
 		ft_putchar('\n');

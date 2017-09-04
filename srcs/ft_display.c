@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:29:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 16:33:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			ft_put_ants(t_ants *ants)
 		ft_printf("ant Num : {cyan}%d{eoc}, room : {red}%s{eoc}, way : {grey}%d{eoc}\n", tmp_ants->ant_number, tmp_ants->curr_room->name, tmp_ants->way_id);
 		tmp_ants = tmp_ants->next;
 	}
-	ENDL
+	ft_putchar('\n');
 }
 
 void				ft_put_data_parsed(t_data_store *data_store)
@@ -43,29 +43,39 @@ void				ft_put_data_parsed(t_data_store *data_store)
 			tunnels = tunnels->next;
 		}
 	}
-	ENDL
-		if (rooms)
+	ft_putchar('\n');
+	if (rooms)
+	{
+		ft_putstrcolor("ROOMS : \n", CYAN);
+		while (rooms)
 		{
-			ft_putstrcolor("ROOMS : \n", CYAN);
-			while (rooms)
-			{
-				if (rooms->start)
-					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}start{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->start);
-				else if (rooms->end)
-					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} | {green}end{eoc}\n", rooms->name, rooms->x, rooms->y, rooms->end);
-				else
-					ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n", rooms->name, rooms->x, rooms->y);
-				ft_putlist(rooms->rooms_linked);
-				rooms = rooms->next;
-			}
+			if (rooms->start)
+				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} |\
+						{green}start{eoc}\n", rooms->name, rooms->x,
+						rooms->y, rooms->start);
+			else if (rooms->end)
+				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} |\
+						{green}end{eoc}\n", rooms->name, rooms->x,
+						rooms->y, rooms->end);
+			else
+				ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n",
+						rooms->name, rooms->x, rooms->y);
+			ft_putlist(rooms->rooms_linked);
+			rooms = rooms->next;
 		}
+	}
 }
 
-void	ft_put_adj_list(t_datas_graph *datas_graph)
+void			ft_put_adj_list(t_datas_graph *datas_graph)
 {
-	int o = 0;
-	int i = 0;
-	t_adj_list *list = datas_graph->adj_list;
+	int			i;
+	int			o;
+	t_adj_list *list;
+	t_adj_list	**tmp_list;
+
+	i = 0;
+	o = 0;
+	list = datas_graph->adj_list;
 	ft_putstrcolor("ajdacences\'s list\n", GREEN);
 	while (o < datas_graph->nb_rooms)
 	{
@@ -76,7 +86,7 @@ void	ft_put_adj_list(t_datas_graph *datas_graph)
 		{
 			ft_putstr(" . ");
 			i = 0;
-			t_adj_list **tmp_list = list[o].rooms_linked;
+			tmp_list = list[o].rooms_linked;
 			while (i < list[o].nb_tunnels)
 			{
 				ft_printf("{cyan}%s{eoc}", tmp_list[i]->name);
@@ -90,19 +100,23 @@ void	ft_put_adj_list(t_datas_graph *datas_graph)
 	}
 }
 
-void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
+void			ft_put_adj_list_dist(t_datas_graph *datas_graph)
 {
-	int o = 0;
-	int i = 0;
-	t_adj_list *list = datas_graph->adj_list;
+	int 		o = 0;
+	int			i = 0;
+	t_adj_list *list;
+
 	ft_putstrcolor("ajdacences\'s distances list\n", GREEN);
+	list = datas_graph->adj_list;
 	while (o < datas_graph->nb_rooms)
 	{
 		if (list[o].end)
 			ft_printf("{yellow}%s{eoc}\n", list[o].name);
 		else
 		{
-			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, chemin : {red}%d{eoc})", list[o].name, list[o].dist, list[o].way_id);
+			ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, \
+				chemin : {red}%d{eoc})",
+					list[o].name, list[o].dist, list[o].way_id);
 			if (!list[o].rooms_linked)
 				ft_putchar('\n');
 			else
@@ -123,7 +137,7 @@ void	ft_put_adj_list_dist(t_datas_graph *datas_graph)
 		}
 		o++;
 	}
-	ENDL
+	ft_putchar('\n');
 }
 
 void		ft_put_adj_matrix(t_datas_graph *datas_graph)
@@ -146,8 +160,8 @@ void		ft_put_adj_matrix(t_datas_graph *datas_graph)
 				ft_printf("{grey}%d{eoc} ", matrix[i][o]);
 			o++;
 		}
-		ENDL
-			i++;
+		ft_putchar('\n');
+		i++;
 	}
 }
 

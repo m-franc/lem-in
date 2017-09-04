@@ -6,13 +6,14 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:45:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:37:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 16:38:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void				ft_push_back_ants(t_datas_graph *datas_graph, t_ants *new_ant)
+void				ft_push_back_ants(t_datas_graph *datas_graph,
+		t_ants *new_ant)
 {
 	if (datas_graph->ants)
 	{
@@ -60,7 +61,8 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	return (1);
 }
 
-int					ft_init_way_ants(t_ants **ants, int *way_id, int *starts_ways_index, t_datas_graph *datas_graph)
+int					ft_init_way_ants(t_ants **ants, int *way_id,
+		int *starts_ways_index, t_datas_graph *datas_graph)
 {
 	int				i;
 	int				nb_ants_in_way;
@@ -69,15 +71,18 @@ int					ft_init_way_ants(t_ants **ants, int *way_id, int *starts_ways_index, t_d
 	i = 0;
 	starts_ways = datas_graph->adj_list[0].rooms_linked;
 	nb_ants_in_way = starts_ways[*starts_ways_index]->dist;
+	ft_printf("%i\n", nb_ants_in_way);
 	while (*ants && i < nb_ants_in_way)
 	{
 		(*ants)->way_id = *way_id;
 		*ants = (*ants)->next;
 		i++;
-	}	
+		PSTR("COUCOU")
+	}
 	*way_id += 1;
 	*starts_ways_index += 1;
-	if (*starts_ways_index < datas_graph->adj_list[0].nb_tunnels && starts_ways[*starts_ways_index]->way_id == 0)
+	if (*starts_ways_index < datas_graph->adj_list[0].nb_tunnels
+			&& starts_ways[*starts_ways_index]->way_id == 0)
 		return (2);
 	return (1);
 }
@@ -97,7 +102,8 @@ void				ft_init_ways_ants(t_datas_graph *datas_graph)
 	{
 		while (ants && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
 		{
-			if ((ft_init_way_ants(&ants, &way_id, &starts_ways_index, datas_graph)) == 2)
+			if ((ft_init_way_ants(&ants, &way_id,
+							&starts_ways_index, datas_graph)) == 2)
 				break ;
 		}
 		way_id = 1;

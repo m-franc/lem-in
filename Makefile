@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/08/31 19:16:25 by mfranc           ###   ########.fr        #
+#    Updated: 2017/09/04 16:34:36 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,17 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  parsing/ft_store_command.c	\
 								  parsing/ft_push_data.c		\
 								  parsing/ft_check_room.c		\
-								  ft_display.c				\
+								  ft_display.c					\
 								  graph/ft_build_graph.c		\
-								  graph/ft_sort_graph.c		\
+								  graph/ft_sort_graph.c			\
 								  graph/ft_graph_sitting.c		\
 								  graph/ft_build_adj_list.c		\
-								  ways/ft_init_next_rooms.c			\
-								  ways/ft_init_start_ways.c		\
+								  graph/ft_build_tunnels.c		\
 								  ways/ft_cross_map.c			\
 								  ways/ft_init_ants.c			\
-								  ways/ft_init_ways.c)
+								  ways/ft_init_ways.c			\
+								  ways/ft_delete_ants.c			\
+								  ft_exit.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a
