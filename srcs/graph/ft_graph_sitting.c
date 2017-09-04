@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_next_rooms.c                               :+:      :+:    :+:   */
+/*   ft_graph_sitting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   by: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2017/07/11 18:24:24 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 16:46:02 by mfranc           ###   ########.fr       */
+/*   Created: 2017/09/04 12:55:16 by mfranc            #+#    #+#             */
+/*   Updated: 2017/09/04 12:55:41 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			ft_update_rooms_id(t_datas_graph *datas_graph)
 {
 	t_adj_list	*list;
-	int		i;
+	int			i;
 
 	i = 0;
 	list = datas_graph->adj_list;

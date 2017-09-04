@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:10:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:17:39 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ void					ft_init_second_room(t_datas_graph *datas_graph);
  */
 t_ants					*ft_new_ant(int ant_number, t_adj_list *start_room);
 int						ft_init_ants(t_datas_graph *datas_graph);
-void					ft_init_way_ants(t_datas_graph *datas_graph);
+void					ft_init_ways_ants(t_datas_graph *datas_graph);
 
 /*
  ** ft_init_ways.c

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 18:28:01 by mfranc            #+#    #+#             */
-/*   Updated: 2017/07/26 19:41:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:38:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_check_duplicate(t_data_rooms *last_rooms, char **data_room)
 {
 	t_data_rooms	*tmp_last_rooms;
-	
+
 	if (!last_rooms)
 		return (1);
 	tmp_last_rooms = last_rooms;

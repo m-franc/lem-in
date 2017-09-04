@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   ft_sort_graph.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/29 16:43:20 by mfranc           ###   ########.fr       */
+/*   Created: 2017/09/04 12:57:47 by mfranc            #+#    #+#             */
+/*   Updated: 2017/09/04 12:58:17 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int			ft_get_index_start(t_datas_graph *datas_graph)
+int				ft_get_index_start(t_datas_graph *datas_graph)
 {
 	t_adj_list	*tmp_list;
-	int		i;
+	int			i;
 
 	tmp_list = datas_graph->adj_list;
 	i = 0;
@@ -26,10 +26,10 @@ int			ft_get_index_start(t_datas_graph *datas_graph)
 	return (i);
 }
 
-int			ft_get_index_end(t_datas_graph *datas_graph)
+int				ft_get_index_end(t_datas_graph *datas_graph)
 {
 	t_adj_list	*tmp_list;
-	int		i;
+	int			i;
 
 	tmp_list = datas_graph->adj_list;
 	i = 0;
@@ -40,7 +40,8 @@ int			ft_get_index_end(t_datas_graph *datas_graph)
 	return (i);
 }
 
-void			ft_put_start_top(t_adj_list *adj_list, int index_start, int index_top)
+void			ft_put_start_top(t_adj_list *adj_list,
+		int index_start, int index_top)
 {
 	t_adj_list	tmp_top;
 	int			id_top;
@@ -53,7 +54,8 @@ void			ft_put_start_top(t_adj_list *adj_list, int index_start, int index_top)
 	adj_list[index_start] = tmp_top;
 }
 
-void			ft_put_end_bottom(t_adj_list *adj_list, int index_end, int index_bottom)
+void			ft_put_end_bottom(t_adj_list *adj_list,
+		int index_end, int index_bottom)
 {
 	t_adj_list	tmp_bottom;
 	int			id_bottom;
@@ -66,10 +68,10 @@ void			ft_put_end_bottom(t_adj_list *adj_list, int index_end, int index_bottom)
 	adj_list[index_end] = tmp_bottom;
 }
 
-int			ft_sort_graph(t_datas_graph *datas_graph)
+int				ft_sort_graph(t_datas_graph *datas_graph)
 {
-	int		index_start;
-	int		index_end;
+	int			index_start;
+	int			index_end;
 
 	if ((index_start = ft_get_index_start(datas_graph)) == -1)
 		return (-1);
@@ -78,21 +80,7 @@ int			ft_sort_graph(t_datas_graph *datas_graph)
 	if (index_start != 0)
 		ft_put_start_top(datas_graph->adj_list, index_start, 0);
 	if (index_end != (datas_graph->nb_rooms - 1))
-		ft_put_end_bottom(datas_graph->adj_list, index_end, (datas_graph->nb_rooms - 1));
+		ft_put_end_bottom(datas_graph->adj_list,
+				index_end, (datas_graph->nb_rooms - 1));
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,43 +6,21 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:13:11 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:59:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-/*static int		**ft_init_adj_matrix(t_data_store *data_store)
-{
-	int		i;
-	int		**adj_matrix;
-	int		*elem_adj_matrix;
-
-	if (!(adj_matrix = ft_memalloc(sizeof(int*) * (data_store->nb_rooms))))
-		return (NULL);
-	i = -1;
-	while (++i < data_store->nb_rooms)
-	{
-		if (!(elem_adj_matrix = ft_memalloc(sizeof(int) * data_store->nb_rooms)))
-			return (NULL);
-		adj_matrix[i] = elem_adj_matrix;
-	}
-	return (adj_matrix);
-}
-*/
 t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 {
 	t_datas_graph	*datas_graph;
-//	int				**adj_matrix;
 	t_adj_list		*adj_list;
 
 	if (data_store->nb_rooms == 0)
 		return (NULL);
 	if (!(datas_graph = ft_memalloc(sizeof(t_datas_graph))))
 		return (NULL);
-//	if (!(adj_matrix = ft_init_adj_matrix(data_store)))
-//		return (NULL);
-//	datas_graph->adj_matrix = adj_matrix;
 	if (!(adj_list = ft_memalloc(sizeof(t_adj_list) * (data_store->nb_rooms))))
 	{
 		ft_memdel((void**)&datas_graph);
@@ -57,33 +35,8 @@ t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 	return (datas_graph);
 }
 
-void			ft_switchon_tunnels_adj_matrix(t_datas_graph *datas_graph)
-{
-	int			**matrix;
-	t_adj_list	*list;
-	t_adj_list	**rooms_linked;
-	int			i;
-	int			o;
-
-	matrix = datas_graph->adj_matrix;
-	list = datas_graph->adj_list;
-	i = -1;
-	while (++i < datas_graph->nb_rooms)
-	{
-		if (list[i].rooms_linked) 
-		{
-			rooms_linked = list[i].rooms_linked;
-			o = -1;
-			while (++o < list[i].nb_tunnels)
-			{
-				matrix[i][rooms_linked[o]->id] = 1;
-				datas_graph->nb_links++;
-			}
-		}
-	}
-}
-
-int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
+int					ft_build_graph(t_data_store *data_store,
+		t_datas_graph *datas_graph)
 {
 	if ((ft_build_adj_list(data_store, datas_graph)) == -1)
 		return (-1);
@@ -91,6 +44,5 @@ int			ft_build_graph(t_data_store *data_store, t_datas_graph *datas_graph)
 		return (-1);
 	if ((ft_build_tunnels_adj_list(data_store->tunnels, datas_graph)) == -1)
 		return (-1);
-//	ft_switchon_tunnels_adj_matrix(datas_graph);
 	return (1);
 }

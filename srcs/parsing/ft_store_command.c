@@ -6,13 +6,14 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/03 12:49:29 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:48:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_room)
+int				ft_store_tunnel(t_data_store *data_store, char *first_room,
+		char *second_room)
 {
 	t_tunnels	*new_tunnel;
 
@@ -31,7 +32,8 @@ int				ft_store_tunnel(t_data_store *data_store, char *first_room, char *second_
 	return (1);
 }
 
-int				ft_store_ants_number(t_data_store *data_store, char *ants_number)
+int				ft_store_ants_number(t_data_store *data_store,
+		char *ants_number)
 {
 	int			nb_ants;
 
@@ -54,15 +56,16 @@ int				ft_store_modif_command(t_data_store *data_store, char *line)
 		if (data_store->end_mark > 1)
 			return (-1);
 		if (data_store->end_mark == 0)
-			data_store->end_mark++;	
+			data_store->end_mark++;
 	}
 	return (1);
 }
 
-static int		ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
+static int		ft_init_start_end(t_data_store *data_store,
+		t_data_rooms *new_room)
 {
 	if (data_store->start_mark == 1 && data_store->end_mark == 1)
-		return (-1);	
+		return (-1);
 	new_room->start = 0;
 	new_room->end = 0;
 	if (data_store->start_mark == 1)
@@ -73,16 +76,16 @@ static int		ft_init_start_end(t_data_store *data_store, t_data_rooms *new_room)
 	if (data_store->end_mark == 1)
 	{
 		new_room->end = 1;
-		data_store->end_mark++;	
+		data_store->end_mark++;
 	}
 	return (1);
 }
 
-int					ft_store_room(t_data_store *data_store, char **data_room)
+int				ft_store_room(t_data_store *data_store, char **data_room)
 {
 	t_data_rooms	*new_room;
 
-	if (ft_check_duplicate(data_store->rooms, data_room) == -1)	
+	if (ft_check_duplicate(data_store->rooms, data_room) == -1)
 		return (-1);
 	if (!(new_room = ft_memalloc(sizeof(t_data_rooms))))
 		return (-1);

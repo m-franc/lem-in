@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 17:39:15 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/15 18:52:33 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:48:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			ft_line_is_ants_number(char *line, t_data_store *data_store)
 int			ft_line_is_room(char *line, t_data_store *data_store)
 {
 	char	**tab;
-	
+
 	if (!(tab = ft_strsplit(line, ' ')))
 		return (-1);
 	if (!ft_check_data_room(tab))

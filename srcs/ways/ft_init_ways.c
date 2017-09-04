@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:40:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:37:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 	int			i;
 	int			index_next_room;
 	int			dist_min;
-	
+
 	i = -1;
 	dist_min = 2147483647;
 	index_next_room = -1;
@@ -46,9 +46,11 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 	{
 		if (curr_room->rooms_linked[i]->end)
 			return (i);
-		else if (curr_room->rooms_linked[i]->dist < dist_min && curr_room->rooms_linked[i]->dist > 0 && curr_room->rooms_linked[i]->way_id == 0)
+		else if (curr_room->rooms_linked[i]->dist < dist_min
+				&& curr_room->rooms_linked[i]->dist > 0
+				&& curr_room->rooms_linked[i]->way_id == 0)
 		{
-			dist_min = curr_room->rooms_linked[i]->dist;	
+			dist_min = curr_room->rooms_linked[i]->dist;
 			index_next_room = i;
 		}
 	}
@@ -92,7 +94,7 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	{
 		if ((ft_init_way(start_room->rooms_linked[i], way_id)) == -1)
 		{
-			datas_graph->nb_ways--;	
+			datas_graph->nb_ways--;
 			start_room->rooms_linked[i]->way_id = 0;
 		}
 		else

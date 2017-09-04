@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:45:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 11:45:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 12:37:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	int				ant_number;
 	int				i;
 	t_ants			*new_ant;
-	
+
 	i = -1;
 	ant_number = 1;
 	while (++i < datas_graph->nb_ants)
@@ -60,37 +60,44 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	return (1);
 }
 
-void				ft_init_way_ants(t_datas_graph *datas_graph)
+int					ft_init_way_ants(t_ants **ants, int *way_id, int *starts_ways_index, t_datas_graph *datas_graph)
 {
-	t_ants			*ants;
 	int				i;
 	int				nb_ants_in_way;
+	t_adj_list		**starts_ways;
+
+	i = 0;
+	starts_ways = datas_graph->adj_list[0].rooms_linked;
+	nb_ants_in_way = starts_ways[*starts_ways_index]->dist;
+	while (*ants && i < nb_ants_in_way)
+	{
+		(*ants)->way_id = *way_id;
+		*ants = (*ants)->next;
+		i++;
+	}	
+	*way_id += 1;
+	*starts_ways_index += 1;
+	if (*starts_ways_index < datas_graph->adj_list[0].nb_tunnels && starts_ways[*starts_ways_index]->way_id == 0)
+		return (2);
+	return (1);
+}
+
+void				ft_init_ways_ants(t_datas_graph *datas_graph)
+{
+	t_ants			*ants;
 	int				way_id;
 	t_adj_list		**starts_ways;
 	int				starts_ways_index;
 
-	i = 0;		
 	starts_ways_index = 0;
 	ants = datas_graph->ants;
 	way_id = 1;
-	nb_ants_in_way = 0;
 	starts_ways = datas_graph->adj_list[0].rooms_linked;
-	nb_ants_in_way = starts_ways[starts_ways_index]->dist;
 	while (ants)
 	{
 		while (ants && starts_ways_index < datas_graph->adj_list[0].nb_tunnels)
 		{
-			i = 0;
-			nb_ants_in_way = starts_ways[starts_ways_index]->dist;
-			while (ants && i < nb_ants_in_way)
-			{	
-				ants->way_id = way_id;
-				ants = ants->next;
-				i++;
-			}	
-			way_id++;
-			starts_ways_index++;
-			if (starts_ways_index < datas_graph->adj_list[0].nb_tunnels && starts_ways[starts_ways_index]->way_id == 0)
+			if ((ft_init_way_ants(&ants, &way_id, &starts_ways_index, datas_graph)) == 2)
 				break ;
 		}
 		way_id = 1;
