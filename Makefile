@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/09/04 16:34:36 by mfranc           ###   ########.fr        #
+#    Updated: 2017/09/04 18:39:57 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,4 +64,3 @@ re: fclean all
 
 git:
 	git add -u; git commit -m "WIP"; git push
-
