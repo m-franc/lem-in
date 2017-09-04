@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:51:43 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:59:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:25:39 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_datas_graph		*ft_init_datas_graph(t_data_store *data_store)
 {

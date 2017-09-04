@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 13:06:48 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 14:40:30 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:28:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_adj_list			*ft_get_room_by_name(char *room_to_find,
 		t_datas_graph *datas_graph)

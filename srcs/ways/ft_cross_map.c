@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 16:06:28 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:25:23 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 void			ft_init_dist(t_adj_list *current_room, int dist)
 {

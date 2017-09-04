@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 16:10:01 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 16:15:32 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:25:51 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 void					ft_exit_error(void)
 {

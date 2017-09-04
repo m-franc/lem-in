@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 12:57:47 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:58:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:24:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int				ft_get_index_start(t_datas_graph *datas_graph)
 {

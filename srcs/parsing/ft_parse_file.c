@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:46:00 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:26:52 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_line_is_command	g_line_is_command[] =
 {

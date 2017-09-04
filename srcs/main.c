@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 16:17:36 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:25:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_data_store			*ft_data_store_init(void)
 {
@@ -71,6 +71,7 @@ int						main(void)
 	ft_init_ants(datas_graph);
 	ft_init_ways_ants(datas_graph);
 	ft_putlist(data_store->commands);
+	ft_putchar('\n');
 	ft_map_crosser(datas_graph);
 	return (0);
 }

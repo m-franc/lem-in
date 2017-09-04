@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 14:40:26 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:28:36 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int					ft_init_elem_list_adj(t_adj_list *elem_list,
 		t_data_rooms *tmp_rooms, int id, int nb_tunnels)

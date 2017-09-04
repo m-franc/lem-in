@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:37:05 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:25:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 void			ft_sort_link_room(t_adj_list *room)
 {

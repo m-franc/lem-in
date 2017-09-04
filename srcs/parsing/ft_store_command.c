@@ -6,11 +6,11 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 11:27:49 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 12:48:18 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:27:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int				ft_store_tunnel(t_data_store *data_store, char *first_room,
 		char *second_room)
@@ -61,7 +61,7 @@ int				ft_store_modif_command(t_data_store *data_store, char *line)
 	return (1);
 }
 
-static int		ft_init_start_end(t_data_store *data_store,
+int				ft_init_start_end(t_data_store *data_store,
 		t_data_rooms *new_room)
 {
 	if (data_store->start_mark == 1 && data_store->end_mark == 1)

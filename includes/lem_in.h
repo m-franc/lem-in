@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 16:14:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/04 18:18:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct			s_ants
 	struct s_ants		*prev;
 }						t_ants;
 
-typedef struct 			s_datas_graph
+typedef struct			s_datas_graph
 {
 	int					**adj_matrix;
 	int					nb_rooms;
@@ -94,36 +94,37 @@ typedef struct 			s_datas_graph
 }						t_datas_graph;
 
 /*
- ** ft_display.c
+ ft_display.c
  */
+void					ft_put_data_tunnel(t_tunnels *tunnels);
+void					ft_put_data_room(t_data_rooms *rooms);
 void					ft_put_data_parsed(t_data_store *data_store);
+void					ft_put_adj_list_elem(t_adj_list *list, int o);
 void					ft_put_adj_list(t_datas_graph *datas_graph);
-void					ft_put_adj_list_dist(t_datas_graph *datas_graph);
-void					ft_put_adj_matrix(t_datas_graph *datas_graph);
-void					ft_put_ants(t_ants *ants);
 
 /*
- ** main.c
+ main.c
  */
 t_data_store			*ft_data_store_init(void);
-void					ft_graph_building_and_setting(t_data_store *data_store, t_datas_graph **datas_graph);
+void					ft_graph_building_and_setting(t_data_store *data_store,
+		t_datas_graph **datas_graph);
 void					ft_parse_and_store(t_data_store **data_store);
 int						ft_check_room_tunnel(t_data_store *data_store);
 
 /*
- ** main.c
+ main.c
  */
 int						ft_exit_function(int return_value, void *st_elem,
 		void *nd_elem, void *rd_elem);
 void					ft_exit_error(void);
 
 /*
- ** ft_is_parse_file.c
+ ft_is_parse_file.c
  */
 int						ft_parse_file(t_data_store *data_store);
 
 /*
- ** ft_is_comand.c
+ ft_is_comand.c
  */
 int						ft_line_is_tunnel(char *line, t_data_store *data_store);
 int						ft_line_is_room(char *line, t_data_store *data_store);
@@ -138,11 +139,14 @@ typedef int				(*t_line_is_command)(char *line, t_data_store *data_store);
 /*
  ** ft_store_command.c
  */
-int						ft_store_tunnel(t_data_store *data_store, char *first_room,
-		char *second_room);
-int						ft_store_ants_number(t_data_store *data_store, char *line);
-int						ft_store_room(t_data_store *data_store, char **data_room);
-int						ft_store_modif_command(t_data_store *data_store, char *line);
+int						ft_store_tunnel(t_data_store *data_store,
+		char *first_room, char *second_room);
+int						ft_store_ants_number(t_data_store *data_store,
+		char *line);
+int						ft_store_room(t_data_store *data_store,
+		char **data_room);
+int						ft_store_modif_command(t_data_store *data_store,
+		char *line);
 
 /*
  ** ft_push.c 
