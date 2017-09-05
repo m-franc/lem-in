@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/09/04 18:39:57 by mfranc           ###   ########.fr        #
+#    Updated: 2017/09/05 18:16:39 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  ways/ft_init_ants.c			\
 								  ways/ft_init_ways.c			\
 								  ways/ft_delete_ants.c			\
-								  ft_exit.c)
+								  ft_exit.c						\
+								  graph/ft_del_datas_graph.c	\
+								  parsing/ft_del_data_store.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a

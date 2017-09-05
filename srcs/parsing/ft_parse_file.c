@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:26:52 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/05 18:34:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,28 @@ t_line_is_command	g_line_is_command[] =
 	ft_line_is_comment
 };
 
-static t_list		*ft_new_command(t_data_store *data_store, char *line)
+t_data_store			*ft_data_store_init(void)
+{
+	t_data_store		*data_store;
+
+	if (!(data_store = ft_memalloc(sizeof(t_data_store))))
+		return (NULL);
+	data_store->nb_ants = 0;
+	data_store->start_mark = 0;
+	data_store->end_mark = 0;
+	data_store->rooms = NULL;
+	data_store->last_rooms = NULL;
+	data_store->nb_rooms = 0;
+	data_store->tunnels = NULL;
+	data_store->last_tunnels = NULL;
+	data_store->nb_tunnels = 0;
+	data_store->commands = NULL;
+	data_store->last_commands = NULL;
+	data_store->nb_commands = 0;
+	return (data_store);
+}
+
+t_list				*ft_new_command(t_data_store *data_store, char *line)
 {
 	t_list			*new_command;
 
@@ -34,7 +55,7 @@ static t_list		*ft_new_command(t_data_store *data_store, char *line)
 	return (new_command);
 }
 
-static int			ft_line_is_command(t_data_store *data_store, char *line)
+int					ft_line_is_command(t_data_store *data_store, char *line)
 {
 	int				i;
 	int				line_is_command;
