@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 19:10:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/05 14:36:00 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct			s_ants
 
 typedef struct			s_datas_graph
 {
-	int					**adj_matrix;
 	int					nb_rooms;
 	int					nb_links;
 	int					nb_ways;
@@ -112,11 +111,12 @@ void					ft_parse_and_store(t_data_store **data_store);
 int						ft_check_room_tunnel(t_data_store *data_store);
 
 /*
- ** main.c
+ ** ft_exit.c
 */
+void					ft_del_datas_graph(t_datas_graph *datas_graph);
 int						ft_exit_function(int return_value, void *st_elem,
 		void *nd_elem, void *rd_elem);
-void					ft_exit_error(void);
+void					ft_exit_error(t_data_store *data_store, t_datas_graph *datas_graph);
 
 /*
  ** ft_is_parse_file.c
