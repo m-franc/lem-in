@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:33:17 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 14:47:36 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 18:04:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ long long	ft_atoi(const char *str)
 		}
 		while (*str >= 48 && *str <= 57)
 			result = result * 10 + (*str++ - '0');
+		if (result == -1)
+			return (-1);
 		return ((result * n));
 		str++;
 	}
