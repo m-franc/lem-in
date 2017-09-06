@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 20:23:31 by mfranc            #+#    #+#             */
-/*   Updated: 2017/08/30 16:55:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 19:46:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int						save_lines(char *ndtmp, t_file **file, char **line);
 void					remove_file(t_file **file);
 t_file					*get_file(t_file **file, int fd);
 t_file					*lstnew(t_file **begin, int fd);
+int						ft_exit_gnl(t_file *file, char **line);
 
 #endif

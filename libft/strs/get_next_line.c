@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:32:21 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 13:00:05 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 20:19:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int					save_lines(char *ndtmp, t_file **file, char **line)
 	if (ndtmp == NULL)
 	{
 		if (!(*line = ft_strdup((*file)->tmp)))
-			return (-1);
+			return (ft_exit_gnl(*file, line));
 		ft_bzero((*file)->tmp, ft_strlen((*file)->tmp));
 		return (1);
 	}
@@ -98,10 +98,10 @@ int					save_lines(char *ndtmp, t_file **file, char **line)
 	{
 		if (!(*line = ft_strsub((*file)->tmp, 0, ft_strlen((*file)->tmp)
 				- ft_strlen(ndtmp))))
-			return (-1);
+			return (ft_exit_gnl(*file, line));
 		nexttmp = (*file)->tmp;
 		if (!((*file)->tmp = ft_strdup(ndtmp + 1)))
-			return (-1);
+			return (ft_exit_gnl(*file, line));
 		ft_strdel(&nexttmp);
 		return (1);
 	}
@@ -116,7 +116,7 @@ int					get_next_line(const int fd, char **line)
 	static t_file	*file;
 
 	if (!line || (!(file = get_file(&file, fd))))
-		return (-1);
+		return (ft_exit_gnl(file, line));
 	*line = NULL;
 	ndtmp = ft_strchr(file->tmp, '\n');
 	while (!ndtmp)
@@ -124,11 +124,11 @@ int					get_next_line(const int fd, char **line)
 		if ((ret = read(file->fd, buf, BUFF_SIZE)) == 0)
 			break ;
 		if (ret < 0)
-			return (-1);
+			return (ft_exit_gnl(file, line));
 		buf[ret] = '\0';
 		tmpline = file->tmp;
 		if (!(file->tmp = ft_strjoin(tmpline, buf)))
-			return (-1);
+			return (ft_exit_gnl(file, line));
 		ft_strdel(&tmpline);
 		ndtmp = ft_strchr(file->tmp, '\n');
 	}

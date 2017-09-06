@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 18:12:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 19:57:19 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_data_store		*ft_data_store_init(void)
 {
 	t_data_store	*data_store;
 
-	if (!(data_store = ft_memalloc(sizeof(t_data_store))))
+	if (!(data_store = malloc(sizeof(t_data_store))))
 		return (NULL);
 	data_store->nb_ants = 0;
 	data_store->start_mark = 0;
@@ -39,6 +39,7 @@ t_data_store		*ft_data_store_init(void)
 	data_store->commands = NULL;
 	data_store->last_commands = NULL;
 	data_store->nb_commands = 0;
+	data_store->gnl_error = 0;
 	return (data_store);
 }
 
@@ -93,6 +94,8 @@ int					ft_parse_file(t_data_store *data_store)
 		else if (line_is_command == 5)
 			break ;
 	}
+	if (gnl == -1)
+		data_store->gnl_error = 1;
 	if (gnl == -1 || data_store->nb_commands == 0 || data_store->nb_ants == 0)
 		return (-1);
 	return (1);

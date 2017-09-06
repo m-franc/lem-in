@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 10:56:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 19:56:58 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct			s_data_store
 	t_list				*commands;
 	t_list				*last_commands;
 	int					nb_commands;
+	int					gnl_error;
 }						t_data_store;
 
 typedef struct			s_adj_list
