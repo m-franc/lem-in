@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 17:44:52 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 10:53:24 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 12:18:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void					ft_del_adj_list(t_datas_graph *datas_graph)
 	rooms = datas_graph->adj_list;
 	while (i < datas_graph->nb_rooms)
 	{
-		free(rooms[i].rooms_linked);
+		ft_strdel(&rooms[i].name);
+		if (rooms[i].rooms_linked)
+			free(rooms[i].rooms_linked);
 		ft_bzero(&rooms[i], sizeof(t_adj_list));
 		i++;
 	}

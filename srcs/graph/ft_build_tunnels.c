@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 13:06:48 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:28:49 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 12:21:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,11 @@ t_adj_list			**ft_init_rooms_linked(t_tunnels *tmp_tunnels,
 	{
 		if (!(rooms_linked[i] = ft_get_room_by_tunnels(tmp_tunnels,
 						datas_graph, current_room)))
+		{
+			free(rooms_linked);
+			rooms_linked = NULL;
 			return (NULL);
+		}
 	}
 	return (rooms_linked);
 }
