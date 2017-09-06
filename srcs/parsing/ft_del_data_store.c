@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 18:21:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/05 18:23:00 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 10:54:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void					ft_del_rooms(t_data_rooms *rooms)
 	t_data_rooms		*to_free;
 
 	while (rooms)
-	{	
+	{
 		curr_room = rooms->next;
 		to_free = rooms;
 		ft_bzero(to_free, sizeof(t_data_rooms));
@@ -34,7 +34,7 @@ void					ft_del_tunnels(t_tunnels *tunnels)
 	t_tunnels			*to_free;
 
 	while (tunnels)
-	{	
+	{
 		curr_tunnel = tunnels->next;
 		to_free = tunnels;
 		ft_bzero(to_free, sizeof(t_tunnels));

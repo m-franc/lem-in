@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/05 18:40:07 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 11:30:21 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void					ft_parse_and_store(t_data_store **data_store)
 		ft_exit_error(*data_store, NULL);
 }
 
-void					ft_anthill_part(t_list *commands, t_datas_graph *datas_graph)
+void					ft_anthill_part(t_list *commands,
+		t_datas_graph *datas_graph)
 {
 	ft_init_ways(datas_graph);
 	ft_init_ants(datas_graph);

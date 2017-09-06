@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 17:44:52 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/05 18:46:42 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 10:53:24 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void					ft_del_ants(t_ants *ants)
 	t_ants				*to_free;
 
 	while (ants)
-	{	
+	{
 		curr_ant = ants->next;
 		to_free = ants;
 		ft_bzero(to_free, sizeof(t_ants));

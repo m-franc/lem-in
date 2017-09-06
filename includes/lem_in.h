@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/05 18:48:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 10:56:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void					ft_put_adj_list(t_datas_graph *datas_graph);
 void					ft_graph_building_and_setting(t_data_store *data_store,
 		t_datas_graph **datas_graph);
 void					ft_parse_and_store(t_data_store **data_store);
-void					ft_anthill_part(t_list *commands, t_datas_graph *datas_graph);
+void					ft_anthill_part(t_list *commands,
+		t_datas_graph *datas_graph);
 void					lem_in(void);
 
 /*
@@ -115,7 +116,8 @@ void					lem_in(void);
 */
 int						ft_exit_function(int return_value, void *st_elem,
 		void *nd_elem, void *rd_elem);
-void					ft_exit_error(t_data_store *data_store, t_datas_graph *datas_graph);
+void					ft_exit_error(t_data_store *data_store,
+		t_datas_graph *datas_graph);
 
 /*
  ** ft_del_datas_graph.c
@@ -136,7 +138,8 @@ void					ft_del_data_store(t_data_store *data_store);
 */
 t_data_store			*ft_data_store_init(void);
 t_list					*ft_new_command(t_data_store *data_store, char *line);
-int						ft_line_is_command(t_data_store *data_store, char *line);
+int						ft_line_is_command(t_data_store *data_store,
+		char *line);
 int						ft_parse_file(t_data_store *data_store);
 
 /*

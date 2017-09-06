@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/30 15:53:53 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:25:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 11:09:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ void				ft_put_data_room(t_data_rooms *rooms)
 	while (rooms)
 	{
 		if (rooms->start)
-			ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} |\
-					{green}start{eoc}\n", rooms->name, rooms->x,
-					rooms->y, rooms->start);
+			ft_printf("{grey}%s{eoc} | {blue}%d %d {eoc} | {green}start{eoc}\n",
+					rooms->name, rooms->x, rooms->y, rooms->start);
 		else if (rooms->end)
-			ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc} |\
-					{green}end{eoc}\n", rooms->name, rooms->x,
-					rooms->y, rooms->end);
+			ft_printf("{grey}%s{eoc} | {blue}%d %d {eoc} | {green}end{eoc}\n",
+					rooms->name, rooms->x, rooms->y, rooms->end);
 		else
-			ft_printf("{grey}%s{eoc} | coords : {blue}%d %d {eoc}\n",
+			ft_printf("{grey}%s{eoc} | {blue}%d %d {eoc}\n",
 					rooms->name, rooms->x, rooms->y);
 		ft_putlist(rooms->rooms_linked);
 		rooms = rooms->next;
@@ -63,8 +61,7 @@ void				ft_put_adj_list_elem(t_adj_list *list, int o)
 	int				i;
 	t_adj_list		**tmp_list;
 
-	ft_printf("{grey}%s{eoc} (dist before end : {purple}%d{eoc}, \
-		chemin : {red}%d{eoc})",
+	ft_printf("{grey}%s{eoc} (dist : {purple}%d{eoc}, chemin : {red}%d{eoc})",
 			list[o].name, list[o].dist, list[o].way_id);
 	if (!list[o].rooms_linked)
 		ft_putchar('\n');

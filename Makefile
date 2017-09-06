@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/09/05 18:16:39 by mfranc           ###   ########.fr        #
+#    Updated: 2017/09/06 11:25:01 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,10 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)/parsing
+	@mkdir -p $(OBJS_PATH)/graph
+	@mkdir -p $(OBJS_PATH)/ways
 	$(CC) -o $@ -c $< $(ALL_INCLUDE)
 
 clean:

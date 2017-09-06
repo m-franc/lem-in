@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 14:58:51 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/05 18:34:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/06 10:55:15 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_line_is_command	g_line_is_command[] =
 	ft_line_is_comment
 };
 
-t_data_store			*ft_data_store_init(void)
+t_data_store		*ft_data_store_init(void)
 {
-	t_data_store		*data_store;
+	t_data_store	*data_store;
 
 	if (!(data_store = ft_memalloc(sizeof(t_data_store))))
 		return (NULL);
