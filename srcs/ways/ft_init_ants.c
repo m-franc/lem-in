@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:45:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 21:24:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 21:32:38 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	return (1);
 }
 
-void				ft_init_ways_ants(t_datas_graph *datas_graph, t_adj_list **starts_ways)
+void				ft_init_ways_ants(t_datas_graph *datas_graph,
+		t_adj_list **starts_ways)
 {
 	t_ants		*ants;
 	int			s_way;
@@ -76,7 +77,7 @@ void				ft_init_ways_ants(t_datas_graph *datas_graph, t_adj_list **starts_ways)
 	way_id = 1;
 	while (ants)
 	{
-		if (i == s_way)
+		if (i++ == s_way)
 		{
 			i = 0;
 			way_id++;
@@ -86,7 +87,6 @@ void				ft_init_ways_ants(t_datas_graph *datas_graph, t_adj_list **starts_ways)
 				way_id = 1;
 		}
 		ants->way_id = way_id;
-		i++;
 		ants = ants->next;
 	}
 }
