@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 19:56:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 12:44:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct			s_adj_list
 	int					start;
 	int					end;
 	int					way_id;
+	int					way_start;
 	int					nb_tunnels;
 	struct s_adj_list	**rooms_linked;
 }						t_adj_list;
@@ -111,6 +112,7 @@ void					ft_parse_and_store(t_data_store **data_store);
 void					ft_anthill_part(t_list *commands,
 		t_datas_graph *datas_graph);
 void					lem_in(void);
+void					ft_put_ants(t_ants *ants);
 
 /*
  ** ft_exit.c

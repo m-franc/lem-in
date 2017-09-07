@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/06 11:30:21 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 12:46:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,25 @@ void					ft_parse_and_store(t_data_store **data_store)
 		ft_exit_error(*data_store, NULL);
 }
 
+void					ft_put_ants(t_ants *ants)
+{
+	while (ants)
+	{
+		ft_printf("num : {cyan}%d{eoc} | room : {green}%s{eoc} - way : {purple}%d{eoc}\n", ants->ant_number, ants->curr_room->name, ants->way_id);
+		ants = ants->next;
+	}
+}
+
 void					ft_anthill_part(t_list *commands,
 		t_datas_graph *datas_graph)
 {
 	ft_init_ways(datas_graph);
 	ft_init_ants(datas_graph);
 	ft_init_ways_ants(datas_graph);
+//	ft_put_adj_list(datas_graph);
+//	ENDL
+//	ft_put_ants(datas_graph->ants);
+//	exit(1);
 	ft_putlist(commands);
 	ft_putchar('\n');
 	ft_map_crosser(datas_graph);

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:25:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 12:45:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ft_sort_link_room(t_adj_list *room)
 	links = room->rooms_linked;
 	while (j < room->nb_tunnels - 1)
 	{
-		while (links[j]->dist > links[j + 1]->dist)
+		while (links[j]->dist > links[j + 1]->dist || links[j + 1]->end)
 		{
 			tmp_link = links[j];
 			links[j] = links[j + 1];
@@ -48,7 +48,8 @@ int				ft_get_index_next_room(t_adj_list *curr_room)
 			return (i);
 		else if (curr_room->rooms_linked[i]->dist < dist_min
 				&& curr_room->rooms_linked[i]->dist > 0
-				&& curr_room->rooms_linked[i]->way_id == 0)
+				&& curr_room->rooms_linked[i]->way_id == 0
+				&& curr_room->rooms_linked[i]->way_start == 0)
 		{
 			dist_min = curr_room->rooms_linked[i]->dist;
 			index_next_room = i;
@@ -92,6 +93,7 @@ void			ft_init_ways(t_datas_graph *datas_graph)
 	next_rooms = start_room->rooms_linked;
 	while (++i < start_room->nb_tunnels)
 	{
+		start_room->rooms_linked[i]->way_start = 1;
 		if ((ft_init_way(start_room->rooms_linked[i], way_id)) == -1)
 		{
 			datas_graph->nb_ways--;

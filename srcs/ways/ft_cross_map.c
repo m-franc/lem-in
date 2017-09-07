@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 15:18:09 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:25:23 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 12:47:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void			ft_move_ants_map(t_datas_graph *datas_graph)
 	i = 0;
 	while (ants)
 	{
+	//	ft_put_ants(datas_graph->ants);
 		next_room = ft_get_next_room_way(ants->curr_room,
 				ants->prev_room, ants->way_id);
 		if (!next_room->ant_in || next_room->end)

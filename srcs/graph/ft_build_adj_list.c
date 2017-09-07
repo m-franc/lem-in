@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 15:40:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/04 18:28:36 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 12:45:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int					ft_init_elem_list_adj(t_adj_list *elem_list,
 	elem_list->start = (tmp_rooms->start == 1) ? 1 : 0;
 	elem_list->end = (tmp_rooms->end == 1) ? 1 : 0;
 	elem_list->way_id = 0;
+	elem_list->way_start = 0;
 	elem_list->nb_tunnels = nb_tunnels;
 	elem_list->rooms_linked = NULL;
 	return (1);
