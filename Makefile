@@ -6,12 +6,12 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/10 11:20:45 by mfranc            #+#    #+#              #
-#    Updated: 2017/09/06 11:38:35 by mfranc           ###   ########.fr        #
+#    Updated: 2017/09/07 18:09:41 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 CC = gcc $(FLAGS)
 SRCS_PATH = srcs
 OBJS_PATH = objs
@@ -33,7 +33,8 @@ SRCS = $(addprefix $(SRCS_PATH)/, main.c						\
 								  ways/ft_delete_ants.c			\
 								  ft_exit.c						\
 								  graph/ft_del_datas_graph.c	\
-								  parsing/ft_del_data_store.c)
+								  parsing/ft_del_data_store.c	\
+								  parsing/ft_check_tunnels.c)
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libftprintf.a

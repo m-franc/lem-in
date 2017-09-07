@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 16:24:45 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 18:52:43 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void					ft_parse_and_store(t_data_store **data_store)
 		ft_exit_error(*data_store, NULL);
 	if ((parsing_ret = ft_parse_file(*data_store)) == -1)
 		ft_exit_error(*data_store, NULL);
+	ft_check_tunnels(*data_store);
 }
 
 void					ft_anthill_part(t_list *commands,

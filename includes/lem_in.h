@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:32:54 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 16:38:50 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 17:50:06 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void					ft_del_rooms(t_data_rooms *rooms);
 void					ft_del_tunnels(t_tunnels *tunnels);
 void					ft_del_data_store(t_data_store *data_store);
 /*
- ** ft_is_parse_file.c
+ ** ft_parse_file.c
 */
 t_data_store			*ft_data_store_init(void);
 t_list					*ft_new_command(t_data_store *data_store, char *line);
@@ -144,6 +144,10 @@ int						ft_line_is_command(t_data_store *data_store,
 		char *line);
 int						ft_parse_file(t_data_store *data_store);
 
+/*
+ ** ft_find_tunnels.c
+*/
+void					ft_check_tunnels(t_data_store *data_store);
 /*
  ** ft_is_comand.c
 */
