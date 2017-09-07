@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 16:11:58 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 20:19:27 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 21:24:38 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void					ft_anthill_part(t_list *commands,
 {
 	ft_init_ways(datas_graph);
 	ft_init_ants(datas_graph);
-	ft_init_ways_ants(datas_graph);
+	ft_init_ways_ants(datas_graph, datas_graph->adj_list[0].rooms_linked);
 	ft_putlist(commands);
 	ft_putchar('\n');
 	ft_map_crosser(datas_graph);

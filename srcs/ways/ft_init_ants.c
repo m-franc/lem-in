@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:45:18 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 20:41:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 21:24:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,58 +60,28 @@ int					ft_init_ants(t_datas_graph *datas_graph)
 	}
 	return (1);
 }
-/*
-int					ft_init_way_ants(t_ants **ants, int *way_id,
-		int *starts_ways_index, t_datas_graph *datas_graph)
-{
-	int				i;
-	int				nb_ants_in_way;
-	t_adj_list		**starts_ways;
 
-	i = 0;
-	starts_ways = datas_graph->adj_list[0].rooms_linked;
-	if (starts_ways[*starts_ways_index]->end)
-		nb_ants_in_way = datas_graph->nb_ants;
-	if ((nb_ants_in_way = starts_ways[*starts_ways_index]->dist == 0))
-		*starts_ways_index += 1;
-	while (*ants && i < nb_ants_in_way)
-	{
-		(*ants)->way_id = *way_id;
-		*ants = (*ants)->next;
-		i++;
-	}
-	*way_id += 1;
-	*starts_ways_index += 1;
-	if (*starts_ways_index < datas_graph->adj_list[0].nb_tunnels
-			&& starts_ways[*starts_ways_index]->way_id == 0)
-		return (2);
-	return (1);
-}
-*/
-void				ft_init_ways_ants(t_datas_graph *datas_graph)
+void				ft_init_ways_ants(t_datas_graph *datas_graph, t_adj_list **starts_ways)
 {
 	t_ants		*ants;
-	int			size_path;
+	int			s_way;
 	int			i;
 	int			o;
 	int			way_id;
 
 	i = 0;
 	o = 0;
-	if (datas_graph->adj_list[0].rooms_linked[o]->end)
-		size_path = datas_graph->nb_ants;
-	else
-		size_path = datas_graph->adj_list[0].rooms_linked[o]->dist;
+	s_way = (starts_ways[o]->end) ? datas_graph->nb_ants : starts_ways[o]->dist;
 	ants = datas_graph->ants;
 	way_id = 1;
 	while (ants)
 	{
-		if (i == size_path)
+		if (i == s_way)
 		{
 			i = 0;
 			way_id++;
 			if (o < datas_graph->adj_list[0].nb_tunnels)
-				size_path = datas_graph->adj_list[0].rooms_linked[o++]->dist;
+				s_way = datas_graph->adj_list[0].rooms_linked[o++]->dist;
 			if (way_id == datas_graph->nb_ways + 1)
 				way_id = 1;
 		}
