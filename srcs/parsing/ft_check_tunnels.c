@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:20:47 by mfranc            #+#    #+#             */
-/*   Updated: 2017/09/07 18:58:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/09/07 19:19:13 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ void			ft_find_duplicate(t_tunnels *curr_tunnel, t_tunnels *og_tunnels)
 	prev = NULL;
 	while (og_tunnels)
 	{
-		if (curr_tunnel != og_tunnels && ft_tunnels_matched(og_tunnels, curr_tunnel))
-			ft_del_tunnel(&og_tunnels, &prev);	
+		if (curr_tunnel != og_tunnels
+				&& ft_tunnels_matched(og_tunnels, curr_tunnel))
+			ft_del_tunnel(&og_tunnels, &prev);
 		else
 		{
-			prev = og_tunnels;	
+			prev = og_tunnels;
 			og_tunnels = og_tunnels->next;
 		}
 	}
@@ -66,6 +67,6 @@ void			ft_check_tunnels(t_data_store *data_store)
 	{
 		og_tunnels = data_store->tunnels;
 		ft_find_duplicate(curr_tunnel, og_tunnels);
-		curr_tunnel = curr_tunnel->next;	
+		curr_tunnel = curr_tunnel->next;
 	}
 }
